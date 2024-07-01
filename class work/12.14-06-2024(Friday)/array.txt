@@ -1,0 +1,3 @@
+Array : array is a collaction of similar data type in a single variable.
+
+int a[size];
