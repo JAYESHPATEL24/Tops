@@ -15,7 +15,7 @@ class B{
 	public:
 		fun()
 		{	
-			cout<<"Bado bati   bado bati"<<endl;
+			cout<<"Bado bati bado bati"<<endl;
 		}
 };
 
@@ -26,13 +26,14 @@ class C : public A,public B{
 		{	
 			B::fun();
 			A::fun();
-			cout<<"Ankh ladi   bado bati"<<endl;
+			cout<<"Ankh ladi bado bati"<<endl;
 		}
 };
 
 main()
 {
-		C obj;	
+		C c;
+		c.fun();	
 }
 
 

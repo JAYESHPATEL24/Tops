@@ -16,13 +16,14 @@ class B : public A{
 		fun()
 		{
 			A::fun();         //scope resolution operator	
-			cout<<"Bado bati   bado bati";
+			cout<<"Bado bati bado bati";
 		}
 };
 
 main()
 {
-		B obj;	
+		B b;
+		b.fun();	
 }
 
 
