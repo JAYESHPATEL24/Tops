@@ -66,6 +66,7 @@ main()
 
 				//create dynamic array for objects of class.
 	Lecture* lecturers = new Lecture[lecturer_number];
+	//	Lecture lecturers[lecturer_number];	
 	
 	for(i=0; i<lecturer_number; i++)
 	{
