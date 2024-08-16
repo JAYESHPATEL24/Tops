@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style> 
+.image-container {
+    position: relative;
+    width: 300px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+}
+
+.image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+.image-container:hover .image-hover {
+    opacity: 1;
+}
+
+.image-container:hover .image {
+    opacity: 0;
+}
+
+    </style>
+</head>
+<body style="background-image: url(sk.jpg); color: Gold; background-size: cover; background-attachment: fixed;">
+    <h1><marquee direction = "right">Registration form</h1>
+    <h3></marquee>
+    <center>
+        <legend> Please Fill Details </legend>
+        <table>
+            <form method="post" action="">
+                <tr>
+                    <td><label>Full Name</label></td>
+                    <td><input type="text" placeholder="Enter Your Name" name="fname" required></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="email" placeholder="Enter Your Email" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label>Mobile Number</label></td>
+                    <td><input type="tel" placeholder="Enter Your Mobile Number" name="number" required></td>
+                </tr>
+                <tr>
+                    <td><label>Date of Birth</label></td>
+                    <td><input type="date" name="birth" required></td>
+                </tr>
+                <tr>
+                    <td><label>city</label></td>
+                    <td><select><option>--------City----------</option>
+                        <option>Ahemdabad</option>
+                        <option>Vadodara</option>
+                        <option>Suplex city</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label>Gender</label></td>
+                    <td>Male<input type="radio" name="gender">Female<input type="radio" name="gender"></td>
+                </tr>
+                <tr>
+                    <td><label>hobby</label></td>
+                    <td>Music<input type="checkbox" name="hobby">
+                        Dance<input type="checkbox" name="hobby"></td>
+                </tr>
+                <tr>
+                    <td><label>Profile picture</label></td>
+                    <td><input type="file" name="picture"></td>
+                </tr>
+                
+                <tr>
+                    <td><label>Search</label></td>
+                    <td><input type="search" placeholder="What are you looking for?"></td>
+                    <td><button>Search</button></td>
+                </tr>
+                <tr>
+                    <td><label>Password</label></td>
+                    <td><input type="password" placeholder="Enter your password"></td>
+                </tr>
+                <tr>
+                    <td><label>Re-Enter Password</label></td>
+                    <td><input type="password" placeholder="Enter your password again"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" VALUE = "SUBMIT"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="image-container">
+                            <img src="sk.1.jpg" alt="Image 1" class="image">
+                            <img src="sk.2.jpg" alt="Image 2" class="image-hover">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="image-container">
+                            <img src="S1.jpg" alt="Image 1" class="image">
+                            <img src="s.2.jpg" alt="Image 2" class="image-hover" style="margin-top: auto; margin-left: auto;" >
+                        </div>
+                    </td>
+
+                </tr>
+            </form>
+            </table>
+        </center>
+         </h3>
+         <br>
+</body>
+</html>
