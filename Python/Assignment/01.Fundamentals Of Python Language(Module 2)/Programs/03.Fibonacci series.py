@@ -10,7 +10,7 @@ print("Fibonacci Series : ")
 print(fab1)
 print(fab2)
 
-                # Loop for print reaminning numbers of series
+                # Loop for print remainning numbers of series
 for i in range(1,n-1):
     fab = fab1 + fab2 
     print(fab)

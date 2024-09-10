@@ -6,7 +6,7 @@ print("Enter two numbers : ")
 x = int(input("X : ")) 
 y = int(input("Y : "))
 
-    # logic for swap two number using 3rd variable.
+    # logic for swap two number using temp variable.
 temp = x
 x = y
 y = temp
@@ -20,7 +20,7 @@ print("Enter two numbers : ")
 a = int(input("A : ")) 
 b = int(input("B : "))
 
-    # logic for swap two number without using 3rd variable.
+    # logic for swap two number without using temp variable.
 a,b = b,a
 
 print(f"After Swapping : A = {a}  B = {b}")
