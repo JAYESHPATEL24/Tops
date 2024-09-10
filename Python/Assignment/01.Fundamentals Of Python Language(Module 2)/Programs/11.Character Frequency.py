@@ -5,9 +5,9 @@ s = input("Enter a string: ")
 
 count = 0
 
-for char in s:
+for i in s:
                 # if space occcurs in string than skip the space.
-    if char == ' ':     
+    if i == ' ':     
         continue
 
                 # if character occurs than increse the count by 1.
