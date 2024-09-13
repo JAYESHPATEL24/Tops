@@ -1,4 +1,5 @@
 import time
+
 def prime(n):
     c = 0
     for i in range(1,n+1):
@@ -34,3 +35,4 @@ def triangle():
             time.sleep(0.2)
             print("\U0001F488",end="")
         print()
+              
