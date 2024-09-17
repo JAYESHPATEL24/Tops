@@ -27,6 +27,7 @@ for word, count in words_count.items():
 
 s = input("Enter a string: ")
 
+print("Character frequencies in the string are:")
 for i in range(65, 123):
     count = 0
     for char in s:
