@@ -1,6 +1,6 @@
 # Write a Python program to count the occurrences of each word in a given sentence   
 
-
+"""
 s = input("Enter a string: ")
 
 words_count = {}
@@ -22,3 +22,15 @@ for char in s:
 print("Character frequencies in the string are:")
 for word, count in words_count.items():
     print(f"{word}: {count}")
+
+"""
+
+s = input("Enter a string: ")
+
+for i in range(65, 123):
+    count = 0
+    for char in s:
+        if char == chr(i):
+            count += 1
+    if count != 0:
+        print(f"{chr(i)} : {count}")
