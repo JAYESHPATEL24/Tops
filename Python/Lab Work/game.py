@@ -1,12 +1,12 @@
 import random
 
 def guess_number():
-    n = random.randint(1,10)
+    n = random.randint(1,100)
     guess = 0
 
     while guess != n:
-        guess = int(input("Guess a number between 1 and 10: "))
-        if guess>10 or guess<1:
+        guess = int(input("Guess a number between 1 and 100: "))
+        if guess>100 or guess<1:
             print("XXXX invaild Number.")
         elif n>guess:
             print("Small Number.")
