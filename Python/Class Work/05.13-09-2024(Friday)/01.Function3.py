@@ -1,3 +1,5 @@
+# Function without parameter and with reurn type
+
 def factorial():
     n = int(input("Enter a Number : "))
     
