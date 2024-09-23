@@ -4,8 +4,14 @@
 
 s = input("Enter a String : ")
 
+ls = 0
+
+        # count length of string.
+for i in s :
+    ls += 1
+
     # Check the length of the string
-if len(s) >= 3:
+if ls >= 3:
     # Check if the string ends with 'ing'
     if s.endswith('ing'):
              # Add 'ly' if the string ends with 'ing'

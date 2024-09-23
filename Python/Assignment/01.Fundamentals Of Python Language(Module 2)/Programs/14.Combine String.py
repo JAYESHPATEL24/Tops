@@ -7,9 +7,12 @@ s2 = input("Enter the second string: ")
 ls1 = 0
 ls2 = 0
 
+        # count length of first string.
 for i in s1 :
     ls1 += 1
-
+    
+    
+        # count length of second string.
 for i in s2 :
     ls2 += 1
     
