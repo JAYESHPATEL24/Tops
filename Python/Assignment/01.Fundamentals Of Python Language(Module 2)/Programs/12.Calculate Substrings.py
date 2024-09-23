@@ -6,9 +6,14 @@ sub = input("Enter the substring: ")
 
 count = 0
 start = 0
+sl = 0   
+
+        #count the length of main string. 
+for i in s:  
+    sl+=1
 
         # Loop through the main string to find sub string occurrences
-while start < len(s):
+while start < sl:
     pos = s.find(sub, start)
     if pos != -1:
         count += 1

@@ -4,8 +4,17 @@
 s1 = input("Enter the first string: ")
 s2 = input("Enter the second string: ")
 
+ls1 = 0
+ls2 = 0
+
+for i in s1 :
+    ls1 += 1
+
+for i in s2 :
+    ls2 += 1
+    
     # Check if both strings have at least two characters
-if len(s1) < 2 or len(s2) < 2:
+if ls1 < 2 or ls2 < 2:
     print("Both strings must have at least two characters.")
 else:
         # Swap the first two characters of each string

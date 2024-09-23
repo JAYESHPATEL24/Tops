@@ -2,3 +2,12 @@
 
 def large_small_sum():
     print("Hello")
+    
+s = "Hello"
+
+print(len(s))
+
+l = 0
+for i in s:
+    l += 1
+print(l)
