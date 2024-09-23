@@ -1,9 +1,13 @@
 # Write a Python function to reverses a string if its length is a multiple of 4.  
 
 def reverse(s):
-
+    
+        ls = 0 
+            # count length of string.
+        for i in s:
+            ls += 1
                 # Check if the length of the string is a multiple of 4
-        if len(s) % 4 == 0:
+        if ls % 4 == 0:
             # Reverse the string
                 return s[::-1]
         else:

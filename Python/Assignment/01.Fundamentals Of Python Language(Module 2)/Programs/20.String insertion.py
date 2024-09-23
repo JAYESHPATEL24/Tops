@@ -1,8 +1,13 @@
 # Write a Python function to insert a string in the middle of a string. 
 
 def insert_String(main_s,s):
+        
+        sl = 0
+                # calculate the length of main string. 
+        for i in main_s:
+                sl += 1
                 # Calculate the middle index of the main string
-        middle = len(main_s) // 2
+        middle = sl // 2
 
 
                 # Insert the string at the middle index

@@ -3,8 +3,13 @@
 
 s = input("Enter a string: ")
 
+ls = 0
+    # count the length of string.
+for i in s:
+    ls += 1
+    
     # Check if the length of the string is less than 2
-if len(s) < 2:
+if ls < 2:
         # If the string length is less than 2, return a messsage
     print("String is Short.")
     
