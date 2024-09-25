@@ -15,6 +15,6 @@ else:
 l = input("Enter any letter : ")
 
 if l == 'a' or l == 'e' or l == 'i' or l == 'o' or l == 'u' or l == 'A' or l == 'E' or l == 'I' or l == 'O' or l == 'U':
-     print(f"{l} is Vowel.")
+    print(f"{l} is Vowel.")
 else:
     print(f"{l} is not Vowel.")
