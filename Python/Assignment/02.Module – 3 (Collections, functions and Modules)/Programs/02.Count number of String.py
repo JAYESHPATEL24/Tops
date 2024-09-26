@@ -11,6 +11,8 @@ for i in range(n):
     s = input("Enter a String : ")
     l.append(s) 
     
+print(f"Entered List : {l}")
+    
 count = 0 
 
     # count strings where the string length is 2 or more and the first and last character are same from a given list of strings. 
