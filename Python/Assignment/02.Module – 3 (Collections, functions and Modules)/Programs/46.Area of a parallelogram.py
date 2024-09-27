@@ -1,9 +1,11 @@
 # Write a Python program to calculate the area of a parallelogram 
+# area of a parallelogram = base * height
 
-"""
-Write a Python program to calculate surface volume and area of a 
-cylinder  
- Write a Python program to returns sum of all divisors of a number  
- Write a Python program to find the maximum and minimum numbers 
-from the specified decimal numbers. 
-"""
+    # get parameters for parallelogram from user.
+b = float(input("Enter a base   of a parallelogram : "))
+h = float(input("Enter a height of a parallelogram : "))
+
+    # calculate the area of a parallelogram
+a = b * h
+
+print(f"Area of parallelogram : {a}")
