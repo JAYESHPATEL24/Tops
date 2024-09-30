@@ -1,0 +1,9 @@
+Exception Handling
+When error occurs at run time to handle that error called exception Handling
+try
+
+except
+
+else
+
+finally
