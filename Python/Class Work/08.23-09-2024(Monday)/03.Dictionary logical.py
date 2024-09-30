@@ -14,6 +14,9 @@ print()
 s = input("Enter a Name : ")
 d1 = {}
 
+# DishaD
+# D : 1
+
 for i in  s : 
     if i in d1:
         d1[i]+=1

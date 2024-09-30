@@ -6,7 +6,7 @@ print(t.index(14))
 
 
 # we can not change in tuple because tuple is immutable.
-# so if you wanna change
+# so if you want to change
 # convert tuple into list
 
 l = list(t)         # type casting : tuple to list.
