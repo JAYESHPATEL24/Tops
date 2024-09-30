@@ -5,3 +5,4 @@ Sample data: [{'item': 'item1', 'amount': 400}, {'item': 'item2', 'amount':
 Expected Output: 
 Counter ({'item1': 1150, 'item2': 300})  
 """
+
