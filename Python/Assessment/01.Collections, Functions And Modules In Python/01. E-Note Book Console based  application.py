@@ -8,6 +8,8 @@ while True:
     choice = input("Enter your choice : ")
     print("-"*40)
     
+    file = open("notes.txt","w")
+    
     if choice == "1":
         add_note()
         print("-"*40)
