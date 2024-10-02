@@ -1,0 +1,5 @@
+set
+
+-> Denoted by {}.
+-> it only allow unique values.
+
