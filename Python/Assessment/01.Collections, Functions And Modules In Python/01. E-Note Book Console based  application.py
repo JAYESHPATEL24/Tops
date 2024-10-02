@@ -1,5 +1,12 @@
 from ENote_Book_Module import *
+import logging
 
+# create text file to store data
+file =  open("notes.txt", "w")
+file.close()
+
+   # Configure logging to write logs to 'app.log' with INFO level and a specific format
+logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s  %(message)s')
 
     # Main loop to display the menu and handle user choices
 while True:
@@ -7,8 +14,6 @@ while True:
     print("-"*40)
     choice = input("Enter your choice : ")
     print("-"*40)
-    
-    file = open("notes.txt","w")
     
     if choice == "1":
         add_note()

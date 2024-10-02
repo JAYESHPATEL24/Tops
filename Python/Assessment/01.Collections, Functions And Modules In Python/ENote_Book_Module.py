@@ -1,9 +1,6 @@
 import os
 import logging
 
-    # Configure logging to write logs to 'app.log' with INFO level and a specific format
-logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s  %(message)s')
-
 def display_menu():
     menu = """
            Press 1. Add Note
@@ -15,6 +12,7 @@ def display_menu():
     print("("*10,"Python E-Note Book",")"*10)
     print(menu)
     
+        
 def add_note():
     logging.info("\n\n" + "-"*70)
         # get the generator name from user
@@ -68,7 +66,7 @@ def view_notes():
         with open("notes.txt", "r") as file:
             notes = file.readlines()
             if notes:
-                print("\n--------- Your Notes ----------")
+                print("\n----------- Your Notes -------------")
                 for note in notes:
                     print(note.strip())
                     # Log that notes were viewed

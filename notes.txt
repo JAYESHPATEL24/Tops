@@ -1,5 +1,0 @@
-
-Note Generator     : jayesh patel
-E-Note Title       : python -u "c:\Users\jayes\Documents\Tops\Tops\Python\Assignment\02.Module – 3 (Collections, functions and Modules)\Programs\48.sum of all divisors of a number.py"
-E-Note Description : 12
-
