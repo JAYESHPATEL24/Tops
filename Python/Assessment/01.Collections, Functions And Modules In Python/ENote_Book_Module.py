@@ -16,6 +16,7 @@ def display_menu():
     print(menu)
     
 def add_note():
+    logging.info("\n\n" + "-"*70)
         # get the generator name from user
     generator_name = input("Enter Python E-Note Generator Name : ")
     
@@ -26,7 +27,7 @@ def add_note():
         return
     
         # if user enter only Digits in generator name.
-    elif not generator_name.isalpha():
+    elif generator_name.isdigit():
         print("Error: Invalid Input")
         logging.error("\nInvalid input for generator name")
         return
@@ -58,7 +59,9 @@ def add_note():
     logging.info(note)
     print("Note added successfully!")
 
+
 def view_notes():
+    logging.info("\n\n" + "-"*70)
         # Check if 'notes.txt' exists
     if os.path.exists("notes.txt"):
             # Read and display the notes
