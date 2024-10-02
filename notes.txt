@@ -8,3 +8,8 @@ Note Generator     : jayehs
 E-Note Title       : hahah
 E-Note Description : hhsh
 
+
+Note Generator     : Disha
+E-Note Title       : maths
+E-Note Description : maths is a logical subject.
+
