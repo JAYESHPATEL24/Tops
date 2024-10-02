@@ -1,1 +1,7 @@
 Hello Beautiful World!!!!!!Hello Beautiful girl!!!!!!
+
+
+notes = ["generator name : himanshu", "content : sdfsf"]
+
+for i in notes:
+    print(i)

@@ -6,9 +6,9 @@ logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s 
 
 def display_menu():
     menu = """
-            1. Add Note
-            2. View Notes
-            3. Exit
+           Press 1. Add Note
+           Press 2. View Notes
+           Press 3. Exit
             """
     # Display the main menu 
     print()
