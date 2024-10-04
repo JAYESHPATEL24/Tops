@@ -1,5 +1,4 @@
 from Bank_Module import *
-import os
 
 menu = """
         WELCOME TO PYTHON BANK MANAGEMENT SYSTEM
@@ -15,7 +14,19 @@ menu = """
         
 while True:
     
+    print(menu)
+    
     role = int(input("Enter your Role : "))
     
     if role == 1:
-        print("")
+        banker()
+    
+    elif role == 2:
+        customer()
+        
+    elif role == 3:
+        print("Good BYE !!!")
+        break
+    
+    else:
+        print("XXX INVALID CHOICE.....!!")
