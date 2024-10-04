@@ -2,14 +2,13 @@
 
 l = [1,2,3,4,1,2]
 l1 = []
-l2 = []
-for i in l:
-    if i in l1:
-       l2.append(i)
-       
-    else:
-        l1.append(i)
+
+for i in range(len(l)):
+    if l[i] not in l1:
+       for j in range(i+1,len(l)):
+           if l[i] == l[j]: 
+               l1.append(l[i])
         
         
  
-print(l2)
+print(l1)
