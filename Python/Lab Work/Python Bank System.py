@@ -1,9 +1,15 @@
 from Bank_Module import *
 
 def banker():
+    
     while True:
-        main_menu()
+        
+        bank_menu()
+        
+        print("-"*40)
         choice = int(input("Enter your choice: "))
+        print("-"*40)
+        
         if choice == 1:
             add_customer()
         elif choice == 2:
@@ -46,11 +52,17 @@ menu = """
     2)  CUSTOMER
     
     3)  EXIT
-    
     """
+    
+    
 while True:
+    
     print(menu)
+    
+    print("-"*40)
     role = int(input("Enter your Role : "))
+    print("-"*40)
+    
     if role == 1:
         banker()
     elif role == 2:

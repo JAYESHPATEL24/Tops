@@ -2,14 +2,18 @@ import datetime
 
 customers = {}  # Shared customer database
 
-def main_menu():
-    print("Operations Menu:")
-    print("1) Add Customer")
-    print("2) View Customer")
-    print("3) Search Customer")
-    print("4) View All Customers")
-    print("5) Total Amounts in Bank")
-    print("6) Exit")
+def bank_menu():
+    print()
+    menu = """
+        Operations Menu:
+        1) Add Customer
+        2) View Customer
+        3) Search Customer
+        4) View All Customers
+        5) Total Amounts in Bank
+        6) Exit
+        """
+    print(menu)
 
 def customer_menu():
     print("Customer's Menu:")
@@ -24,14 +28,20 @@ def add_customer():
     balance = float(input("Enter opening balance: "))
     opening_date = datetime.datetime.now()
     customers[account_no] = {'name': name, 'balance': balance, 'Opening Date': str(opening_date)}
+    print("-"*40)
     print("Customer added successfully.")
+    print("-"*40)
 
 def view_customer():
     account_no = input("Enter account number to view: ")
     if account_no in customers:
+        print("-"*40)
         print(customers[account_no])
+        print("-"*40)
     else:
+        print("-"*40)
         print("Customer not found.")
+        print("-"*40)
 
 def search_customer():
     name = input("Enter customer name to search: ")
@@ -39,14 +49,18 @@ def search_customer():
         if details['name'] == name:
             print(f"Account No: {account_no}, Details: {details}")
             return
+    print("-"*40)
     print("Customer not found.")
+    print("-"*40)
 
 def view_all_customers():
     if customers:
         for account_no, details in customers.items():
             print(f"Account No: {account_no}, Details: {details}")
     else:
+        print("-"*40)
         print("No customers to display.")
+        print("-"*40)
 
 def total_amounts_in_bank():
     total = sum(details['balance'] for details in customers.values())
