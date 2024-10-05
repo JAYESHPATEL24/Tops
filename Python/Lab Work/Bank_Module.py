@@ -1,5 +1,7 @@
 import datetime
 
+customers = {}  # Shared customer database
+
 def main_menu():
     print("Operations Menu:")
     print("1) Add Customer")
@@ -16,7 +18,7 @@ def customer_menu():
     print("3) View Balance")
     print("4) Exit")
 
-def add_customer(customers):
+def add_customer():
     account_no = input("Enter account number: ")
     name = input("Enter customer name: ")
     balance = float(input("Enter opening balance: "))
@@ -24,14 +26,14 @@ def add_customer(customers):
     customers[account_no] = {'name': name, 'balance': balance, 'Opening Date': str(opening_date)}
     print("Customer added successfully.")
 
-def view_customer(customers):
+def view_customer():
     account_no = input("Enter account number to view: ")
     if account_no in customers:
         print(customers[account_no])
     else:
         print("Customer not found.")
 
-def search_customer(customers):
+def search_customer():
     name = input("Enter customer name to search: ")
     for account_no, details in customers.items():
         if details['name'] == name:
@@ -39,18 +41,18 @@ def search_customer(customers):
             return
     print("Customer not found.")
 
-def view_all_customers(customers):
+def view_all_customers():
     if customers:
         for account_no, details in customers.items():
             print(f"Account No: {account_no}, Details: {details}")
     else:
         print("No customers to display.")
 
-def total_amounts_in_bank(customers):
+def total_amounts_in_bank():
     total = sum(details['balance'] for details in customers.values())
     print(f"Total amount in bank: {total}")
 
-def withdraw_amount(customers):
+def withdraw_amount():
     account_no = input("Enter account number: ")
     amount = float(input("Enter amount to withdraw: "))
     if account_no in customers and customers[account_no]['balance'] >= amount:
@@ -59,7 +61,7 @@ def withdraw_amount(customers):
     else:
         print("Insufficient funds or account not found.")
 
-def deposit_amount(customers):
+def deposit_amount():
     account_no = input("Enter account number: ")
     amount = float(input("Enter amount to deposit: "))
     if account_no in customers:
@@ -68,11 +70,9 @@ def deposit_amount(customers):
     else:
         print("Account not found.")
 
-def view_balance(customers):
+def view_balance():
     account_no = input("Enter account number: ")
     if account_no in customers:
         print(f"Current balance: {customers[account_no]['balance']}")
     else:
         print("Account not found.")
-
-
