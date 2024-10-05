@@ -1,94 +1,78 @@
-def banker():
-    customers = []
+import datetime
 
-    menu = """
-Welcome to Banker's App
-            Operations Menu
-            1)  Add Customer
-            2)  View Customer
-            3)  Search Customer
-            4)  View All Customers
-            5)  Exit
-    """
-    while True:
-        print(menu)
-        ch = int(input("Enter your choice: "))
+def main_menu():
+    print("Operations Menu:")
+    print("1) Add Customer")
+    print("2) View Customer")
+    print("3) Search Customer")
+    print("4) View All Customers")
+    print("5) Total Amounts in Bank")
+    print("6) Exit")
 
-        if ch == 1:
-            name = input("Enter customer name: ")
-            account_number = input("Enter account number: ")
-            balance = float(input("Enter initial balance: "))
-            customers.append({"name": name, "account_number": account_number, "balance": balance})
-            print("Customer added successfully.")
+def customer_menu():
+    print("Customer's Menu:")
+    print("1) Withdraw Amount")
+    print("2) Deposit Amount")
+    print("3) View Balance")
+    print("4) Exit")
 
-        elif ch == 2:
-            account_number = input("Enter account number: ")
-            for customer in customers:
-                if customer["account_number"] == account_number:
-                    print(customer)
-                    break
-            else:
-                print("Customer not found.")
+def add_customer(customers):
+    account_no = input("Enter account number: ")
+    name = input("Enter customer name: ")
+    balance = float(input("Enter opening balance: "))
+    opening_date = datetime.datetime.now()
+    customers[account_no] = {'name': name, 'balance': balance, 'Opening Date': str(opening_date)}
+    print("Customer added successfully.")
 
-        elif ch == 3:
-            name = input("Enter customer name to search: ")
-            for customer in customers:
-                if customer["name"] == name:
-                    print(customer)
-                    break
-            else:
-                print("Customer not found.")
+def view_customer(customers):
+    account_no = input("Enter account number to view: ")
+    if account_no in customers:
+        print(customers[account_no])
+    else:
+        print("Customer not found.")
 
-        elif ch == 4:
-            if customers:
-                for customer in customers:
-                    print(customer)
-            else:
-                print("No customers to display.")
+def search_customer(customers):
+    name = input("Enter customer name to search: ")
+    for account_no, details in customers.items():
+        if details['name'] == name:
+            print(f"Account No: {account_no}, Details: {details}")
+            return
+    print("Customer not found.")
 
-        elif ch == 5:
-            print("Exiting the Banker's App")
-            break
+def view_all_customers(customers):
+    if customers:
+        for account_no, details in customers.items():
+            print(f"Account No: {account_no}, Details: {details}")
+    else:
+        print("No customers to display.")
 
-        else:
-            print("Invalid choice, please try again.")
+def total_amounts_in_bank(customers):
+    total = sum(details['balance'] for details in customers.values())
+    print(f"Total amount in bank: {total}")
+
+def withdraw_amount(customers):
+    account_no = input("Enter account number: ")
+    amount = float(input("Enter amount to withdraw: "))
+    if account_no in customers and customers[account_no]['balance'] >= amount:
+        customers[account_no]['balance'] -= amount
+        print("Withdrawal successful.")
+    else:
+        print("Insufficient funds or account not found.")
+
+def deposit_amount(customers):
+    account_no = input("Enter account number: ")
+    amount = float(input("Enter amount to deposit: "))
+    if account_no in customers:
+        customers[account_no]['balance'] += amount
+        print("Deposit successful.")
+    else:
+        print("Account not found.")
+
+def view_balance(customers):
+    account_no = input("Enter account number: ")
+    if account_no in customers:
+        print(f"Current balance: {customers[account_no]['balance']}")
+    else:
+        print("Account not found.")
 
 
-def customer():
-    balance = 0  # Initial balance
-
-    menu = """
-Welcome to Customer's App
-            Operations Menu
-            1)  Withdraw amount
-            2)  Deposit amount
-            3)  View Balance
-            4)  Exit
-    """
-    while True:
-        print(menu)
-        
-        ch = int(input("Enter your choice: "))
-        
-        if ch == 1:
-            amount = float(input("Enter amount to withdraw: "))
-            if amount <= balance:
-                balance -= amount
-                print(f"Withdrawal successful. New balance: {balance}")
-            else:
-                print("Insufficient funds.")
-
-        elif ch == 2:
-            amount = float(input("Enter amount to deposit: "))
-            balance += amount
-            print(f"Deposit successful. New balance: {balance}")
-
-        elif ch == 3:
-            print(f"Current balance: {balance}")
-
-        elif ch == 4:
-            print("Exiting the application.")
-            break
-
-        else:
-            print("Invalid choice, please try again.")
