@@ -4,3 +4,4 @@
 with open("hearme.txt","r") as file:
         # Read the entire content of the file
     print(file.read())
+    
