@@ -1,0 +1,21 @@
+oops
+
+OBJECT ORIENTED PROGRAMMING SYSTEM
+
+1) CLASS & OBJECT
+2) INHERITANCE
+3) POLYMORPRISM
+4) ENCAPSULATION
+5) ABSTRACTION
+
+CLASS : Class is a collection of data members and member functions.
+
+object : Object is a instance of class through the object we can access all the properties of class
+
+Access Specifiers:
+
+Private   : __a = 10
+
+public    : a = 10
+
+protected : _a = 10
