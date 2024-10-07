@@ -1,17 +1,18 @@
 # Write a Python program to count the frequency of words in a file.
 
-
+    # Dictionary
 word_count = {}
-
+    # open a file in read mode.
 with open("Hearme.txt", "r") as file:
-    content = file.read().lower()  # Convert to lowercase to count words case-insensitively
-    words = content.split()
+        # store all words in to a list
+    words = file.read().split()
 
-for word in words:
-    if word in word_count:
-        word_count[word] += 1
+    # count the frequency of words.
+for i in words:
+    if i in word_count:
+        word_count[i] += 1
     else:
-        word_count[word] = 1
+        word_count[i] = 1
 
 print("Word frequencies:")
 for word, count in word_count.items():

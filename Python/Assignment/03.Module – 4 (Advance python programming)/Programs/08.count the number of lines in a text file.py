@@ -1,9 +1,10 @@
 # Write a Python program to count the number of lines in a text file. 
 
-line_count = 0
-
+count = 0
+    # open a file in read mode.
 with open("Hearme.txt", 'r') as file:
-    for line in file:
-        line_count += 1
+        # count the number of lines in a text file
+    for i in file:
+        count += 1
 
-print(f"Number of lines in the file: {line_count}")
+print(f"Number of lines in the file: {count}")

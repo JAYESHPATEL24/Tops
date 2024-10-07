@@ -9,9 +9,10 @@ with open("hearme.txt", "a+") as file:
     print(file.read())
     
         # Append the new text
-    file.write( "\nDon't let failure defeat you. Let it motivate you." + "\n")
+    file.write( "Don't let failure defeat you. Let it motivate you." + "\n")
 
     print("\nAfter appending:")
         # Move the file pointer to the beginning of the file again before reading
     file.seek(0)
+        # Read the entire content of the file
     print(file.read())

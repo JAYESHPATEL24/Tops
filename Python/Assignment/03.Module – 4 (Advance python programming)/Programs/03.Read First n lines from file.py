@@ -1,6 +1,6 @@
 # Write a Python program to read first n lines of a file. 
 
-    # Get the user input.  
+    # Get the user input for number of lines.
 n = int(input("Enter the number of lines to read : "))
 print()
     # Open the file in read mode
