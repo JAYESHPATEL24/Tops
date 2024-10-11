@@ -13,7 +13,7 @@ bgcolor("black")
 color("red")
 begin_fill()
 
-for i in range(1000):  # Reduce the number of iterations
+for i in range(6500):  # Reduce the number of iterations
     k = i * 0.01  # Adjust the increment for smoother drawing
     x = hearta(k) * 20
     y = heartb(k) * 20
