@@ -24,7 +24,7 @@ color("white")
 penup()
 goto(0, -20)  # Move to the position to write the text
 pendown()
-write("I love you, my cute little sister!", align="center", font=("Arial", 12, "bold"))
+write("I love you", align="center", font=("Arial", 12, "bold"))
 
 hideturtle()
 update()  # Update the drawing
