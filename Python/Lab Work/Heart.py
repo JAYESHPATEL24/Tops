@@ -12,7 +12,7 @@ bgcolor("black")
 color("red")
 begin_fill()
 
-for i in range(10000):
+for i in range(6500):
     k = i * 0.001
     x = hearta(k) * 20
     y = heartb(k) * 20
