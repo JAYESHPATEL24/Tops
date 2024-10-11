@@ -9,14 +9,14 @@
 n = int(input("Enter a Number : "))
 
 # Calculate the size of the grid
-size = 2 * n - 1
+s = 2 * n - 1
 
 # Loop through each row
-for i in range(size):
+for i in range(s):
     # Loop through each column
-    for j in range(size):
+    for j in range(s):
         # Calculate the value to print based on the minimum distance from edges
-        print(n - min(min(i, j), min(size - 1 - i, size - 1 - j)), end=" ")
+        print(n - min(min(i, j), min(s - 1 - i, s - 1 - j)), end=" ")
     # Move to the next line after finishing a row
     print()
 
