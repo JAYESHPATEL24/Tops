@@ -1,0 +1,135 @@
+2024-10-17 18:38:00,424 Contact created: Name: d, Age: 3, Email: d, Mobile: 3
+2024-10-17 18:39:01,546 Contact created: Name: a, Age: 4, Email: d, Mobile: 6
+2024-10-17 18:39:21,781 Contact created:
+Name: r 
+Age: 4 
+Email: r 
+Mobile: 6
+2024-10-17 18:41:03,889 Contact created:
+Name: e 
+Age: 4 
+Email: r 
+Mobile: 5
+
+2024-10-17 18:44:19,106 Contact created:
+Name: jayesh patel 
+Age: 24 
+Email: jay@gmail.com 
+Mobile: 94
+
+2024-10-17 18:44:42,139 Attempted to view non-existent contact: Name: jay
+2024-10-17 18:45:50,777 Invalid input received
+2024-10-17 18:45:54,973 Program exited
+2024-10-17 18:46:23,998 Contact created: Name: g, Age: 3, Email: g, Mobile: 4
+2024-10-17 18:46:31,097 Viewed contact: Name: g, Age: 3, Mobile: 4, Email: g
+2024-10-17 18:49:06,813 Invalid input received
+2024-10-17 18:49:09,979 Program exited
+2024-10-17 18:49:16,422 Contact created: Name: g, Age: 3, Email: g, Mobile: 4
+2024-10-17 18:49:19,508 
+Attempted to create duplicate contact: Name: g
+--------------------
+2024-10-17 18:50:11,367 Invalid input received
+2024-10-17 18:50:16,164 Program exited
+2024-10-17 18:50:24,788 Contact created: Name: g, Age: 5, Email: g, Mobile: 4
+------------------------------------------------------------
+2024-10-17 18:50:32,397 
+Attempted to create duplicate contact: Name: g
+------------------------------------------------------------
+2024-10-17 18:52:44,482 Program exited
+2024-10-17 18:52:53,470 
+Contact created:
+ Name: h
+ Age: 3
+ Email: f
+ Mobile: 4
+
+------------------------------------------------------------
+2024-10-17 18:52:59,044 Attempted to view non-existent contact: Name: r
+2024-10-17 18:53:29,870 Invalid input received
+2024-10-17 18:53:35,647 
+Contact created:
+ Name: s
+ Age: 3
+ Email: d
+ Mobile: 4
+
+------------------------------------------------------------
+2024-10-17 18:53:37,919 
+Attempted to create duplicate contact: Name: s
+
+------------------------------------------------------------
+2024-10-17 18:58:33,683 Invalid input received
+2024-10-17 18:58:37,337 Program exited
+2024-10-17 18:58:53,696 
+Contact created:
+ Name: jay
+ Age: 24
+ Email: jayesh.p,patel
+ Mobile: 23
+
+------------------------------------------------------------
+2024-10-17 18:59:02,849 
+Attempted to create duplicate contact: Name: jay
+
+------------------------------------------------------------
+2024-10-17 18:59:17,500 
+Attempted to view non-existent contact:
+ Name: j
+
+------------------------------------------------------------
+2024-10-17 18:59:22,441 
+Viewed contact:
+ Name: jay
+ Age: 24
+ Mobile: 23
+ Email: jayesh.p,patel
+
+------------------------------------------------------------
+2024-10-17 18:59:48,976 
+Attempted to update non-existent contact:
+ Name: j
+
+------------------------------------------------------------
+2024-10-17 18:59:58,807 
+Contact updated:
+ Name: jay
+ Age: 25
+ Email: d
+ Mobile: 21
+
+------------------------------------------------------------
+2024-10-17 19:00:06,089 
+Search result: No contact found with name containing:
+ q
+
+------------------------------------------------------------
+2024-10-17 19:00:11,052 
+Search result: Found contact:
+ Name: jay
+ Age: 25
+ Mobile: 21
+ Email: d
+
+------------------------------------------------------------
+2024-10-17 19:00:17,648 
+Total contacts counted: 1
+
+------------------------------------------------------------
+2024-10-17 19:00:23,234 
+Invalid input received
+
+------------------------------------------------------------
+2024-10-17 19:00:31,465 
+Attempted to delete non-existent contact:
+ Name: p
+
+------------------------------------------------------------
+2024-10-17 19:00:36,261 
+Contact deleted:
+ Name: jay
+
+------------------------------------------------------------
+2024-10-17 19:00:38,203 
+Program exited
+
+------------------------------------------------------------
