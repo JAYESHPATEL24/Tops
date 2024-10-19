@@ -1,4 +1,5 @@
 import turtle
+import time
 
 # Function to draw a rose
 def draw_rose(t, x, y, size):
@@ -16,7 +17,7 @@ def draw_rose(t, x, y, size):
     
     # Draw the center of the rose
     t.penup()
-    t.goto(x + size * (-0.1), y + size * 0.15)
+    t.goto(x, y + size * (-0.2))  # Adjust position for the center to the left and down
     t.pendown()
     t.color("yellow")
     t.begin_fill()
@@ -33,39 +34,62 @@ pen = turtle.Turtle()
 pen.speed(2)
 pen.color("blue")
 
-# Write the gratitude message
-pen.penup()
-pen.goto(0, 150)
-pen.pendown()
-pen.write("Thank You!", align="center", font=("Arial", 40, "bold"))
-
-pen.penup()
-pen.goto(0, 50)
-pen.pendown()
-pen.write("For Being an Amazing Soft Skill Teacher", align="center", font=("Arial", 20, "normal"))
-
-# Draw a heart
-pen.color("purple")
-pen.penup()
-pen.goto(0, -100)
-pen.pendown()
-pen.speed(1)
-
-pen.begin_fill()
-pen.left(140)
-pen.forward(180)
-pen.circle(-90, 200)
-pen.left(120)
-pen.circle(-90, 200)
-pen.forward(180)
-pen.end_fill()
-
-# Draw roses
+# Draw roses first
 pen.speed(0)
 draw_rose(pen, -200, 200, 50)  # Upper-left corner
 draw_rose(pen, 200, 200, 50)   # Upper-right corner
 draw_rose(pen, -200, -200, 50) # Lower-left corner
 draw_rose(pen, 200, -200, 50)  # Lower-right corner
+
+# Write the gratitude message word by word
+pen.color("blue")
+pen.speed(1)
+pen.penup()
+pen.goto(0, 150)
+pen.pendown()
+
+message1 = "Thank You!"
+message2 = "For Being an Amazing Soft Skill Teacher"
+words1 = message1.split()
+words2 = message2.split()
+
+# Write the first line word by word
+pen.penup()
+pen.goto(-len(message1)*5, 150)  # Adjust starting position for better alignment
+pen.pendown()
+for word in words1:
+    pen.write(word + " ", align="left", font=("Arial", 40, "bold"))
+    pen.penup()
+    pen.forward(80)  # Move turtle forward to space out words
+    pen.pendown()
+    time.sleep(0.5)  # Adjust the delay as needed
+
+pen.penup()
+pen.goto(-len(message2)*5, 50)  # Adjust starting position for better alignment
+pen.pendown()
+
+# Write the second line word by word
+for word in words2:
+    pen.write(word + " ", align="left", font=("Arial", 20, "normal"))
+    pen.penup()
+    pen.forward(50)  # Move turtle forward to space out words
+    pen.pendown()
+    time.sleep(0.5)  # Adjust the delay as needed
+
+# Draw a heart at the bottom of the text
+pen.color("purple")
+pen.penup()
+pen.goto(0, -200)  # Adjusted position to be below the text
+pen.pendown()
+pen.speed(1)
+pen.begin_fill()
+pen.left(140)
+pen.forward(120)  # Reduced size
+pen.circle(-60, 200)  # Reduced size
+pen.left(120)
+pen.circle(-60, 200)  # Reduced size
+pen.forward(120)  # Reduced size
+pen.end_fill()
 
 # Hide the turtle and display the card
 pen.hideturtle()
