@@ -1,6 +1,6 @@
 import time
 
-def prime(n):
+def prime(n):   # function with parameter without return type
     c = 0
     for i in range(1,n+1):
         if n%i==0:
