@@ -9,6 +9,7 @@ menu = """
        """
        
 while True:
+    
     print(menu)
     
     ch = int(input("Enter your Choice : "))
