@@ -15,7 +15,7 @@ s = input("Enter a Name : ")
 d1 = {}
 
 # DishaD
-# D : 1
+# D : 2 i : 1 s : 1 h : 1 a : 1
 
 for i in  s : 
     if i in d1:
@@ -28,6 +28,7 @@ print(d1)
 
 print()
 
+# create dictionary using 2 lists.
 # l as key and l1 as value
 l = [1, 2, 3]
 l1 = [4, 5, 6]

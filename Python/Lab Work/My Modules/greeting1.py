@@ -1,34 +1,72 @@
-import tkinter as tk
-import random
+import turtle
 
-# List of gift ideas
-gifts = [
-    "Personalized Notebook",
-    "Gift Card to a Favorite Bookstore",
-    "Self-Development Book",
-    "Customized Mug",
-    "Workshop or Online Course",
-    "Personalized Pen",
-    "Thank You Plant",
-    "Handwritten Letter"
-]
+# Function to draw a rose
+def draw_rose(t, x, y, size):
+    t.penup()
+    t.goto(x, y)
+    t.pendown()
+    t.color("red", "pink")
+    t.begin_fill()
+    for _ in range(36):  # Draw petals
+        t.circle(size, 60)
+        t.left(120)
+        t.circle(size, 60)
+        t.left(10)
+    t.end_fill()
+    
+    # Draw the center of the rose
+    t.penup()
+    t.goto(x + size * (-0.1), y + size * 0.15)
+    t.pendown()
+    t.color("yellow")
+    t.begin_fill()
+    t.circle(size // 5)
+    t.end_fill()
 
-def suggest_gift():
-    """Suggest a random gift from the list."""
-    suggested_gift = random.choice(gifts)
-    gift_label.config(text=suggested_gift)
+# Set up the screen
+screen = turtle.Screen()
+screen.title("Thank You Card")
+screen.bgcolor("lightblue")
 
-# Set up the main application window
-root = tk.Tk()
-root.title("Gift Suggestion for Teacher")
+# Create a turtle object
+pen = turtle.Turtle()
+pen.speed(2)
+pen.color("blue")
 
-# Create and place a label for the suggestion
-gift_label = tk.Label(root, text="Click the button for a gift suggestion!", wraplength=300)
-gift_label.pack(pady=20)
+# Write the gratitude message
+pen.penup()
+pen.goto(0, 150)
+pen.pendown()
+pen.write("Thank You!", align="center", font=("Arial", 40, "bold"))
 
-# Create and place a button to suggest a gift
-suggest_button = tk.Button(root, text="Suggest Gift", command=suggest_gift)
-suggest_button.pack(pady=10)
+pen.penup()
+pen.goto(0, 50)
+pen.pendown()
+pen.write("For Being an Amazing Soft Skill Teacher", align="center", font=("Arial", 20, "normal"))
 
-# Start the GUI event loop
-root.mainloop()
+# Draw a heart
+pen.color("purple")
+pen.penup()
+pen.goto(0, -100)
+pen.pendown()
+pen.speed(1)
+
+pen.begin_fill()
+pen.left(140)
+pen.forward(180)
+pen.circle(-90, 200)
+pen.left(120)
+pen.circle(-90, 200)
+pen.forward(180)
+pen.end_fill()
+
+# Draw roses
+pen.speed(0)
+draw_rose(pen, -200, 200, 50)  # Upper-left corner
+draw_rose(pen, 200, 200, 50)   # Upper-right corner
+draw_rose(pen, -200, -200, 50) # Lower-left corner
+draw_rose(pen, 200, -200, 50)  # Lower-right corner
+
+# Hide the turtle and display the card
+pen.hideturtle()
+screen.mainloop()
