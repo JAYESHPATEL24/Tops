@@ -3,8 +3,15 @@ print("Welcome")
 
 print()
 print("Maths Operations : ")
+
+# input() is use for a take input from the user.
+# int is type casting.
+# by default input() takes input as String.
 a = int(input("Enter a Number 1 : "))
 b = int(input("Enter a Number 2 : "))
+
+print("A : ",a)
+print("B : ",b)
 
 print(f"Addition : {a+b}")
 print(f"Substraction : {a-b}")
@@ -22,12 +29,3 @@ print(f"After Swapping :  X : {x} Y : {y} ")
 
 print()
 
-print("Even Odd")
-z = int(input("Enter a Number : "))
-
-if z==0:
-    print(f"{z} is Zero")
-elif z%2==0:
-    print(f"{z} is Even number.")
-else:
-    print(f"{z} is Odd number.")

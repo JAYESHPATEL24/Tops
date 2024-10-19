@@ -1,3 +1,4 @@
+# factorial Number 
 n = int(input("Enter a Number : "))
 
 fact = 1
@@ -6,7 +7,8 @@ for i in range(1,n+1):
 
 print(f"factorial of {n} is {fact}.")
 
-print("Fabo Series : ")
+# fibonacci series
+print("Fibonacci Series : ")
 m = int(input("Enter a Number : "))
 
 fab1 = 0
