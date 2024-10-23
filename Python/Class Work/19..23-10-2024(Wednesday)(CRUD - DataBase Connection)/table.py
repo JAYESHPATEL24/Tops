@@ -18,7 +18,12 @@ mycursor.execute("select * FROM flipkart")
 data = mycursor.fetchall()
     
 # Define column names
-column_names = ["ID", "Name", "Email", "Password"]
-    
+column_names = [" ID ", " Name ", "  Email ", " Password "]
+
+centered_headers = [header.center(16,chr(3)) for header in column_names]
+
 # Print data in table format
-print(tabulate(data, headers=column_names, tablefmt="fancy_grid"))
+
+# print(tabulate(data, headers=column_names, tablefmt="fancy_grid"))
+
+print(tabulate(data, headers=centered_headers, tablefmt="fancy_grid"))
