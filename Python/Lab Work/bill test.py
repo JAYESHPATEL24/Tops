@@ -7,17 +7,17 @@ root.title("Billing Software")
 customer_frame = tk.Frame(root)
 customer_frame.pack(pady=10)
 
-tk.Label(customer_frame, text="Customer Name:").grid(row=0, column=0, padx=10, pady=5)
+tk.Label(customer_frame, text="Customer Name:").grid(row=0, column=0, padx=100, pady=5)
 name_entry = tk.Entry(customer_frame)
 name_entry.grid(row=0, column=1, padx=10, pady=5)
 
-tk.Label(customer_frame, text="Phone No:").grid(row=1, column=0, padx=10, pady=5)
+tk.Label(customer_frame, text="Phone No:").grid(row=0, column=2, padx=100, pady=5)
 phone_entry = tk.Entry(customer_frame)
-phone_entry.grid(row=1, column=1, padx=10, pady=5)
+phone_entry.grid(row=0, column=3, padx=10, pady=5)
 
-tk.Label(customer_frame, text="Bill No:").grid(row=2, column=0, padx=10, pady=5)
+tk.Label(customer_frame, text="Bill No:").grid(row=0, column=4, padx=100, pady=5)
 bill_entry = tk.Entry(customer_frame)
-bill_entry.grid(row=2, column=1, padx=10, pady=5)
+bill_entry.grid(row=0, column=5, padx=10, pady=5)
 
 # Products Frame
 products_frame = tk.Frame(root)
