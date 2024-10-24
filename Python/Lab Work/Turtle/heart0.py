@@ -20,11 +20,16 @@ for i in range(1000):  # Reduce the number of iterations
     goto(x, y)
 
 end_fill()
-color("white")
+color("Black")
 penup()
 goto(0, -20)  # Move to the position to write the text
 pendown()
-write("I love you", align="center", font=("Arial", 12, "bold"))
+write("Broken Angle ", align="center", font=("Arial", 12, "bold"))
+color("white")
+penup()
+goto(65, -20) 
+pendown()
+write("\U0001F607", align="center", font=("Arial", 12, "bold"))
 
 hideturtle()
 update()  # Update the drawing
