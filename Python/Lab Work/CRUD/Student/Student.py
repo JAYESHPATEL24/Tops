@@ -5,6 +5,7 @@ while True:
     Viewmenu()
     print("-"*46)
     choice = int(input("Enter your choice : "))
+    print("-"*46)
     print()
     
     match choice:
@@ -22,6 +23,7 @@ while True:
             
         case 5:
             print("Thank You..!!!!")
+            print()
             break
         
         case _:

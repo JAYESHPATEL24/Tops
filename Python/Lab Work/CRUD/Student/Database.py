@@ -10,7 +10,7 @@ db.commit()
 db = pymysql.connect(host="localhost", user="root", password="", database="LAB")
 cursor = db.cursor()
 
-cursor.execute("CREATE TABLE if not exists STUDENT(Roll_No INT PRIMARY KEY NOT NULL, Name VARCHAR(30), Class INT, City VARCHAR(30), Mobile_No INT UNIQUE KEY, Email VARCHAR(30) UNIQUE KEY)")
+cursor.execute("CREATE TABLE if not exists STUDENT(Roll_No INT PRIMARY KEY NOT NULL, Name VARCHAR(30), Class INT, City VARCHAR(30), Mobile_No BIGINT UNIQUE KEY, Email VARCHAR(30) UNIQUE KEY)")
 db.commit()
 
 def Viewmenu():
@@ -37,14 +37,14 @@ def Insert():
     sql = "INSERT INTO STUDENT(Roll_No, Name, Class, City, Mobile_No, Email) VALUES('%s','%s','%s','%s','%s','%s')"
     args = (roll,name,std,city,mobile,email)
     
-    cursor.execute(sql % args)
+    cursor.execute(sql%args)
     db.commit()
     
     
     print()
     print(" \U0001F607"*15)
     print()
-    print(" DATA INSERTED SUCCESSFULLY.....!!!!!!")
+    print("  DATA INSERTED SUCCESSFULLY.....!!!!!!")
     print()
     print(" \U0001F607"*15)
     print()
@@ -53,85 +53,123 @@ def Insert():
 def Update():
     roll = int(input("Enter the Roll No of the student you want to update : "))
     
-    menu = """
-        Which field do you want to update?
-        1. Roll No
-        2. Name
-        3. Class
-        4. City
-        5. Mobile No
-        6. Email
-        7. Return to Menu
-    """
+    sql = "SELECT * FROM STUDENT WHERE ROLL_NO = '%s'"
+    args = (roll)
     
-    while True:
-        print(menu)
+    cursor.execute(sql%args)
     
-        choice = int(input("Enter Your Field Choice : "))
-        
-        match choice:
-            case 1:
-                field = "Roll_No"
-                new = int(input("Enter New Roll No : "))
-                
-            case 2:
-                field = "Name"
-                new = input("Enter New Name : ")
-                
-            case 3:
-                field = "Class"
-                new = int(input("Enter New Class : "))
-            
-            case 4:
-                field = "City"
-                new = input("Enter New City : ")
-            
-            case 5:
-                field = "Mobile_No"
-                new = int(input("Enter New Mobile No : "))
-            
-            case 6:
-                field = "Email"
-                new = input("Enter New Email : ")
-            
-            case 7:
-                print("Thank You...!!!!")
-                break
-                
-            case _:
-                print("XXXX Invalid Field Choice...!!!!")
-                continue
-        
-        sql = f"UPDATE STUDENT SET {field} = '%s' WHERE ROLL_No = '%s'"
-        args = (new,roll)
-        
-        cursor.execute(sql%args)
-        db.commit()
+    result = cursor.fetchone()
+
+    if not result:
+        print()
+        print(" \u274C"*15)
+        print()
+        print(f"  Roll No {roll} does not exist in the database.")
+        print()
+        print(" \u274C"*15)
+        print()
     
-    print()
-    print(" 👍"*15)
-    print()
-    print(" DATA UPDATED SUCCESSFULLY.....!!!!!!")
-    print()
-    print(" 👍"*15)
-    print()
+    else:
+    
+        menu = """
+            Which field do you want to update?
+            1. Roll No
+            2. Name
+            3. Class
+            4. City
+            5. Mobile No
+            6. Email
+            7. Return to Menu
+        """
+        
+        while True:
+            print(menu)
+        
+            choice = int(input("Enter Your Field Choice : "))
+            
+            match choice:
+                case 1:
+                    field = "Roll_No"
+                    new = int(input("Enter New Roll No : "))
+                    
+                case 2:
+                    field = "Name"
+                    new = input("Enter New Name : ")
+                    
+                case 3:
+                    field = "Class"
+                    new = int(input("Enter New Class : "))
+                
+                case 4:
+                    field = "City"
+                    new = input("Enter New City : ")
+                
+                case 5:
+                    field = "Mobile_No"
+                    new = int(input("Enter New Mobile No : "))
+                
+                case 6:
+                    field = "Email"
+                    new = input("Enter New Email : ")
+                
+                case 7:
+                    print("Thank You...!!!!")
+                    print()
+                    break
+                    
+                case _:
+                    print("XXXX Invalid Field Choice...!!!!")
+                    print()
+                    continue
+            
+            sql = f"UPDATE STUDENT SET {field} = '%s' WHERE ROLL_No = '%s'"
+            args = (new,roll)
+            
+            cursor.execute(sql%args)
+            db.commit()
+        
+        print()
+        print(" 👍"*15)
+        print()
+        print("  DATA UPDATED SUCCESSFULLY.....!!!!!!")
+        print()
+        print(" 👍"*15)
+        print()
     
 def Delete():
     roll = int(input("Enter Student's Roll No : "))
     
-    sql = "DELETE FROM STUDENT WHERE Roll_No = '%s'"
+    sql = "SELECT * FROM STUDENT WHERE ROLL_NO = '%s'"
     args = (roll)
     
-    cursor.execute(sql % args)
-    db.commit()
+    cursor.execute(sql%args)
     
-    print()
-    print(" 🚮"*15)
-    print()
-    print(" DATA DELETED SUCCESSFULLY.....!!!!!!")
-    print()
-    print(" 🚮"*15)
-    print()
+    result = cursor.fetchone()
+
+    if not result:
+        print()
+        print(" \u274C"*15)
+        print()
+        print(f"  Roll No {roll} does not exist in the database.")
+        print()
+        print(" \u274C"*15)
+        print()
+    
+    else:
+    
+        sql = "DELETE FROM STUDENT WHERE Roll_No = '%s'"
+        args = (roll)
+        
+        cursor.execute(sql % args)
+        db.commit()
+        
+        print()
+        print(" 🚮"*15)
+        print()
+        print("  DATA DELETED SUCCESSFULLY.....!!!!!!")
+        print()
+        print(" 🚮"*15)
+        print()
 
 def View_Data():
     sql = "SELECT * FROM STUDENT"
