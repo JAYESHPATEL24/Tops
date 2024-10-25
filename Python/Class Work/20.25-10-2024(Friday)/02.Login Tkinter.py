@@ -24,6 +24,13 @@ def insert():
         cursor.close()
         db.close()
         
+        ename.delete(0, END)
+        eemail.delete(0, END)
+        emobile.delete(0, END)
+        epassword.delete(0, END)
+        ecpassword.delete(0, END)
+
+        
     else:
         print("Both Passwords are not Same......!!!")
         messagebox.showwarning("Password Error", "Both Passwords are not the Same......!!!")
