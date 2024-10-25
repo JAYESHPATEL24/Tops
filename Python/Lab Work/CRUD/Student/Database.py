@@ -26,30 +26,47 @@ def Viewmenu():
     
 
 def Insert():
-    print(f"{'-'*20} Enter Student's Data {'-'*20}")
+    print(f"{'-'*12} Enter Student's Data {'-'*12}")
     roll = int(input("Roll No   : "))
-    name = input("Name      : ")
-    std = int(input("Class     : "))
-    city = input("City      : ")
-    mobile = int(input("Mobile No : ")) 
-    email = input("Email     : ")
     
-    sql = "INSERT INTO STUDENT(Roll_No, Name, Class, City, Mobile_No, Email) VALUES('%s','%s','%s','%s','%s','%s')"
-    args = (roll,name,std,city,mobile,email)
+    sql = "SELECT * FROM STUDENT WHERE Roll_No = '%s'"
+    args = (roll)
     
     cursor.execute(sql%args)
-    db.commit()
+    check = cursor.fetchone()
     
-    
-    print()
-    print(" \U0001F607"*15)
-    print()
-    print("  DATA INSERTED SUCCESSFULLY.....!!!!!!")
-    print()
-    print(" \U0001F607"*15)
-    print()
-    print()
-    
+    if check:
+        print()
+        print(" \u274C"*15)
+        print()
+        print(f"  Roll No {roll} already exist in the database.")
+        print()
+        print(" \u274C"*15)
+        print()
+        
+    else:
+        name = input("Name      : ")
+        std = int(input("Class     : "))
+        city = input("City      : ")
+        mobile = int(input("Mobile No : ")) 
+        email = input("Email     : ")
+        
+        sql = "INSERT INTO STUDENT(Roll_No, Name, Class, City, Mobile_No, Email) VALUES('%s','%s','%s','%s','%s','%s')"
+        args = (roll,name,std,city,mobile,email)
+        
+        cursor.execute(sql%args)
+        db.commit()
+        
+        
+        print()
+        print(" \U0001F607"*15)
+        print()
+        print("  DATA INSERTED SUCCESSFULLY.....!!!!!!")
+        print()
+        print(" \U0001F607"*15)
+        print()
+        print()
+        
 def Update():
     roll = int(input("Enter the Roll No of the student you want to update : "))
     
@@ -58,9 +75,9 @@ def Update():
     
     cursor.execute(sql%args)
     
-    result = cursor.fetchone()
+    check = cursor.fetchone()
 
-    if not result:
+    if not check:
         print()
         print(" \u274C"*15)
         print()
@@ -144,9 +161,9 @@ def Delete():
     
     cursor.execute(sql%args)
     
-    result = cursor.fetchone()
+    check = cursor.fetchone()
 
-    if not result:
+    if not check:
         print()
         print(" \u274C"*15)
         print()

@@ -28,3 +28,4 @@ while True:
         
         case _:
             print("XXXXX INVALID CHOICE...!!!!!")
+            print()
