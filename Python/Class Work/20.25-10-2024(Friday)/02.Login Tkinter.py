@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-from Database import *
+import pymysql
 
 def insert():
     name = ename.get()
@@ -37,7 +37,7 @@ def insert():
         return
         
         
-root = TK()
+root = Tk()
 
 root.geometry("1000x1000")
 root.title("Sign Up")
