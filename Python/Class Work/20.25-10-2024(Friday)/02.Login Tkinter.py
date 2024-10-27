@@ -37,7 +37,7 @@ def insert():
         return
         
         
-root = Tk()
+root = TK()
 
 root.geometry("1000x1000")
 root.title("Sign Up")
