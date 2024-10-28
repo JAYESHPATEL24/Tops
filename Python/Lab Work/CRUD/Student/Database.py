@@ -77,7 +77,7 @@ def Update():
     
     check = cursor.fetchone()
 
-    if not check:
+    if check:
         print()
         print(" \u274C"*15)
         print()
