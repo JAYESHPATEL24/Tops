@@ -34,7 +34,6 @@ def insert():
     else:
         print("Both Passwords are not Same......!!!")
         messagebox.showwarning("Password Error", "Both Passwords are not the Same......!!!")
-        return
         
         
 root = Tk()
