@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
 import pymysql
-from Login_page import * 
+from Login_page import *
+
 
 def insert(name,email,mobile,Password,cpassword):
     
@@ -29,8 +30,7 @@ def insert(name,email,mobile,Password,cpassword):
         
     else:
         print("Both Passwords are not Same......!!!")
-        messagebox.showwarning("Password Error", "Both Passwords are not the Same......!!!")
-        
+        messagebox.showwarning("Password Error", "Both Passwords are not the Same......!!!")        
 
 def signup():        
     root = Tk()
@@ -78,4 +78,4 @@ def signup():
 
     root.mainloop()
 
-signup()
+
