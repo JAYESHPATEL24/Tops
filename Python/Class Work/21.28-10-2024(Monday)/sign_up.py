@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
+from DATABASE import *
 import pymysql
+from Login_page import * 
 
 def insert():
     name = ename.get()
@@ -74,6 +76,9 @@ ecpassword = Entry(root, bg="lightgray", show="*", font=("Calibri",20,"bold"))
 ecpassword.place(x=300,y=250,height=40,width=300)
 
 button = Button(root, text="Submit", font=("Arial",20,"bold"), command=insert)
-button.place(x=200,y=350,height=50,width=200)
+button.place(x=150,y=350,height=50,width=200)
+
+login_button = Button(root, text="Login", font=("Arial",20,"bold"),command=lambda:loginopen(root))
+login_button.place(x=380,y=350,height=50,width=200)
 
 root.mainloop()
