@@ -1,4 +1,5 @@
 from Database import *
+import pymysql
 
 menu = """
         press 1 for Insert Data

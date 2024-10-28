@@ -193,8 +193,8 @@ def View_Data():
     cursor.execute(sql)
     data = cursor.fetchall()
     column = ["Roll No ","Name","Class","city","Mobile No ","Email "]
-    centered_txt = [head.center(20) for head in column]
+    centered_txt = [head.center(10) for head in column]
     print()
-    print(f"{'-'*67} Student's Data {'-'*67}")
+    print(f"{'-'*60} Student's Data {'-'*60}")
     print(tabulate(data, headers=centered_txt, tablefmt="fancy_grid"))
     print()

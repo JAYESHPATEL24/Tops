@@ -10,6 +10,7 @@ while True:
     
     match choice:
         case 1:
+        
             Insert()
         
         case 2:
