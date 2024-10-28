@@ -143,6 +143,14 @@ bill.place(x=1155, y=157,width=380, height=400 )
 
 bill_Area = Label(bill, text="Bill  Area", font=("arial", 12, "bold"), bd=5, relief=GROOVE).pack(fill=X)
 
+scrolling = Scrollbar(bill,orient=VERTICAL)
+textarea=Text(bill,yscrollcommand=scrolling.set)
+scrolling.pack(side=RIGHT,fill=Y)
+scrolling.config(command=textarea.yview)
+textarea.pack(fill=BOTH,expand=1)
+
+textarea.insert(1.0,"    ******** Welcome To Store *********    ")
+textarea.insert
 
 # Bill Menu
 menu = LabelFrame(root, text=" Bill Menu ", font=("arial", 12, "bold"), bd=5, bg="#074463", fg="gold", relief=GROOVE)
@@ -200,6 +208,5 @@ enter.grid(row=1, column=6, padx=20, pady=5)
 
 enter = Button(menu, text=" Exit ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
 enter.grid(row=1, column=7, padx=20, pady=5)
-
 
 root.mainloop()
