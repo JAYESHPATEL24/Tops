@@ -1,6 +1,7 @@
 from tkinter import *
 from DATABASE import *
 from tkinter import messagebox
+from Update_Delete import *
 
 
 def loginopen(root):
@@ -33,7 +34,7 @@ def login():
     ecpassword = Entry(root, bg="lightgray", show="*", font=("Calibri",15,"bold"))
     ecpassword.place(x=200,y=200,width=200)
 
-    button = Button(root, text="Log in", font=("Arial",15,"bold"), command= lambda : check(eemail.get(), epassword.get(), ecpassword.get()))
+    button = Button(root, text="Log in", font=("Arial",15,"bold"), command= lambda : check(eemail.get(), epassword.get(), ecpassword.get(), root))
     button.place(x=80,y=300,height=50,width=100)
 
     signup_button = Button(root, text="Sign Up", font=("Arial",15,"bold"),command=lambda:signinreturn(root))
@@ -41,7 +42,7 @@ def login():
 
     root.mainloop()
 
-def check(email,password,cpassword):
+def check(email,password,cpassword,root):
 
     sql = "SELECT Password FROM Person where email = '%s'"
     args = (email)
@@ -56,7 +57,8 @@ def check(email,password,cpassword):
         if password == cpassword:
             if check[0] == password:
                 print("Login Successfully.")
-                messagebox.showinfo("Success","Login Successfully.")
+                enter_to_update_delete(root)
+
             else:
                 print("Incorrect Password!!!")
                 messagebox.showwarning("Password Error", "Incorrect Password!!!")
