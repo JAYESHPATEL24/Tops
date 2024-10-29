@@ -35,7 +35,7 @@ def insert(name,email,mobile,Password,cpassword):
 def signup():        
     root = Tk()
 
-    root.geometry("1000x1000")
+    center_window(root,670,550)
     root.title("Sign Up")
 
     root.config(bg="lightblue")
@@ -71,11 +71,27 @@ def signup():
     ecpassword.place(x=300,y=250,height=40,width=300)
 
     button = Button(root, text="Submit", font=("Arial",20,"bold"), command=lambda:insert(ename.get(),eemail.get(),emobile.get(),epassword.get(),ecpassword.get()))
-    button.place(x=150,y=350,height=50,width=200)
+    button.place(x=120,y=350,height=50,width=200)
 
     login_button = Button(root, text="Login", font=("Arial",20,"bold"),command=lambda:loginopen(root))
-    login_button.place(x=380,y=350,height=50,width=200)
+    login_button.place(x=350,y=350,height=50,width=200)
+
+    exit_button = Button(root, text="Exit", font=("Arial",20,"bold"),command=lambda:exit(root))
+    exit_button.place(x=200,y=420,height=50,width=200)
 
     root.mainloop()
 
+def exit(root):
+    root.destroy()
+
+def center_window(root, width, height):
+    
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    x = (screen_width // 2) - (width // 2)
+    y = (screen_height // 2) - (height // 2)
+    
+
+    root.geometry(f"{width}x{height}+{x}+{y-50}")
 
