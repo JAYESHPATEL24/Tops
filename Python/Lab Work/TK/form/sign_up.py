@@ -57,6 +57,11 @@ def signup():
 
     ename = Entry(root,bg="lightgray", font=("Calibri",20,"bold"))
     ename.place(x=300,y=50,height=40,width=300)
+    
+    ename.insert(0, 'Enter your name') 
+    ename.config(fg='grey') 
+    ename.bind('<FocusIn>', lambda event: on_entry_click(event, ename)) 
+    ename.bind('<FocusOut>', lambda event: on_focusout(event,ename))
 
     eemail = Entry(root,bg="lightgray", font=("Calibri",20,"bold"))
     eemail.place(x=300,y=100,height=40,width=300)
@@ -95,3 +100,12 @@ def center_window(root, width, height):
 
     root.geometry(f"{width}x{height}+{x}+{y-50}")
 
+def on_entry_click(event, entry): 
+    if entry.get() == 'Enter your name': 
+        entry.delete(0, "end") 
+        entry.config(fg='black')
+
+def on_focusout(event, entry): 
+    if entry.get() == '': 
+        entry.insert(0, 'Enter your name') 
+        entry.config(fg='grey')
