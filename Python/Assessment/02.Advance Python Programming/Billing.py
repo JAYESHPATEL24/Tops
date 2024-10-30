@@ -1,4 +1,33 @@
 from tkinter import *
+from tkinter import messagebox
+
+
+def enter_customer_deatils():
+
+    if ename.get()=='':
+        messagebox.showerror("Name error","Please enter Customer Name ....!!!")
+
+    elif ephone.get()=='':
+        messagebox.showerror("Phone No error","Please enter the Customer Phone No.....!!!!!")
+
+    elif bill.get()=='':
+        messagebox.showerror("Bill No error","Please enter Your Bill No ..!!!!")
+
+    
+        
+
+    textarea.config(state="normal")
+
+    textarea.delete(1.0,END)
+    textarea.insert(1.5,"\t******* Welcome To Store *******    \n")
+    textarea.insert(END,f"\n Bill No : {ebill_No.get()}")
+    textarea.insert(END,f"\n Customer Name : {ename.get()}")
+    textarea.insert(END,f"\n Phone No : {ephone.get()}")
+    textarea.insert(END,"\n===========================================")
+    textarea.insert(END,"\nProduct \t\t\t Qty \t    Price")
+    textarea.insert(END,"\n===========================================")
+
+    textarea.config(state="disabled")
 
 root = Tk()
 
@@ -30,7 +59,7 @@ Bill_No.grid(row=0, column=4, padx=20, pady=5)
 ebill_No = Entry(Customer_details, font=("arial",15), bd=5, width=22)
 ebill_No.grid(row=0, column=5, padx=20, pady=5)
 
-enter = Button(Customer_details, text=" Enter ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10, relief=GROOVE)
+enter = Button(Customer_details, text=" Enter ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10, relief=GROOVE, command=enter_customer_deatils)
 enter.grid(row=0, column=6, padx=22, pady=5)
 
 #Cosmetics
@@ -149,8 +178,18 @@ scrolling.pack(side=RIGHT,fill=Y)
 scrolling.config(command=textarea.yview)
 textarea.pack(fill=BOTH,expand=1)
 
-textarea.insert(1.0,"    ******** Welcome To Store *********    ")
-textarea.insert
+textarea.config(state="normal")
+
+textarea.insert(1.5,"\t******* Welcome To Store *******    \n")
+textarea.insert(END,"\n Bill No : ")
+textarea.insert(END,"\n Customer Name : ")
+textarea.insert(END,"\n Phone No : ")
+textarea.insert(END,"\n===========================================")
+textarea.insert(END,"\nProduct \t\t\t Qty \t    Price")
+textarea.insert(END,"\n===========================================")
+
+textarea.config(state="disabled")
+
 
 # Bill Menu
 menu = LabelFrame(root, text=" Bill Menu ", font=("arial", 12, "bold"), bd=5, bg="#074463", fg="gold", relief=GROOVE)
@@ -197,16 +236,19 @@ tax_others.grid(row=2, column=2, padx=30, pady=15)
 etax_others = Entry(menu, font=("arial",12), width=15, bd=5)
 etax_others.grid(row=2, column=3, padx=30, pady=15)
 
-enter = Button(menu, text=" Total ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
-enter.grid(row=1, column=4, padx=20, pady=5)
+Total = Button(menu, text=" Total ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
+Total.grid(row=1, column=4, padx=20, pady=5)
 
-enter = Button(menu, text=" Generate Bill ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=13, relief=GROOVE)
-enter.grid(row=1, column=5, padx=20, pady=5)
+Generate_Bill = Button(menu, text=" Generate Bill ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=13, relief=GROOVE)
+Generate_Bill.grid(row=1, column=5, padx=20, pady=5)
 
-enter = Button(menu, text=" Clear ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
-enter.grid(row=1, column=6, padx=20, pady=5)
+Clear = Button(menu, text=" Clear ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
+Clear.grid(row=1, column=6, padx=20, pady=5)
 
-enter = Button(menu, text=" Exit ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
-enter.grid(row=1, column=7, padx=20, pady=5)
+exit = Button(menu, text=" Exit ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=8, relief=GROOVE)
+exit.grid(row=1, column=7, padx=20, pady=5)
 
 root.mainloop()
+
+
+

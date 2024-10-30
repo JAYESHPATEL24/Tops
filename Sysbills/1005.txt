@@ -1,0 +1,18 @@
+          ***Welcome To Store***
+
+ Bill No. : 1005
+ Customer Name : as
+ Customer Ph.No. : as
+-----------------------------------------
+ Product			 Qty	 Price
+-----------------------------------------
+Bath Soap			 1	 25
+Rice 			 1	 100
+-----------------------------------------
+ Cosmetics Tax			 Rs.3.0
+ Grocery Tax			 Rs.5.0
+-----------------------------------------
+Total Bill				 133.0 
+-----------------------------------------
+			Thank You
+
