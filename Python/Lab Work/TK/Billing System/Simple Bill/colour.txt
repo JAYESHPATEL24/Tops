@@ -1,0 +1,32 @@
+suggest me best button color for bg="#074463" background colour
+How about a contrasting color to make those buttons really pop? For a background color of #074463 (which is a dark blue), a complementary color would work great.
+
+Suggestions:
+Orange: #FFA500 (vibrant and eye-catching)
+
+White: #FFFFFF (classic and clean)
+
+Yellow: #FFD700 (bright and warm)
+
+Light Blue: #ADD8E6 (subtle and harmonious)
+
+These options should stand out nicely against the dark blue background. Try them out and see which one feels right! 🌟
+
+suggest me text colour for each colour
+Sure thing! Here are some text color suggestions that will pair nicely with each background color:
+
+Orange background (#FFA500):
+
+Text color: White (#FFFFFF) or Dark Blue (#00008B)
+
+White background (#FFFFFF):
+
+Text color: Black (#000000) or Dark Blue (#074463)
+
+Yellow background (#FFD700):
+
+Text color: Dark Blue (#074463) or Dark Gray (#333333)
+
+Light Blue background (#ADD8E6):
+
+Text color: Dark Blue (#074463) or Navy (#000080)

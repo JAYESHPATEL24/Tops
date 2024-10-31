@@ -273,7 +273,7 @@ class Bill_App:
                                         self.hairsprayprice +
                                         self.bodylotionprice 
                                         )
-                self.cosmetic_price.set("Rs."+str(self.cosmetic_total))
+                self.cosmetic_price.set("Rs."+str(self.cosmeti_total))
                 self.c_tax=round((self.cosmetic_total*0.12),2)
                 self.cosmetic_tax.set("Rs."+str(self.c_tax))
 
