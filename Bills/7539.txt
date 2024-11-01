@@ -1,0 +1,26 @@
+	******* Welcome To Store *******    
+
+ Bill No : 7539
+ Customer Name : Ram
+ Phone No : 8634589127
+===========================================
+Product 			 Qty 	    Price
+===========================================
+Bath soap   			 1 	    30
+Face Cream  			 2 	    300
+Face Wash   			 3 	    360
+Hair Spray  			 4 	    800
+Body Lotion 			 5 	    1250
+Rice        			 5 	    300
+Food Oil    			 4 	    600
+Daal        			 3 	    270
+Wheat       			 2 	    80
+Biscuits    			 1 	    25
+===========================================
+Sub Total     : 				4375
+===========================================
+Cosmetics Tax : 				558.0
+Grocery Tax   : 				62.5
+Other Tax     : 				3.0
+===========================================
+Total         : 				4998.5

@@ -1,0 +1,31 @@
+	******* Welcome To Store *******    
+
+ Bill No : 7468
+ Customer Name : hanuman
+ Phone No : 1081001010
+===========================================
+Product 			 Qty 	     Price
+===========================================
+Bath soap   			 1 	     30
+Face Cream  			 1 	     150
+Face Wash   			 1 	     120
+Hair Spray  			 1 	     200
+Body Lotion 			 1 	     250
+Rice        			 1 	     60
+Food Oil    			 1 	     150
+Daal        			 1 	     90
+Wheat       			 1 	     40
+Sugar       			 1 	     45
+Maza        			 1 	     60
+Coke        			 1 	     70
+Frooti      			 1 	     50
+Nimkos      			 1 	     20
+Biscuits    			 1 	     25
+===========================================
+Sub Total 				     1480
+===========================================
+Cosmetics Tax : 				 156.6
+Grocery Tax   : 				     19.25
+Other Tax     : 				     27.0
+===========================================
+Total         : 				     1682.85

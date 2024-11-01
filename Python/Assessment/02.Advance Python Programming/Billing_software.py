@@ -432,57 +432,61 @@ class Billingsoftware:
                 
                     # Enter cosmetic Details into Bill Area
                 if int(self.esoap.get()) > 0:
-                    self.textarea.insert(END,f"\nBath soap \t\t\t {self.esoap.get()} \t     {int(self.esoap.get())*30}") 
+                    self.textarea.insert(END,f"\nBath soap   \t\t\t {self.esoap.get()} \t    {int(self.esoap.get())*30}") 
                 if int(self.ecream.get()) > 0:
-                    self.textarea.insert(END,f"\nFace Cream \t\t\t {self.ecream.get()} \t     {int(self.ecream.get())*150}")
+                    self.textarea.insert(END,f"\nFace Cream  \t\t\t {self.ecream.get()} \t    {int(self.ecream.get())*150}")
                 if int(self.efacewash.get()) > 0:
-                    self.textarea.insert(END,f"\nFace Wash \t\t\t {self.efacewash.get()} \t     {int(self.efacewash.get())*120}")
+                    self.textarea.insert(END,f"\nFace Wash   \t\t\t {self.efacewash.get()} \t    {int(self.efacewash.get())*120}")
                 if int(self.ehair_Spray.get()) > 0:
-                    self.textarea.insert(END,f"\nHair Spray \t\t\t {self.ehair_Spray.get()} \t     {int(self.ehair_Spray.get())*200}")
+                    self.textarea.insert(END,f"\nHair Spray  \t\t\t {self.ehair_Spray.get()} \t    {int(self.ehair_Spray.get())*200}")
                 if int(self.ebody_lotion.get()) > 0:
-                    self.textarea.insert(END,f"\nBody Lotion \t\t\t {self.ebody_lotion.get()} \t     {int(self.ebody_lotion.get())*250}")
+                    self.textarea.insert(END,f"\nBody Lotion \t\t\t {self.ebody_lotion.get()} \t    {int(self.ebody_lotion.get())*250}")
 
                     # Enter Grocery Details into Bill Area
                 if int(self.erice.get()) > 0:
-                    self.textarea.insert(END,f"\nRice \t\t\t {self.erice.get()} \t     {int(self.erice.get())*60}") 
+                    self.textarea.insert(END,f"\nRice        \t\t\t {self.erice.get()} \t    {int(self.erice.get())*60}") 
                 if int(self.efood_oil.get()) > 0:
-                    self.textarea.insert(END,f"\nFood Oil \t\t\t {self.efood_oil.get()} \t     {int(self.efood_oil.get())*150}")
+                    self.textarea.insert(END,f"\nFood Oil    \t\t\t {self.efood_oil.get()} \t    {int(self.efood_oil.get())*150}")
                 if int(self.edaal.get()) > 0:
-                    self.textarea.insert(END,f"\nDaal \t\t\t {self.edaal.get()} \t     {int(self.edaal.get())*90}")
+                    self.textarea.insert(END,f"\nDaal        \t\t\t {self.edaal.get()} \t    {int(self.edaal.get())*90}")
                 if int(self.ewheat.get()) > 0:
-                    self.textarea.insert(END,f"\nWheat \t\t\t {self.ewheat.get()} \t     {int(self.ewheat.get())*40}")
+                    self.textarea.insert(END,f"\nWheat       \t\t\t {self.ewheat.get()} \t    {int(self.ewheat.get())*40}")
                 if int(self.esuger.get()) > 0:
-                    self.textarea.insert(END,f"\nSugar \t\t\t {self.esuger.get()} \t     {int(self.esuger.get())*45}")
+                    self.textarea.insert(END,f"\nSugar       \t\t\t {self.esuger.get()} \t    {int(self.esuger.get())*45}")
 
                     # Enter Others Details into Bill Area
                 if int(self.emaza.get()) > 0:
-                    self.textarea.insert(END,f"\nMaza \t\t\t {self.emaza.get()} \t     {int(self.emaza.get())*60}") 
+                    self.textarea.insert(END,f"\nMaza        \t\t\t {self.emaza.get()} \t    {int(self.emaza.get())*60}") 
                 if int(self.ecoke.get()) > 0:
-                    self.textarea.insert(END,f"\nCoke \t\t\t {self.ecoke.get()} \t     {int(self.ecoke.get())*70}")
+                    self.textarea.insert(END,f"\nCoke        \t\t\t {self.ecoke.get()} \t    {int(self.ecoke.get())*70}")
                 if int(self.efrooti.get()) > 0:
-                    self.textarea.insert(END,f"\nFrooti \t\t\t {self.efrooti.get()} \t     {int(self.efrooti.get())*50}")
+                    self.textarea.insert(END,f"\nFrooti      \t\t\t {self.efrooti.get()} \t    {int(self.efrooti.get())*50}")
                 if int(self.enimkos.get()) > 0:
-                    self.textarea.insert(END,f"\nNimkos \t\t\t {self.enimkos.get()} \t     {int(self.enimkos.get())*20}")
+                    self.textarea.insert(END,f"\nNimkos      \t\t\t {self.enimkos.get()} \t    {int(self.enimkos.get())*20}")
                 if int(self.ebiscuits.get()) > 0:
-                    self.textarea.insert(END,f"\nBiscuits \t\t\t {self.ebiscuits.get()} \t     {int(self.ebiscuits.get())*25}")
+                    self.textarea.insert(END,f"\nBiscuits    \t\t\t {self.ebiscuits.get()} \t    {int(self.ebiscuits.get())*25}")
 
                     # Enter total Details
                 self.textarea.insert(END,"\n===========================================")
 
-                self.textarea.insert(END,f"\nSub Total \t\t\t\t     {self.sub_total}")
+                self.textarea.insert(END,f"\nSub Total     : \t\t\t\t    {self.sub_total}")
 
                 self.textarea.insert(END,"\n===========================================")
 
                 if self.taxofcosmetics > 0 :
-                    self.textarea.insert(END,f"\nCosmetics Tax : \t\t\t\t     {self.taxofcosmetics}")
+                    self.textarea.insert(END,f"\nCosmetics Tax : \t\t\t\t    {self.taxofcosmetics}")
                 if self.taxofgrocery > 0 :
-                    self.textarea.insert(END,f"\nGrocery Tax : \t\t\t\t     {self.taxofgrocery}")
+                    self.textarea.insert(END,f"\nGrocery Tax   : \t\t\t\t    {self.taxofgrocery}")
                 if self.taxofothers > 0 :
-                    self.textarea.insert(END,f"\nOther Tax : \t\t\t\t     {self.taxofothers}")
+                    self.textarea.insert(END,f"\nOther Tax     : \t\t\t\t    {self.taxofothers}")
 
                 self.textarea.insert(END,"\n===========================================")
 
-                self.textarea.insert(END,f"\nTotal \t\t\t\t     {self.total_bill}")
+                self.textarea.insert(END,f"\nTotal         : \t\t\t\t    {self.total_bill}")
+
+                self.textarea.insert(END,"\n===========================================")
+
+                self.textarea.insert(END,"\n     🛒   🛍️  THANK YOU ....  🛍️   🛒     ")
 
 
                 self.textarea.config(state="disabled")
