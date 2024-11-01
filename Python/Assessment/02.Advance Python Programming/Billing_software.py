@@ -512,45 +512,46 @@ class Billingsoftware:
 
     
     def clear(self):
-            # Clear Customer Details
-        self.ename.delete(0,END)
-        self.ephone.delete(0,END)
-        self.ebill_No.delete(0,END)
+        if messagebox.askokcancel("clear","Do you want to clear ?"):
+                # Clear Customer Details
+            self.ename.delete(0,END)
+            self.ephone.delete(0,END)
+            self.ebill_No.delete(0,END)
 
-            # Clear Cosmetic Product Details
-        self.esoap.delete(0,END)
-        self.ecream.delete(0,END)
-        self.efacewash.delete(0,END)
-        self.ehair_Spray.delete(0,END)
-        self.ebody_lotion.delete(0,END)
+                # Clear Cosmetic Product Details
+            self.esoap.delete(0,END)
+            self.ecream.delete(0,END)
+            self.efacewash.delete(0,END)
+            self.ehair_Spray.delete(0,END)
+            self.ebody_lotion.delete(0,END)
 
-            # Clear Grocery Product Details
-        self.erice.delete(0,END)
-        self.efood_oil.delete(0,END)
-        self.edaal.delete(0,END)
-        self.ewheat.delete(0,END)
-        self.esuger.delete(0,END)
+                # Clear Grocery Product Details
+            self.erice.delete(0,END)
+            self.efood_oil.delete(0,END)
+            self.edaal.delete(0,END)
+            self.ewheat.delete(0,END)
+            self.esuger.delete(0,END)
 
-            # Clear Other Product Details
-        self.emaza.delete(0,END)
-        self.ecoke.delete(0,END)
-        self.efrooti.delete(0,END)
-        self.enimkos.delete(0,END)
-        self.ebiscuits.delete(0,END)
+                # Clear Other Product Details
+            self.emaza.delete(0,END)
+            self.ecoke.delete(0,END)
+            self.efrooti.delete(0,END)
+            self.enimkos.delete(0,END)
+            self.ebiscuits.delete(0,END)
 
-            # Clear Menu details
-        self.et_cosmetics.delete(0,END)
-        self.et_grocery.delete(0,END)
-        self.et_others.delete(0,END)
+                # Clear Menu details
+            self.et_cosmetics.delete(0,END)
+            self.et_grocery.delete(0,END)
+            self.et_others.delete(0,END)
 
-        self.etax_cosmetics.delete(0,END)
-        self.etax_grocery.delete(0,END)
-        self.etax_others.delete(0,END)
+            self.etax_cosmetics.delete(0,END)
+            self.etax_grocery.delete(0,END)
+            self.etax_others.delete(0,END)
 
-            # set product data to initial state
-        self.set_data()
-            # set Bill area to initial state
-        self.set_bill()
+                # set product data to initial state
+            self.set_data()
+                # set Bill area to initial state
+            self.set_bill()
 
     def exit(self):
             # exit from the sofware
