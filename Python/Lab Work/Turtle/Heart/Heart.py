@@ -18,6 +18,6 @@ for i in range(6500):
     y = heartb(k) * 20
     goto(x, y)
 
-end_fill()
-hideturtle()
+    end_fill()
+    hideturtle()
 done()

@@ -7,7 +7,7 @@ def hearta(k):
 def heartb(k):
     return 12 * math.cos(k) - 5 * math.cos(2 * k) - 2 * math.cos(3 * k) - math.cos(4 * k)
 
-speed(1)
+speed(10)
 tracer(2)  
 bgcolor("black")
 
