@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import time
 
 root = Tk()
 root.title("Tic Tac Toe")
@@ -17,6 +18,7 @@ def clickbutton(ind):
             reset_board()
         elif "" not in board:
             messagebox.showinfo("Winner", "It's a Tie!")
+            reset_board()
         else:
             player = "X" if player == "O" else "O"
 
@@ -28,6 +30,9 @@ def Winner():
     ]
     for i in win:
         if board[i[0]] == board[i[1]] == board[i[2]] != "":
+            buttons[i[0]].config(bg="darkblue") 
+            buttons[i[1]].config(bg="darkblue") 
+            buttons[i[2]].config(bg="darkblue")
             return True
     return False
 
@@ -35,7 +40,7 @@ def reset_board():
     global board, player, buttons
     board = [""] * 9 
     for i in buttons: 
-        i.config(text="") 
+        i.config(text="",bg="black") 
     player = "O"
 
 
