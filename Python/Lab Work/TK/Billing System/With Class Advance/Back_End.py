@@ -38,7 +38,9 @@ class Validation:
 
 class Click_Button:
     def enter(self, customer_inputs):
-        print("enter")
+        self.customername = customer_inputs[0]
+        self.phoneno = customer_inputs[1]
+        self.billno = f"{int(customer_inputs[2]):06d}"
 
     def set_bill(self,textarea):
         self.textarea = textarea

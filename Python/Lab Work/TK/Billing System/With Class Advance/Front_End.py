@@ -65,7 +65,7 @@ class CustomerDetails(Title):
             index += 1
 
     def enter_button(self):
-        enterbutton = Button(self.Customer_details_frame, text=" Enter ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10, relief=GROOVE, command=lambda : Click_Button.enter(self.get_customerdetails()))
+        enterbutton = Button(self.Customer_details_frame, text=" Enter ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10, relief=GROOVE, command=lambda : Click_Button().enter(self.get_customerdetails()))
         enterbutton.grid(row=0, column=6, padx=22, pady=5)
 
     def get_customerdetails(self):
