@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-import time
 
 root = Tk()
 root.title("Tic Tac Toe")

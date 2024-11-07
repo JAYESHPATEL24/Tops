@@ -22,9 +22,32 @@ class Title(Window):
         title = Label(self.root, text="Billing Software", font=("times new roman", 25, "bold"), bg="#074463", fg='white', bd=12, relief=GROOVE, pady=2)
         title.pack(fill=X)
 
+class Bill_Textarea(Title):
+    def __init__(self, root):
+       super().__init__(root)
+       self.create_bill_area() 
+       self.clickbutton = Click_Button(self.textarea)
+       self.clickbutton.set_bill()
+    
+
+    def create_bill_area(self):
+            # bill area section
+        self.bill = Frame(self.root, bd=5, relief=GROOVE)
+        self.bill.place(x=1155, y=157,width=380, height=400 )
+
+        bill_Area = Label(self.bill, text="Bill  Area", font=("arial", 12, "bold"), bd=5, relief=GROOVE).pack(fill=X)
+
+        # create a Scrollbar for bill area
+        scrolling = Scrollbar(self.bill,orient=VERTICAL)
+            # create a text area for bill
+        self.textarea=Text(self.bill,yscrollcommand=scrolling.set)
+        scrolling.pack(side=RIGHT,fill=Y)
+        scrolling.config(command=self.textarea.yview)
+        self.textarea.pack(fill=BOTH,expand=1)    
+
 
     # CustomerDetails class to set up customer details UI elements class
-class CustomerDetails(Title):
+class CustomerDetails(Bill_Textarea):
     def __init__(self, root):
         super().__init__(root)
         self.create_customerframe()
@@ -58,14 +81,14 @@ class CustomerDetails(Title):
                 entry.insert(0,entryplaceholder)
 
             else: 
-                entry = PlaceholderEntry(self.Customer_details_frame, placeholder=entryplaceholder, default_value = "",font=("Arial",15), bd=5, width=22,  validate="key", validatecommand=cmds[labelname])
+                entry = PlaceholderEntry(self.Customer_details_frame, placeholder=entryplaceholder,font=("Arial",15), bd=5, width=22,  validate="key", validatecommand=cmds[labelname])
                 entry.grid(row=0, column=index*2+1, padx=20, pady=5)
         
             self.customerentries.append(entry)
             index += 1
 
     def enter_button(self):
-        enterbutton = Button(self.Customer_details_frame, text=" Enter ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10, relief=GROOVE, command=lambda : Click_Button().enter(self.get_customerdetails()))
+        enterbutton = Button(self.Customer_details_frame, text=" Enter ", font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10, relief=GROOVE, command=lambda : self.clickbutton.enter(self.get_customerdetails()))
         enterbutton.grid(row=0, column=6, padx=22, pady=5)
 
     def get_customerdetails(self):
@@ -80,6 +103,7 @@ class Cosmetic(CustomerDetails):
         super().__init__(root)
         self.create_cosmeticframe()
         self.cosmeticentries = []
+        self.cosmeticlabels = ["Bath Soap","Face Cream","Face Wash", "Hair Spray", "Body Lotion"]
         self.cosmeticproducts_Labels_Entries()
 
     def create_cosmeticframe(self):
@@ -87,10 +111,9 @@ class Cosmetic(CustomerDetails):
         self.cosmetics_products_frame.place(x=0, y=157, width=380, height=400)
 
     def cosmeticproducts_Labels_Entries(self):
-        labels = ["Bath Soap","Face Cream","Face Wash", "Hair Spray", "Body Lotion"]
         
         index = 0
-        for labelname in labels:
+        for labelname in self.cosmeticlabels:
             label = Label(self.cosmetics_products_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index, column=0, padx=20, pady=20)
  
@@ -99,11 +122,22 @@ class Cosmetic(CustomerDetails):
             self.cosmeticentries.append(entry)
             index += 1
 
+    def get_cosmeticdetails(self):
+        cosmetics = {}
+        for index, label in enumerate(self.cosmeticlabels):
+            if self.cosmeticentries[index].get() == "":
+                cosmetics[label] = 0
+            else:
+                cosmetics[label] = int(self.cosmeticentries[index].get())
+        return cosmetics
+         
+
 class Grocery(Cosmetic):
     def __init__(self, root):
         super().__init__(root)
         self.create_groceryframe()
         self.groceryentries = []
+        self.geocerylabels = ["Rice","Food Oil","Daal","Wheat","Sugar"]
         self.groceryproducts_Labels_Entries()
 
     def create_groceryframe(self):
@@ -111,10 +145,9 @@ class Grocery(Cosmetic):
         self.grocery_products_frame.place(x=385, y=157, width=380, height=400)
 
     def groceryproducts_Labels_Entries(self):
-        labels = ["Rice","Food Oil","Daal","Wheat","Sugar"]
         
         index = 0
-        for labelname in labels:
+        for labelname in self.geocerylabels:
             label = Label(self.grocery_products_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index, column=0, padx=20, pady=20)
  
@@ -122,6 +155,15 @@ class Grocery(Cosmetic):
             entry.grid(row=index, column=1, padx=20, pady=20)
             self.groceryentries.append(entry)
             index += 1
+        
+    def get_grocerydetails(self):
+        grocery = {}
+        for index, label in enumerate(self.geocerylabels):
+            if self.groceryentries[index].get() == "":
+                grocery[label] = 0
+            else:
+                grocery[label] = int(self.groceryentries[index].get())
+        return grocery
 
 
 class Other_products(Grocery):
@@ -129,6 +171,7 @@ class Other_products(Grocery):
         super().__init__(root)
         self.create_otherframe()
         self.otherentries = []
+        self.otherproductslabels = ["Maza", "Coke", "Frooti", "Nimkos", "Biscuits"]
         self.otherproducts_Labels_Entries()
 
     def create_otherframe(self):
@@ -136,10 +179,9 @@ class Other_products(Grocery):
         self.other_products_frame.place(x=770, y=157, width=380, height=400)
 
     def otherproducts_Labels_Entries(self):
-        labels = ["Maza", "Coke", "Frooti", "Nimkos", "Biscuits"]
         
         index = 0
-        for labelname in labels:
+        for labelname in self.otherproductslabels:
             label = Label(self.other_products_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index, column=0, padx=20, pady=20)
  
@@ -148,33 +190,17 @@ class Other_products(Grocery):
             self.otherentries.append(entry)
             index += 1
             
-
-class Bill_Textarea(Other_products):
-    def __init__(self, root):
-        super().__init__(root)
-        self.create_bill_area()
+    def get_otherproductsdetails(self):
+        otherproducts = {}
+        for index, label in enumerate(self.otherproductslabels):
+            if self.otherentries[index].get() == "":
+                otherproducts[label] = 0
+            else:
+                otherproducts[label] = int(self.otherentries[index].get())
+        return otherproducts
     
 
-    def create_bill_area(self):
-            # bill area section
-        bill = Frame(self.root, bd=5, relief=GROOVE)
-        bill.place(x=1155, y=157,width=380, height=400 )
-
-        bill_Area = Label(bill, text="Bill  Area", font=("arial", 12, "bold"), bd=5, relief=GROOVE).pack(fill=X)
-
-            # create a Scrollbar for bill area
-        scrolling = Scrollbar(bill,orient=VERTICAL)
-            # create a text area for bill
-        self.textarea=Text(bill,yscrollcommand=scrolling.set)
-        scrolling.pack(side=RIGHT,fill=Y)
-        scrolling.config(command=self.textarea.yview)
-        self.textarea.pack(fill=BOTH,expand=1)
-
-            # Initilize the bill
-        Click_Button().set_bill(self.textarea)
-    
-
-class Bill_Menu(Bill_Textarea):
+class Bill_Menu(Other_products):
     def __init__(self, root):
         super().__init__(root)
         self.create_menu_frame()
@@ -213,7 +239,7 @@ class Bill_Menu(Bill_Textarea):
 
 
     def Menu_buttons(self): 
-        Buttons = {"Total Bill" : self.calculate_Total , 
+        Buttons = {"Total Bill" : lambda : self.clickbutton.total_bill(self.get_cosmeticdetails(),self.get_grocerydetails(),self.get_otherproductsdetails(),self.menuentries) , 
                    "Generate Bill" : self.genreate_bill, 
                    "Save Bill" : self.save_bill, 
                    "Search Bill" : self.search_bill, 
@@ -225,9 +251,6 @@ class Bill_Menu(Bill_Textarea):
             button = Button(self.menu_frame, text=button, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=15, relief=GROOVE, command=cmd)
             button.grid(row=(index // 3) *2 , column=index%3+4, padx=20, pady=5, rowspan=2, sticky="ew")
             index += 1
-
-    def calculate_Total(self):
-        print("Claculate")
 
     def genreate_bill(self):
         print("genearate")
