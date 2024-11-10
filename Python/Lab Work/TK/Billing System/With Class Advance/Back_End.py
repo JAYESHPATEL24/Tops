@@ -1,15 +1,17 @@
 from tkinter import Entry,END,messagebox
 import random
 from datetime import datetime
+import os
 
 class PlaceholderEntry(Entry):
-    def __init__(self, master=None, placeholder="", validate = None, validatecommand = None,*args, **kwargs):
+    def __init__(self, master=None, placeholder="", fg="black", validate = None, validatecommand = None,*args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.placeholder = placeholder
         self.validate = validate
         self.validatecommand = validatecommand
+        self.fg = fg
         self.insert(0, self.placeholder)
-        self.config(fg="#708090")
+        self.config(fg=self.fg)
         self.bind("<FocusIn>",self.on_click)
         self.bind("<FocusOut>",self.out)
 
@@ -23,7 +25,12 @@ class PlaceholderEntry(Entry):
     def out(self,event):
         if not self.get():
             self.insert(0, self.placeholder)
-            self.config(fg="#708090")
+            self.config(fg=self.fg)
+    
+    def reser(self):
+        self.delete(0, END)
+        self.insert(0, entry.placeholder)
+        self.config(fg="#708090")
     
 class Validation:
     def validate_name(self,value): 
@@ -39,6 +46,8 @@ class Validation:
 class Click_Button:
     def __init__(self,textarea):
         self.textarea = textarea
+        self.totaliteams = {}
+        
 
     def enter(self, customer_inputs):
 
@@ -66,9 +75,9 @@ class Click_Button:
             self.textarea.delete(1.0,END)
             
             self.textarea.insert(1.5,"\t******* Welcome To Store *******    \n")
-            self.textarea.insert(END,f"\n Bill No       : {self.customername}")
-            self.textarea.insert(END,f"\n Customer Name : {self.phoneno}")
-            self.textarea.insert(END,f"\n Phone No      : {self.billno}")
+            self.textarea.insert(END,f"\n Bill No       : {self.billno}")
+            self.textarea.insert(END,f"\n Customer Name : {self.customername}")
+            self.textarea.insert(END,f"\n Phone No      : {self.phoneno}")
             self.textarea.insert(END,f"\n Date          : {self.datetime}")
             self.textarea.insert(END,"\n===========================================")
             self.textarea.insert(END,"\nProduct \t\t Qty/ \t   Price   \t Total")
@@ -97,19 +106,19 @@ class Click_Button:
             "Biscuits" : 25
         }
 
-        totalpriceiteams = {}
+        self.totalpriceiteams = {}
 
         for iteam, qty in self.totaliteams.items():
             if iteam in self.iteam_price:
-                totalpriceiteams[iteam] = qty * self.iteam_price[iteam]
+                self.totalpriceiteams[iteam] = qty * self.iteam_price[iteam]
 
         totalpricecosmetics = 0
         totalpricegrocery = 0
         totalpriceotherproducts = 0
-        total = 0
+        self.total = 0
         index = 0
-        for price in totalpriceiteams.values():
-            total += price
+        for price in self.totalpriceiteams.values():
+            self.total += price
             if index<5:
                 totalpricecosmetics += price
             elif index<10:
@@ -122,20 +131,99 @@ class Click_Button:
         taxofgrocery = round(totalpricegrocery * 0.05,2)
         taxofotherproducts = round(totalpriceotherproducts * 0.12,2)
 
-        self.totalamount = total + taxofcosmetics + taxofgrocery + taxofotherproducts
+        self.totalamount = round((self.total + taxofcosmetics + taxofgrocery + taxofotherproducts),2)
 
-        menuentriesinputs = [totalpricecosmetics, totalpricegrocery, totalpriceotherproducts, taxofcosmetics, taxofgrocery, taxofotherproducts, self.totalamount]
+        self.menuentriesinputs = [totalpricecosmetics, totalpricegrocery, totalpriceotherproducts, taxofcosmetics, taxofgrocery, taxofotherproducts, self.totalamount]
 
-        self.menuentries = menuentries 
+        self.menuentries = menuentries
+
+        for entry in self.menuentries:
+            entry.config(state="normal") 
     
         for index,entry in enumerate(self.menuentries):
-            entry.config(state="normal")
+            entry.delete(0, END)
             entry.config(fg="black")
-            entry.delete(0,END)
-            entry.insert(0,f"Rs.{menuentriesinputs[index]}")
+
+            entry.insert(0, f"Rs.{self.menuentriesinputs[index]}") 
+
+            entry.config(state="disabled") 
+
+    def generate_bill(self, customer_inputs):
+
+        self.textarea.delete(1.0,END)
+
+        self.enter(customer_inputs)
+
+        self.textarea.config(state="normal")
+
+        for iteam, qty in self.totaliteams.items():
+            if self.totaliteams[iteam] == 0:
+                continue
+            else:
+                self.textarea.insert(END,f"\n{iteam}  \t\t  {qty} \t   {self.iteam_price[iteam]:5d}\t  {self.totalpriceiteams[iteam]:7d}") 
+
+        self.textarea.insert(END,"\n===========================================")
+        self.textarea.insert(END,f"\nSub Total          : \t\t\t\tRs.{self.total:7d}")
+        self.textarea.insert(END,"\n===========================================")
+        self.textarea.insert(END,f"\nCosmetics Tax      : \t\t\t\tRs.{self.menuentriesinputs[3]:7.2f}")
+        self.textarea.insert(END,f"\nGrocery Tax        : \t\t\t\tRs.{self.menuentriesinputs[4]:7.2f}")
+        self.textarea.insert(END,f"\nother Products Tax : \t\t\t\tRs.{self.menuentriesinputs[5]:7.2f}")
+        self.textarea.insert(END,"\n===========================================")
+        self.textarea.insert(END,f"\nTotal Amount       : \t\t\t\tRs.{self.totalamount:7.2f}")
+        self.textarea.insert(END,"\n===========================================")
+        self.textarea.insert(END,"\n         THANK YOU......       ")
+        
+        self.textarea.config(state="disabled")
+
+
+    def save_bill(self):
+        print("Save")
+
+        if not os.path.exists("Customer Bills"):
+            os.makedirs("Customer Bill")
+
+        file_path = os.path.join("Customer Bill", f"{self.billno}.txt") 
+        # Check if the file exists and save if it does not 
+        if not os.path.exists(file_path): 
+            with open(file_path, 'w') as file: 
+                file.write(self.textarea.get(1.0, END))
+
+    def clear(self,customerentries, cosmeticentries, groceryentries, otherentries):
+        # Clear all the entries in the customer details, cosmetics, grocery, and other products sections
+        for entry in customerentries:
+            entry.delete(0, END)
+            entry.insert(0, entry.placeholder)
+            entry.config(fg="#708090")
+            
+        for entry in cosmeticentries:
+            entry.delete(0, END)
+            entry.insert(0, entry.placeholder)
+            entry.config(fg="#708090")
+            
+        for entry in groceryentries:
+            entry.delete(0, END)
+            entry.insert(0, entry.placeholder)
+            entry.config(fg="#708090")
+            
+        for entry in otherentries:
+            entry.delete(0, END)
+            entry.insert(0, entry.placeholder)
+            entry.config(fg="#708090")
+
+        # Reset all the bill menu fields
+        for entry in self.menuentries:
+            entry.config(state="normal")
+            entry.delete(0, END)
+            entry.insert(0, "Rs.00.00")
             entry.config(state="disabled")
 
-        
+        # Reset the bill area text
+        self.textarea.config(state="normal")
+        self.textarea.delete(1.0, END)
+        self.set_bill()
+        self.textarea.config(state="disabled")
+
+
     def set_bill(self):
 
             # initilize bill

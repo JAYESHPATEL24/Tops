@@ -1,6 +1,7 @@
 from tkinter import *
 from Back_End import *
 
+
     # Base Window class to set up the main application window class Window
 class Window:
     def __init__(self,root):
@@ -81,7 +82,7 @@ class CustomerDetails(Bill_Textarea):
                 entry.insert(0,entryplaceholder)
 
             else: 
-                entry = PlaceholderEntry(self.Customer_details_frame, placeholder=entryplaceholder,font=("Arial",15), bd=5, width=22,  validate="key", validatecommand=cmds[labelname])
+                entry = PlaceholderEntry(self.Customer_details_frame, placeholder=entryplaceholder,fg="#708090",font=("Arial",15), bd=5, width=22,  validate="key", validatecommand=cmds[labelname])
                 entry.grid(row=0, column=index*2+1, padx=20, pady=5)
         
             self.customerentries.append(entry)
@@ -117,7 +118,7 @@ class Cosmetic(CustomerDetails):
             label = Label(self.cosmetics_products_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index, column=0, padx=20, pady=20)
  
-            entry = PlaceholderEntry(self.cosmetics_products_frame, placeholder="0", font=("arial",12), width=15, bd=5, validate="key", validatecommand=(self.root.register(Validation.validate_Products), '%d', '%P'))
+            entry = PlaceholderEntry(self.cosmetics_products_frame, fg="#708090", placeholder="0", font=("arial",12), width=15, bd=5, validate="key", validatecommand=(self.root.register(Validation.validate_Products), '%d', '%P'))
             entry.grid(row=index, column=1, padx=20, pady=20)
             self.cosmeticentries.append(entry)
             index += 1
@@ -151,7 +152,7 @@ class Grocery(Cosmetic):
             label = Label(self.grocery_products_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index, column=0, padx=20, pady=20)
  
-            entry = PlaceholderEntry(self.grocery_products_frame, placeholder="0", font=("arial",12), width=15, bd=5, validate="key", validatecommand=(self.root.register(Validation.validate_Products), '%d', '%P'))
+            entry = PlaceholderEntry(self.grocery_products_frame, placeholder="0", fg="#708090", font=("arial",12), width=15, bd=5, validate="key", validatecommand=(self.root.register(Validation.validate_Products), '%d', '%P'))
             entry.grid(row=index, column=1, padx=20, pady=20)
             self.groceryentries.append(entry)
             index += 1
@@ -185,7 +186,7 @@ class Other_products(Grocery):
             label = Label(self.other_products_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index, column=0, padx=20, pady=20)
  
-            entry = PlaceholderEntry(self.other_products_frame, placeholder="0", font=("arial",12), width=15, bd=5, validate="key", validatecommand=(self.root.register(Validation.validate_Products), '%d', '%P'))
+            entry = PlaceholderEntry(self.other_products_frame, placeholder="0",fg="#708090", font=("arial",12), width=15, bd=5, validate="key", validatecommand=(self.root.register(Validation.validate_Products), '%d', '%P'))
             entry.grid(row=index, column=1, padx=20, pady=20)
             self.otherentries.append(entry)
             index += 1
@@ -222,7 +223,7 @@ class Bill_Menu(Other_products):
             label = Label(self.menu_frame, text= labelname, font=("times new roman",15,"bold"), bg="#074463", fg="White", bd=5, width=10)
             label.grid(row=index%3, column=(index//3)*2, padx=30, pady=5)
 
-            entry = PlaceholderEntry(self.menu_frame,placeholder="Rs.00.00", font=("arial",12), width=15, bd=5)
+            entry = PlaceholderEntry(self.menu_frame, placeholder="Rs.00.00", fg = "black", font=("arial",12), width=15, bd=5)
             entry.grid(row=index%3, column=((index//3)*2)+1, padx=30, pady=5)
             entry.config(state=DISABLED)
 
@@ -232,7 +233,7 @@ class Bill_Menu(Other_products):
         label = Label(self.menu_frame, text="Total Amount", font=("times new roman", 15, "bold"), bg="#074463", fg="White", bd=5, width=12) 
         label.grid(row=3, column=0, padx=5, pady=10, columnspan=2, sticky='e') 
         
-        total_amount_entry = PlaceholderEntry(self.menu_frame, placeholder="Rs.00.00", font=("arial", 12), width=20, bd=5) 
+        total_amount_entry = PlaceholderEntry(self.menu_frame, placeholder="Rs.00.00", fg = "black", font=("arial", 12), width=20, bd=5) 
         total_amount_entry.grid(row=3, column=2, columnspan=2, padx=10, pady=8,sticky='w')
         total_amount_entry.config(state=DISABLED)
         self.menuentries.append(total_amount_entry)
@@ -240,11 +241,12 @@ class Bill_Menu(Other_products):
 
     def Menu_buttons(self): 
         Buttons = {"Total Bill" : lambda : self.clickbutton.total_bill(self.get_cosmeticdetails(),self.get_grocerydetails(),self.get_otherproductsdetails(),self.menuentries) , 
-                   "Generate Bill" : self.genreate_bill, 
-                   "Save Bill" : self.save_bill, 
+                   "Generate Bill" : lambda : self.clickbutton.generate_bill(self.get_customerdetails()), 
+                   "Save Bill" : self.clickbutton.save_bill, 
                    "Search Bill" : self.search_bill, 
-                   "Clear" : self.clear, 
-                   "Exit" : self.exit}
+                   "Clear" : lambda : self.clickbutton.clear(self.customerentries,self.cosmeticentries,self.groceryentries,self.otherentries), 
+                   "Exit" : self.exit
+            }
 
         index = 0
         for button,cmd in Buttons.items():
@@ -252,17 +254,9 @@ class Bill_Menu(Other_products):
             button.grid(row=(index // 3) *2 , column=index%3+4, padx=20, pady=5, rowspan=2, sticky="ew")
             index += 1
 
-    def genreate_bill(self):
-        print("genearate")
-
-    def save_bill(self):
-        print("Save")
-
     def search_bill(self):
         print("Search Bill")
 
-    def clear(self):
-        print("Clear")
 
     def exit(self):
         root.destroy()
@@ -273,9 +267,7 @@ class Bill_UI(Bill_Menu):
         super().__init__(root)
 
 
-
 root = Tk()
-
 
 go = Bill_UI(root)
 
