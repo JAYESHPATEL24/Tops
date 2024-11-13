@@ -1,0 +1,22 @@
+	******* Welcome To Store *******    
+
+ Bill No       : 582793
+ Customer Name : Mihir
+ Phone No      : 2526456786
+ Date          : 13/11/2024 (10.13 AM)
+===========================================
+Product 		 Qty/ 	   Price   	 Total
+        		  Kg  	 (Unit/Kg) 	 Price
+===========================================
+Bath Soap  		  1 	      30	       30
+Sugar  		  1 	      45	       45
+===========================================
+Sub Total          : 				Rs.     75
+===========================================
+Cosmetics Tax      : 				Rs.   5.40
+Grocery Tax        : 				Rs.   2.25
+other Products Tax : 				Rs.   0.00
+===========================================
+Total Amount       : 				Rs.  82.65
+===========================================
+         THANK YOU......       
