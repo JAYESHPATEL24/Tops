@@ -1,0 +1,23 @@
+	******* Welcome To Store *******    
+
+ Bill No       : 324098
+ Customer Name : Himanshu Yadav
+ Phone No      : 6555555555
+ Date          : 12/11/2024 (03.03 PM)
+===========================================
+Product 		 Qty/ 	   Price   	 Total
+        		  Kg  	 (Unit/Kg) 	 Price
+===========================================
+Food Oil  		  1 	     150	      150
+Wheat  		  1 	      40	       40
+Nimkos  		  10 	      20	      200
+===========================================
+Sub Total          : 				Rs.    390
+===========================================
+Cosmetics Tax      : 				Rs.   0.00
+Grocery Tax        : 				Rs.   9.50
+other Products Tax : 				Rs.  24.00
+===========================================
+Total Amount       : 				Rs. 423.50
+===========================================
+         THANK YOU......       

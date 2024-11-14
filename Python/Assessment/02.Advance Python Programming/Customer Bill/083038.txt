@@ -1,0 +1,22 @@
+	******* Welcome To Store *******    
+
+ Bill No       : 083038
+ Customer Name : Lucky Tiwari
+ Phone No      : 9426788109
+ Date          : 12/11/2024 (03.02 PM)
+===========================================
+Product 		 Qty/ 	   Price   	 Total
+        		  Kg  	 (Unit/Kg) 	 Price
+===========================================
+Hair Spray  		  2 	     200	      400
+Food Oil  		  4 	     150	      600
+===========================================
+Sub Total          : 				Rs.   1000
+===========================================
+Cosmetics Tax      : 				Rs.  72.00
+Grocery Tax        : 				Rs.  30.00
+other Products Tax : 				Rs.   0.00
+===========================================
+Total Amount       : 				Rs.1102.00
+===========================================
+         THANK YOU......       
