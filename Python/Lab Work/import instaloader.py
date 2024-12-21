@@ -4,7 +4,7 @@ import instaloader
 L = instaloader.Instaloader()
 
 # Define the user profile you want to download
-profile = 'vandanaunleashed'
+profile = 'chunara3496'
 
 # Download profile
 L.download_profile(profile, profile_pic_only=False)

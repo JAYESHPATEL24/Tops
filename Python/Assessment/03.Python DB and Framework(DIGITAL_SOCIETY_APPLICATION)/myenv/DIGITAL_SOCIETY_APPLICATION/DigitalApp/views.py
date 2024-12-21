@@ -348,16 +348,13 @@ class NoticeView(TemplateView):
         return context
     
     def get(self, request, *args, **kwargs):
-        # Fetch the context from get_context_data and pass it to render
         context = self.get_context_data(**kwargs)
 
-        # You can also add additional context here if necessary, like profile from session
         context['profile'] = request.session.get('profile', None)
 
         user = User.objects.get(email=self.request.session['email'])
         context['user'] = user
 
-        # Render the template with the updated context
         return render(request, self.template_name, context)
 
 
