@@ -1,0 +1,9 @@
+6) Write a Python program to create a Django project and a new app within the project called doctor.
+
+-> create project
+django-admin startproject myproject
+
+cd myproject
+
+-> create app
+django-admin startapp doctor

@@ -1,0 +1,14 @@
+ 4) Write a Python program to create a Django project and understand its directory structure.
+
+-> cmd
+python create_django_project.py
+
+-> directory structure
+myproject/
+    manage.py
+    myproject/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+        asgi.py

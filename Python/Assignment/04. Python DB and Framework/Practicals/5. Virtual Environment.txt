@@ -1,0 +1,12 @@
+5) Write a Python program to create and activate a virtual environment, then install Django in it.
+
+-> create virtual environment
+python -m venv myenv
+
+-> active virtual environment
+cd myenv
+Scripts\activate
+
+-> install Django
+pip install django
+

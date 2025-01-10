@@ -1,0 +1,38 @@
+1. Write a Django project that renders an HTML file displaying “Welcome to Doctor Finder” on the home page.
+
+-> myproject/ setting.py:
+INSTALLED_APPS = [ ... 'home', ]
+
+-> myproject/ urls.py
+from django.contrib import admin
+from django.urls import include,path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('doctor.urls'))
+]
+
+-> doctor/views.py :
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'home.html')
+
+-> doctor/urls.py
+from django.urls import path
+from.import views
+
+urlpatterns = [
+    path('home/', views.home, name='home')
+]
+
+-> doctor/ templates/ home.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Finder</title>
+</head>
+<body>
+    <h1>Welcome to Doctor Finder</h1>
+</body>
+</html>

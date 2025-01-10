@@ -1,0 +1,47 @@
+ 3) Write a Django project where JavaScript is used to validate a patient registration form on the client side.
+-> doctor/ templates/ patient_registration.html
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Registration</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/patient_registration.css' %}">
+    <script>
+        function validateForm() {
+            var name = document.forms["registrationForm"]["name"].value;
+            var email = document.forms["registrationForm"]["email"].value;
+            var age = document.forms["registrationForm"]["age"].value;
+
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+            if (age == "") {
+                alert("Age must be filled out");
+                return false;
+            }
+            if (isNaN(age) || age < 0) {
+                alert("Please enter a valid age");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Patient Registration Form</h1>
+    <form name="registrationForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="age">Age:</label><br>
+        <input type="text" id="age" name="age"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

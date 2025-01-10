@@ -1,0 +1,40 @@
+7) Write a Django project with models, views, and templates to display doctor information.
+
+-> doctor/ models.py
+from django.db import models
+
+# Create your models here.
+class Doctor(models.Model):
+    name = models.CharField(max_length=50)
+    specialization = models.CharField(max_length=50)
+    decimal_field = models.DecimalField(max_digits=4, decimal_places=1)
+    contact = models.IntegerField(max_length=10)
+
+    def __str__(self): 
+        return self.name
+
+-> doctor/ views.py 
+def doctor_profile(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'doctor_profile.html', {'doctors' : doctors})
+
+-> doctor/ templates/ doctor_profile.html
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/doctor_profile.css' %}">
+</head>
+<body>
+    {% for doctor in doctors %}
+    <div class="profile-container">
+        <h1>{{doctor.name}}</h1>
+        <p>Specialization: {{doctor.specialization}}</p>
+        <p>Experience: {{doctor.experirnce}} years</p>
+        <p>Contact: {{doctor.contact}}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

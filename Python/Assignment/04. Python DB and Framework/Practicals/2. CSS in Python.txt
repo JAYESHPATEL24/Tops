@@ -1,0 +1,51 @@
+2) Write a Django project to display a webpage with custom CSS styling for a doctor profile page.
+
+-> doctor/ static/ css/ doctor_profile.css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+
+-> doctor/ templates/ doctor_profile.html
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/doctor_profile.css' %}">
+</head>
+<body>
+    {% for doctor in doctors %}
+    <div class="profile-container">
+        <h1>{{doctor.name}}</h1>
+        <p>Specialization: {{doctor.specialization}}</p>
+        <p>Experience: {{doctor.experirnce}} years</p>
+        <p>Contact: {{doctor.contact}}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
