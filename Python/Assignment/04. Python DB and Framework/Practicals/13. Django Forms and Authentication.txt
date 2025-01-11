@@ -1,0 +1,189 @@
+ 13) Write a Django project to handle user sign up, login, password reset,
+and profile updates.
+
+->settings.py 
+
+python
+INSTALLED_APPS = [
+    ...
+    'doctor',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    ...
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+-> doctor/views.py
+Create views for authentication
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.hashers import make_password
+
+def signup_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password == password2:
+            user = User.objects.create(username=username, email=email, password=make_password(password))
+            login(request, user)
+            return redirect('/')
+    return render(request, 'signup.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+    return render(request, 'login.html')
+
+def profile_view(request):
+    if request.method == 'POST':
+        user = request.user
+        user.username = request.POST.get('username')
+        user.email = request.POST.get('email')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.save()
+        return redirect('/')
+    return render(request, 'profile.html')
+
+def change_password(request):
+    if request.method == 'POST':
+        user = request.user
+        old_password = request.POST.get('old_password')
+        new_password1 = request.POST.get('new_password1')
+        new_password2 = request.POST.get('new_password2')
+        if user.check_password(old_password) and new_password1 == new_password2:
+            user.set_password(new_password1)
+            user.save()
+            update_session_auth_hash(request, user)
+            return redirect('/')
+    return render(request, 'change_password.html')
+
+
+-> doctor/urls.py
+
+urlpatterns = [
+    path('signup/', views.signup_view, name='signup'),
+    path('login/', views.login_view, name='login'),
+    path('profile/', views.profile_view, name='profile'),
+    path('change_password/', views.change_password, name='change_password'),
+]
+Edit auth_example/urls.py to include the accounts app’s URLs:
+
+-> doctor/templates/signup.html
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="password1">Password:</label><br>
+        <input type="password" id="password1" name="password1"><br><br>
+        <label for="password2">Confirm Password:</label><br>
+        <input type="password" id="password2" name="password2"><br><br>
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
+
+=> doctor/templates/login.html
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log In</title>
+</head>
+<body>
+    <h1>Log In</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit">Log In</button>
+    </form>
+</body>
+</html>
+
+-> doctor/templates/profile.html
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="{{ request.user.username }}"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ request.user.email }}"><br><br>
+        <label for="first_name">First Name:</label><br>
+        <input type="text" id="first_name" name="first_name" value="{{ request.user.first_name }}"><br><br>
+        <label for="last_name">Last Name:</label><br>
+        <input type="text" id="last_name" name="last_name" value="{{ request.user.last_name }}"><br><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
+
+-> doctor/templates/change_password.html
+
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Change Password</title>
+</head>
+<body>
+    <h1>Change Password</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="old_password">Old Password:</label><br>
+        <input type="password" id="old_password" name="old_password"><br><br>
+        <label for="new_password1">New Password:</label><br>
+        <input type="password" id="new_password1" name="new_password1"><br><br>
+        <label for="new_password2">Confirm New Password:</label><br>
+        <input type="password" id="new_password2" name="new_password2"><br><br>
+        <button type="submit">Change Password</button>
+    </form>
+</body>
+</html>
+
+cmd
+python manage.py runserver
+
+Visit http://127.0.0.1:8000/signup/ to sign up, 
+http://127.0.0.1:8000/login/ to log in, 
+http://127.0.0.1:8000/profile/ to update the profile, 
+http://127.0.0.1:8000/change_password/ to change the password.

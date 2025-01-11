@@ -1,0 +1,118 @@
+12) Write a Django project that demonstrates CRUD operations (Create, Read, Update, Delete) on doctor profiles using Django ORM.
+
+-> doctor/templates/add_doctor.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Doctor</title>
+</head>
+<body>
+    <h1>Add Doctor</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="specialization">Specialization:</label><br>
+        <input type="text" id="specialization" name="specialization"><br><br>
+        <label for="experience">Experience:</label><br>
+        <input type="text" id="experience" name="experience"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="contact">Contact:</label><br>
+        <input type="text" id="contact" name="contact"><br><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
+
+
+-> doctor/templates/edit_doctor.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Doctor</title>
+</head>
+<body>
+    <h1>Edit Doctor</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ doctor.name }}"><br><br>
+        <label for="specialization">Specialization:</label><br>
+        <input type="text" id="specialization" name="specialization" value="{{ doctor.specialization }}"><br><br>
+        <label for="experience">Experience:</label><br>
+        <input type="text" id="experience" name="experience" value="{{ doctor.experience }}"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ doctor.email }}"><br><br>
+        <label for="contact">Contact:</label><br>
+        <input type="text" id="contact" name="contact" value="{{ doctor.contact }}"><br><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
+
+
+-> doctor/templates/delete_doctor.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Doctor</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete this doctor?</h1>
+    <p>{{ doctor.name }} - {{ doctor.specialization }} - {{ doctor.experience }} years - {{ doctor.email }} - {{ doctor.contact }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'doctor_profile' %}">Cancel</a>
+</body>
+</html>
+
+
+
+-> doctor/view.py
+def doctor_profile(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'doctor_profile.html', {'doctors' : doctors})
+
+def add_doctor(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        specialization = request.POST.get('specialization')
+        experience = request.POST.get('experience')
+        email = request.POST.get('email')
+        contact = request.POST.get('contact')
+
+        new_doctor = Doctor(
+            name=name,
+            specialization=specialization,
+            experience=experience,
+            email=email,
+            contact=contact
+        )
+        new_doctor.save()
+        return redirect('doctor_profile')
+    
+    return render(request, 'add_doctor.html')
+    
+
+def edit_doctor(request, id):
+    doctor = Doctor.objects.get(id=id)
+    if request.method == 'POST':
+        doctor.name = request.POST.get('name')
+        doctor.specialization = request.POST.get('specialization')
+        doctor.experience = request.POST.get('experience')
+        doctor.email = request.POST.get('email')
+        doctor.contact = request.POST.get('contact')
+        doctor.save()
+        return redirect('doctor_profile')
+    
+    return render(request, 'edit_doctor.html', {'doctor': doctor})
+
+def delete_doctor(request, id):
+    doctor = Doctor.objects.get(id=id)
+    if request.method == 'POST':
+        doctor.delete()
+        return redirect('doctor_profile')
+    return render(request, 'delete_doctor.html', {'doctor': doctor})
