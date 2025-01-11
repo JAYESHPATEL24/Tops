@@ -1,0 +1,26 @@
+Write a Django project and deploy it on PythonAnywhere, making it accessible online.
+
+pip install whitenoise
+
+myproject/settings.py 
+# include whitenoise middleware and configure static files:
+
+python
+MIDDLEWARE = [
+    ...
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
+]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+Run collectstatic to collect static files:
+
+python manage.py collectstatic
+
+Create a Requirements File
+Generate a requirements.txt file to list all the dependencies:
+
+pip freeze > requirements.txt
