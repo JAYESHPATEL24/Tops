@@ -1,0 +1,81 @@
+11) Write a Django project to connect to an SQLite/MySQL database and manage doctor records.
+-> setting.py
+# DATABASES configuration for SQLite (default) 
+DATABASES = { 
+		'default': { 
+		'ENGINE': 'django.db.backends.sqlite3', 
+		'NAME': BASE_DIR / 'db.sqlite3',
+ 		}
+ }
+
+*****************for MYSQL DATABASE ************
+->cmd
+pip install mysqlclient
+
+->DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_database_name',
+        'USER': 'your_database_user',
+        'PASSWORD': 'your_database_password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+ 
+
+-> doctor/view.py
+
+from django.shortcuts import render, redirect
+from .models import Doctor
+
+def doctor_profile(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'doctor_profile.html', {'doctors' : doctors})
+
+def add_doctor(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        specialization = request.POST.get('specialization')
+        experience = request.POST.get('experience')
+        email = request.POST.get('email')
+        contact = request.POST.get('contact')
+
+        new_doctor = Doctor(
+            name=name,
+            specialization=specialization,
+            experience=experience,
+            email=email,
+            contact=contact
+        )
+        new_doctor.save()
+        return redirect('doctor_profile')
+    
+    return render(request, 'add_doctor.html')
+
+->doctor/templates/add_doctor.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Doctor</title>
+</head>
+<body>
+    <h1>Add Doctor</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="specialization">Specialization:</label><br>
+        <input type="text" id="specialization" name="specialization"><br><br>
+        <label for="experience">Experience:</label><br>
+        <input type="text" id="experience" name="experience"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="contact">Contact:</label><br>
+        <input type="text" id="contact" name="contact"><br><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
+
+

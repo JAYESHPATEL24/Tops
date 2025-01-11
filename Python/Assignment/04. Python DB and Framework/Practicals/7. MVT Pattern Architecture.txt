@@ -5,13 +5,15 @@ from django.db import models
 
 # Create your models here.
 class Doctor(models.Model):
-    name = models.CharField(max_length=50)
-    specialization = models.CharField(max_length=50)
-    decimal_field = models.DecimalField(max_digits=4, decimal_places=1)
-    contact = models.IntegerField(max_length=10)
+    name = models.CharField(max_length=50,default="")
+    specialization = models.CharField(max_length=50,default="")
+    experience = models.DecimalField(max_digits=5, decimal_places=2,default=0)
+    email = models.EmailField(default="")
+    contact = models.IntegerField()
 
     def __str__(self): 
         return self.name
+
 
 -> doctor/ views.py 
 def doctor_profile(request):

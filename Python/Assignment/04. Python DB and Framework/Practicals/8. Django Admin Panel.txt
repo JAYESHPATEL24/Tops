@@ -1,1 +1,31 @@
  8) Write a Django project to create an admin panel and add custom fields for managing doctor information.
+
+-> doctor/models.py
+from django.db import models
+
+# Create your models here.
+class Doctor(models.Model):
+    name = models.CharField(max_length=50,default="")
+    specialization = models.CharField(max_length=50,default="")
+    experience = models.DecimalField(max_digits=5, decimal_places=2,default=0)
+    email = models.EmailField(default="")
+    contact = models.IntegerField()
+
+    def __str__(self): 
+        return self.name
+
+
+-> cmd commands
+python manage.py makemigrations
+python manage.py migrate
+
+-> doctor/admin.py
+from django.contrib import admin
+from models import *
+
+# Register your models here.
+admin.site.register(Doctor)
+
+-> cmd commands
+python manage.py createsuperuser
+python manage.py runserver
