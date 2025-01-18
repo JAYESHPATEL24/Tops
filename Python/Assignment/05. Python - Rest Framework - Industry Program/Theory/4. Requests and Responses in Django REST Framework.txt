@@ -1,0 +1,71 @@
+1) HTTP Request Methods (GET, POST, PUT, DELETE)
+
+- GET: 
+   - Used to retrieve data from the server.
+   - Example: Fetching a list of items or a single item by its ID.
+   - Syntax:
+     GET /api/items/
+     GET /api/items/1/
+
+- POST: 
+   - Used to send data to the server to create a new resource.
+   - Syntax:
+     POST /api/items/
+     Content-Type: application/json
+     {
+       "name": "New Item",
+       "price": 100
+     }
+
+- PUT:
+   - Used to update an existing resource on the server.
+   - Syntax:
+     PUT /api/items/1/
+     Content-Type: application/json
+     {
+       "name": "Updated Item",
+       "price": 150
+     }
+
+- DELETE:
+   - Used to delete a resource from the server.
+   - Syntax:
+     DELETE /api/items/1/
+
+2) Sending and Receiving Responses in DRF
+
+- Sending Responses: 
+   - DRF uses the `Response` object to send responses back to the client.
+   - Example:
+     from rest_framework.response import Response
+     from rest_framework.decorators import api_view
+
+     @api_view(['GET'])
+     def get_items(request):
+         data = {'items': ['item1', 'item2', 'item3']}
+         return Response(data)
+
+- Receiving Responses:
+   - The client sends an HTTP request to the server, and the server sends back a response, typically in JSON format.
+   - Example of response in JSON:
+     {
+       "items": ["item1", "item2", "item3"]
+     }
+
+- Customizing Responses:
+   - Responses can have custom status codes and headers.
+     Example:
+     return Response(data, status=201)  # 201 for Created
+
+- Error Responses:
+   - DRF provides error handling by returning detailed error responses.
+   - Example:
+     from rest_framework.exceptions import NotFound
+
+     @api_view(['GET'])
+     def get_item(request, item_id):
+         try:
+             item = Item.objects.get(id=item_id)
+         except Item.DoesNotExist:
+             raise NotFound("Item not found")
+         return Response({'item': item.name})

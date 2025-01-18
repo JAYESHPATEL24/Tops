@@ -1,0 +1,90 @@
+1). Using Google Maps API to display maps and calculate distances between locations.
+
+   - **Google Maps API Overview**:
+     - The Google Maps API provides tools to embed maps on your website or app, and calculate distances between locations using the **Distance Matrix API**.
+     - You need an API key to access Google Maps services.
+
+   - **Getting Started with Google Maps API**:
+     1. **Sign Up for Google Cloud Platform (GCP)**:
+        - Go to [Google Cloud Console](https://console.cloud.google.com/) and create an account.
+     2. **Enable Required APIs**:
+        - Enable the **Maps JavaScript API** (for embedding maps) and the **Distance Matrix API** (for calculating distances).
+     3. **Generate API Key**:
+        - Create an API key in the GCP Console under "APIs & Services" -> "Credentials".
+
+   - **Displaying Maps Using the Maps JavaScript API**:
+     1. Add a `<div>` element in your HTML to contain the map:
+        ```html
+        <div id="map" style="height: 400px; width: 100%;"></div>
+        ```
+     2. Include the Google Maps JavaScript API script in your HTML:
+        ```html
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+        ```
+     3. Add JavaScript to initialize the map:
+        ```html
+        <script>
+            function initMap() {
+                var location = { lat: 40.730610, lng: -73.935242 }; // Example: New York City
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 12,
+                    center: location
+                });
+                var marker = new google.maps.Marker({ position: location, map: map });
+            }
+        </script>
+        ```
+     4. Call the `initMap` function when the page loads:
+        ```html
+        <body onload="initMap()">
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </body>
+        ```
+
+   - **Calculating Distances Using the Distance Matrix API**:
+     - The **Distance Matrix API** computes travel distance and time between multiple origins and destinations.
+
+     **Example Python Code to Calculate Distances**:
+     ```python
+     import requests
+
+     def calculate_distance(api_key, origin, destination):
+         url = "https://maps.googleapis.com/maps/api/distancematrix/json"
+         params = {
+             "origins": origin,
+             "destinations": destination,
+             "key": api_key,
+             "units": "metric"
+         }
+
+         response = requests.get(url, params=params)
+         data = response.json()
+
+         if response.status_code == 200 and data['status'] == 'OK':
+             distance = data['rows'][0]['elements'][0]['distance']['text']
+             duration = data['rows'][0]['elements'][0]['duration']['text']
+             print(f"Distance: {distance}, Duration: {duration}")
+         else:
+             print("Error fetching distance matrix:", data.get("error_message", "Unknown error"))
+
+     # Example usage
+     api_key = "YOUR_GOOGLE_MAPS_API_KEY"
+     origin = "New York, NY"
+     destination = "Los Angeles, CA"
+
+     calculate_distance(api_key, origin, destination)
+     ```
+
+     **Sample Output**:
+     ```
+     Distance: 4,491 km, Duration: 41 hours 52 mins
+     ```
+
+   - **Key Features**:
+     - **Maps JavaScript API**: Embed interactive maps, add markers, and customize maps with styles and layers.
+     - **Distance Matrix API**: Calculate travel distances and times based on driving, walking, biking, or public transit.
+
+   - **Important Notes**:
+     - **Billing**: Google Maps API services are not entirely free; they offer $200 of free usage per month. Check the pricing details [here](https://cloud.google.com/maps-platform/pricing/).
+     - Use **restrictive API key settings** to prevent unauthorized usage.
+     - Always test the APIs in **development mode** before deploying to production.

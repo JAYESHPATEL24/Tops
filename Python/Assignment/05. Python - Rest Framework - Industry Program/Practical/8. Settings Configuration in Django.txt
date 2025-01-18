@@ -1,0 +1,177 @@
+8) Write a Django project that connects to an SQLite database and stores doctor profiles.
+
+1. models.py
+from django.db import models
+
+class Doctor(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    specialization = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15)
+
+    def __str__(self):
+        return f"Dr. {self.first_name} {self.last_name}"
+
+2. forms.py
+from django import forms
+from .models import Doctor
+
+class DoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['first_name', 'last_name', 'specialization', 'email', 'phone_number']
+
+
+3. views.py
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, JsonResponse
+from django.views.generic import View
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Doctor
+from .forms import DoctorForm
+
+class DoctorListView(View):
+    def get(self, request):
+        doctors = Doctor.objects.all()
+        return render(request, 'doctor_list.html', {'doctors': doctors})
+
+class DoctorCreateView(View):
+    def get(self, request):
+        form = DoctorForm()
+        return render(request, 'doctor_form.html', {'form': form})
+
+    def post(self, request):
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/doctors')
+        return render(request, 'doctor_form.html', {'form': form})
+
+class DoctorDetailView(View):
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        return render(request, 'doctor_detail.html', {'doctor': doctor})
+
+class DoctorUpdateView(View):
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        form = DoctorForm(instance=doctor)
+        return render(request, 'doctor_form.html', {'form': form})
+
+    def post(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        form = DoctorForm(request.POST, instance=doctor)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/doctors')
+        return render(request, 'doctor_form.html', {'form': form})
+
+class DoctorDeleteView(View):
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        return render(request, 'doctor_confirm_delete.html', {'doctor': doctor})
+
+    def post(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        doctor.delete()
+        return HttpResponseRedirect('/doctors')
+
+class DoctorListAPIView(View):
+    def get(self, request):
+        doctors = Doctor.objects.all()
+        page = request.GET.get('page', 1)
+        paginator = Paginator(doctors, 10)  # 10 doctors per page
+
+        try:
+            doctors_page = paginator.page(page)
+        except PageNotAnInteger:
+            doctors_page = paginator.page(1)
+        except EmptyPage:
+            doctors_page = []
+
+        data = [
+            {
+                'id': doctor.id,
+                'first_name': doctor.first_name,
+                'last_name': doctor.last_name,
+                'specialization': doctor.specialization,
+                'email': doctor.email,
+                'phone_number': doctor.phone_number,
+            }
+            for doctor in doctors_page
+        ]
+
+        return JsonResponse({
+            'results': data,
+            'count': paginator.count,
+            'num_pages': paginator.num_pages,
+            'current_page': page,
+        })
+
+
+4. urls.py
+from django.urls import path
+from .views import (
+    DoctorListView, DoctorCreateView, DoctorDetailView,
+    DoctorUpdateView, DoctorDeleteView, DoctorListAPIView
+)
+
+urlpatterns = [
+    path('doctors', DoctorListView.as_view(), name='doctor_list'),
+    path('doctors/create', DoctorCreateView.as_view(), name='doctor_create'),
+    path('doctors/<int:pk>', DoctorDetailView.as_view(), name='doctor_detail'),
+    path('doctors/<int:pk>/update', DoctorUpdateView.as_view(), name='doctor_update'),
+    path('doctors/<int:pk>/delete', DoctorDeleteView.as_view(), name='doctor_delete'),
+    path('api/doctors', DoctorListAPIView.as_view(), name='doctor_list_api'),
+]
+
+
+5. admin.py
+from django.contrib import admin
+from .models import Doctor
+
+@admin.register(Doctor)
+class DoctorAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'specialization', 'email', 'phone_number')
+
+6. Templates
+doctor_list.html
+<h1>Doctor List</h1>
+<ul>
+    {% for doctor in doctors %}
+    <li>{{ doctor.first_name }} {{ doctor.last_name }} - {{ doctor.specialization }}</li>
+    {% endfor %}
+</ul>
+
+
+doctor_form.html
+<h1>{{ form.instance.pk|default:'Create New' }} Doctor</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+doctor_detail.html
+<h1>Doctor Details</h1>
+<p>First Name: {{ doctor.first_name }}</p>
+<p>Last Name: {{ doctor.last_name }}</p>
+<p>Specialization: {{ doctor.specialization }}</p>
+<p>Email: {{ doctor.email }}</p>
+<p>Phone Number: {{ doctor.phone_number }}</p>
+
+doctor_confirm_delete.html
+<h1>Confirm Delete</h1>
+<p>Are you sure you want to delete {{ doctor.first_name }} {{ doctor.last_name }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes</button>
+</form>
+
+7. settings.py
+INSTALLED_APPS = [
+    ...
+    'your_app_name',
+]
+

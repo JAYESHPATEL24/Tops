@@ -1,0 +1,11 @@
+1).Understanding project requirements:
+- Project requirements are the foundation of any web development project.
+- This involves gathering detailed information about the client's needs, business goals, and user expectations.
+- It includes defining features, functionality, and deliverables.
+- Proper understanding helps in creating a clear roadmap and avoiding scope creep.
+
+2).Setting up the environment and installing necessary packages:
+- A well-configured development environment ensures smooth and efficient coding.
+- This involves selecting the right tools, such as code editors, version control systems, and testing frameworks.
+- Installing necessary packages includes adding libraries, dependencies, and frameworks relevant to the project.
+- Package managers like npm (for JavaScript) or pip (for Python) simplify the installation process.

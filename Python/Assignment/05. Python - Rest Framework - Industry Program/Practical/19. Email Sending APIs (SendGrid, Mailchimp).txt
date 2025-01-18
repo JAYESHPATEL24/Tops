@@ -1,0 +1,70 @@
+19) Write a Django project to send a confirmation email to a user using the SendGrid API after successful registration.
+
+# Installation Notes
+# 1. Install the SendGrid Python library:
+#    pip install sendgrid
+# 2. Add your SendGrid API key and default email to settings.py.
+# 3. Replace the placeholders with actual values before running.
+# 4. Start the Django server and test the registration endpoint.
+
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import json
+
+# Settings (add this to your settings.py)
+SENDGRID_API_KEY = 'your_sendgrid_api_key'  # Replace with your actual API key
+DEFAULT_FROM_EMAIL = 'your_email@example.com'  # Replace with your email address
+
+# Views
+@csrf_exempt
+def register_user(request):
+    """Register a user and send a confirmation email."""
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+            username = data.get('username')
+
+            if not email or not username:
+                return JsonResponse({"error": "Email and username are required."}, status=400)
+
+            # Simulate user registration (replace with actual user creation logic)
+            # For example: User.objects.create(username=username, email=email)
+
+            # Prepare the email content
+            subject = "Welcome to Our Platform"
+            content = f"Hi {username},\n\nThank you for registering with us. We're excited to have you onboard!"
+
+            # Send confirmation email
+            message = Mail(
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to_emails=email,
+                subject=subject,
+                plain_text_content=content
+            )
+
+            try:
+                sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+                sg.send(message)
+                return JsonResponse({"message": "Registration successful. Confirmation email sent."})
+            except Exception as e:
+                return JsonResponse({"error": "Failed to send confirmation email.", "details": str(e)}, status=500)
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON payload."}, status=400)
+    else:
+        return JsonResponse({"error": "POST method required."}, status=405)
+
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('register/', views.register_user, name='register_user'),
+]
+

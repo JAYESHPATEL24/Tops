@@ -1,0 +1,98 @@
+1). Introduction to Twilio API for sending SMS and OTPs.
+
+   - **Twilio API**:
+     - Twilio provides a powerful API for sending SMS, making phone calls, and enabling two-factor authentication (2FA) with OTPs (One-Time Passwords).
+     - You need a Twilio account, a verified phone number, and API credentials (Account SID and Auth Token) to use its services.
+
+   - **Getting Started with Twilio API**:
+     1. **Sign Up for Twilio**:
+        - Create an account at [Twilio](https://www.twilio.com/).
+     2. **Get API Credentials**:
+        - From the Twilio Console, note your *Account SID* and *Auth Token*.
+     3. **Verify a Phone Number**:
+        - Add a phone number to your Twilio account for testing purposes.
+     4. **Install Twilio Python SDK**:
+        - Install the Twilio library:
+          ```bash
+          pip install twilio
+          ```
+
+   - **Example Python Code to Send an SMS**:
+     ```python
+     from twilio.rest import Client
+
+     def send_sms(account_sid, auth_token, from_phone, to_phone, message):
+         client = Client(account_sid, auth_token)
+
+         # Send the SMS
+         message = client.messages.create(
+             body=message,
+             from_=from_phone,
+             to=to_phone
+         )
+
+         print(f"Message sent! SID: {message.sid}")
+
+     # Example usage
+     account_sid = 'YOUR_TWILIO_ACCOUNT_SID'
+     auth_token = 'YOUR_TWILIO_AUTH_TOKEN'
+     from_phone = '+1234567890'  # Twilio phone number
+     to_phone = '+0987654321'    # Recipient's phone number
+     message = 'Your OTP is 123456.'
+
+     send_sms(account_sid, auth_token, from_phone, to_phone, message)
+     ```
+
+   - **Sending OTPs**:
+     - Twilio provides a **Verify API** for sending and validating OTPs, simplifying the process of implementing 2FA.
+     - **Steps**:
+       1. Create a Verify Service in your Twilio Console.
+       2. Use the Verify API to send OTPs and validate them.
+
+   - **Example Python Code to Send and Verify OTPs**:
+     ```python
+     from twilio.rest import Client
+
+     def send_otp(account_sid, auth_token, service_sid, to_phone):
+         client = Client(account_sid, auth_token)
+
+         # Send the OTP
+         verification = client.verify.services(service_sid).verifications.create(
+             to=to_phone,
+             channel='sms'
+         )
+
+         print(f"OTP sent to {to_phone}: Status - {verification.status}")
+
+     def verify_otp(account_sid, auth_token, service_sid, to_phone, otp_code):
+         client = Client(account_sid, auth_token)
+
+         # Verify the OTP
+         verification_check = client.verify.services(service_sid).verification_checks.create(
+             to=to_phone,
+             code=otp_code
+         )
+
+         if verification_check.status == 'approved':
+             print("OTP verified successfully!")
+         else:
+             print("Invalid OTP. Please try again.")
+
+     # Example usage
+     account_sid = 'YOUR_TWILIO_ACCOUNT_SID'
+     auth_token = 'YOUR_TWILIO_AUTH_TOKEN'
+     service_sid = 'YOUR_TWILIO_VERIFY_SERVICE_SID'
+     to_phone = '+0987654321'
+     
+     # Send OTP
+     send_otp(account_sid, auth_token, service_sid, to_phone)
+
+     # Verify OTP (replace '123456' with the OTP received)
+     verify_otp(account_sid, auth_token, service_sid, to_phone, '123456')
+     ```
+
+   - **Important Notes**:
+     - **Phone Number Format**: Use the E.164 format (e.g., +1234567890) for phone numbers.
+     - **Free Trial Limitations**: On a Twilio free trial, you can only send SMS to verified phone numbers.
+     - **Cost**: Twilio charges per SMS sent or OTP verification. Check their [pricing](https://www.twilio.com/pricing) for details.
+     - For OTPs, the **Verify API** handles automatic retries and expiration policies for better security and reliability.

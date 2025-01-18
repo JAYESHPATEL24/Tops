@@ -1,0 +1,46 @@
+1) Understanding Views in DRF: Function-based Views vs Class-based Views
+
+- Function-based Views (FBVs):
+   - A simpler and more explicit way of defining views.
+   - Each view is represented by a Python function.
+   - Suitable for simple use cases or small applications.
+   - Example:
+     from rest_framework.decorators import api_view
+     from rest_framework.response import Response
+
+     @api_view(['GET'])
+     def get_items(request):
+         items = ['item1', 'item2', 'item3']
+         return Response(items)
+
+   - Advantages:
+     - Simple and easy to understand.
+     - Explicit flow, no hidden behavior.
+   - Disadvantages:
+     - Can become verbose for larger applications.
+     - Limited flexibility for reusability.
+
+- Class-based Views (CBVs):
+   - A more flexible and reusable way of defining views.
+   - Views are represented by classes that can inherit from built-in views or mixins.
+   - Suitable for more complex applications and offers built-in behaviors for common actions like CRUD operations.
+   - Example:
+     from rest_framework.views import APIView
+     from rest_framework.response import Response
+
+     class ItemListView(APIView):
+         def get(self, request):
+             items = ['item1', 'item2', 'item3']
+             return Response(items)
+
+   - Advantages:
+     - Easier to extend and reuse.
+     - Built-in methods for common actions (e.g., list, create, update, delete).
+     - Promotes better structure in larger applications.
+   - Disadvantages:
+     - Can feel more complex or over-engineered for simple cases.
+     - Implicit behavior that may be harder to understand for beginners.
+
+- Choosing Between FBVs and CBVs:
+   - FBVs are good for simple views with minimal functionality.
+   - CBVs are better for larger, more complex applications where reusability and maintainability are important.

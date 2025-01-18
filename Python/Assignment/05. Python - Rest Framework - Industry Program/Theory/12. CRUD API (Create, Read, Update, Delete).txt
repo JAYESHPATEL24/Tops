@@ -1,0 +1,14 @@
+1). What is CRUD, and why is it fundamental to backend development?
+
+   - **CRUD** stands for **Create, Read, Update, and Delete**. These are the four basic operations used to manage data in a backend system. They correspond to the most common actions performed on a resource in a database or other persistent storage.
+
+     - **Create**: Adds new data to the system. For example, creating a new user in a database.
+     - **Read**: Retrieves data from the system. For example, fetching details of a user from a database.
+     - **Update**: Modifies existing data. For example, updating a user's email address.
+     - **Delete**: Removes data from the system. For example, deleting a user account.
+
+   - **Why is CRUD fundamental to backend development?**
+     - CRUD operations form the foundation of almost every database interaction and are essential for performing any meaningful action in backend development.
+     - They define the interface through which data is accessed and modified, making it easier to design and maintain backend systems.
+     - These operations ensure consistency in handling data and allow for predictable behaviors across applications.
+     - By adhering to CRUD principles, developers can standardize API interactions and make their systems more scalable and maintainable.

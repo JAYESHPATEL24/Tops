@@ -1,0 +1,193 @@
+14) Write a Django project to fetch current weather data for a location using the OpenWeatherMap API.
+
+Step 1: Set Up the Django Project
+Install Django and Requests:
+
+First, ensure that you have Django and the requests library (to make HTTP requests to OpenWeatherMap API) installed:
+bash
+pip install django requests
+
+Create a new Django project:
+bash
+django-admin startproject weather_project
+cd weather_project
+
+Create a new Django app called weather:
+bash
+python manage.py startapp weather
+
+Add the app to INSTALLED_APPS in settings.py:
+python
+# weather_project/settings.py
+
+INSTALLED_APPS = [
+    ...
+    'weather',
+]
+
+Step 2: Get OpenWeatherMap API Key
+Sign up for an API key:
+
+Go to OpenWeatherMap.
+Sign up for an account.
+After signing in, generate an API key.
+Store the API key securely: 
+You can either use environment variables to store the key securely or hardcode it into the project settings. 
+For simplicity, we will store the key in settings.py.
+
+Step 3: Create the Weather Model (Optional)
+In this case, we don't need a database model since we are fetching the data directly from the OpenWeatherMap API. 
+However, if you plan to store weather data for historical purposes, you can create a model.
+
+Step 4: Create Views to Fetch Weather Data
+Create a views.py file in the weather app to define the logic for fetching weather data:
+python
+# weather/views.py
+
+import requests
+from django.conf import settings
+from django.http import JsonResponse
+
+def get_weather(request, city_name):
+    # Get OpenWeatherMap API key from settings
+    api_key = settings.OPENWEATHERMAP_API_KEY
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric"
+    
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        if data['cod'] == 200:
+            # Extract relevant data
+            weather_data = {
+                'city': city_name,
+                'temperature': data['main']['temp'],
+                'description': data['weather'][0]['description'],
+                'humidity': data['main']['humidity'],
+                'pressure': data['main']['pressure'],
+                'wind_speed': data['wind']['speed'],
+            }
+            return JsonResponse(weather_data)
+        else:
+            return JsonResponse({'error': 'City not found or API error'}, status=400)
+
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+Step 5: Set Up URL Routing
+Define the URL endpoint for weather data in urls.py:
+python
+# weather/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('weather/<str:city_name>/', views.get_weather, name='get_weather'),
+]
+
+Include these URLs in the project’s main urls.py:
+python
+# weather_project/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('weather.urls')),  # Include weather app URLs
+]
+
+Step 6: Add OpenWeatherMap API Key to settings.py
+Add your OpenWeatherMap API key to the settings.py file:
+python
+# weather_project/settings.py
+
+OPENWEATHERMAP_API_KEY = 'your_openweathermap_api_key_here'
+
+Alternatively, for added security, you can store the API key in an environment variable using Python's os module:
+python
+# weather_project/settings.py
+
+import os
+
+OPENWEATHERMAP_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY')
+
+And then set the environment variable before running your project:
+bash
+export OPENWEATHERMAP_API_KEY='your_openweathermap_api_key_here'
+
+Step 7: Test the API
+Run the Django development server:
+bash
+python manage.py runserver
+
+Test the weather API:
+
+Open a web browser or use a tool like Postman or curl to test the API endpoint.
+Example curl command:
+bash
+curl http://127.0.0.1:8000/api/weather/London/
+
+Example response (for London):
+json
+{
+    "city": "London",
+    "temperature": 15.3,
+    "description": "broken clouds",
+    "humidity": 82,
+    "pressure": 1012,
+    "wind_speed": 4.12
+}
+
+Step 8: Optional - Add Error Handling and Data Validation
+You can enhance the error handling by validating the city name, adding proper exception handling, or even adding logging to track issues.
+
+Step 9: Optional - Frontend to Display Weather Data
+You can create a simple frontend (e.g., using HTML, CSS, and JavaScript) that sends a request to the weather API and displays the result to the user.
+
+Here's a basic example using HTML and JavaScript:
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <input type="text" id="city" placeholder="Enter city">
+    <button onclick="fetchWeather()">Get Weather</button>
+
+    <div id="weather-data"></div>
+
+    <script>
+        function fetchWeather() {
+            const city = document.getElementById('city').value;
+            fetch(`/api/weather/${city}/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('weather-data').innerText = data.error;
+                    } else {
+                        document.getElementById('weather-data').innerHTML = `
+                            <p>City: ${data.city}</p>
+                            <p>Temperature: ${data.temperature}°C</p>
+                            <p>Description: ${data.description}</p>
+                            <p>Humidity: ${data.humidity}%</p>
+                            <p>Pressure: ${data.pressure} hPa</p>
+                            <p>Wind Speed: ${data.wind_speed} m/s</p>
+                        `;
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
+
+Step 10: Conclusion
+You now have a Django project that fetches current weather data for a given location using the OpenWeatherMap API. 
+You can further extend the project by adding features like saving weather data to a database, showing forecasts, or improving the frontend.

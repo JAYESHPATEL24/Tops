@@ -1,0 +1,101 @@
+3) Write a Django REST API to serialize a Doctor model with fields like name, specialty, and contact details.
+
+   - **Step 1: Define the Doctor Model**:
+     - In your app's `models.py` file, define the `Doctor` model.
+     ```python
+     from django.db import models
+
+     class Doctor(models.Model):
+         name = models.CharField(max_length=100)
+         specialty = models.CharField(max_length=100)
+         contact_details = models.TextField()
+
+         def __str__(self):
+             return self.name
+     ```
+
+   - **Step 2: Create a Serializer for the Doctor Model**:
+     - In your app, create a new file `serializers.py` and define the serializer.
+     ```python
+     from rest_framework import serializers
+     from .models import Doctor
+
+     class DoctorSerializer(serializers.ModelSerializer):
+         class Meta:
+             model = Doctor
+             fields = ['id', 'name', 'specialty', 'contact_details']
+     ```
+
+   - **Step 3: Write a View for the API**:
+     - In your app's `views.py`, create a view to handle API requests.
+     ```python
+     from rest_framework.views import APIView
+     from rest_framework.response import Response
+     from rest_framework import status
+     from .models import Doctor
+     from .serializers import DoctorSerializer
+
+     class DoctorAPIView(APIView):
+         def get(self, request):
+             doctors = Doctor.objects.all()
+             serializer = DoctorSerializer(doctors, many=True)
+             return Response(serializer.data)
+
+         def post(self, request):
+             serializer = DoctorSerializer(data=request.data)
+             if serializer.is_valid():
+                 serializer.save()
+                 return Response(serializer.data, status=status.HTTP_201_CREATED)
+             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+     ```
+
+   - **Step 4: Configure the URL for the API**:
+     - In your app's `urls.py`, define the URL route for the API.
+     ```python
+     from django.urls import path
+     from .views import DoctorAPIView
+
+     urlpatterns = [
+         path('api/doctors/', DoctorAPIView.as_view(), name='doctor-api'),
+     ]
+     ```
+
+   - **Step 5: Test the API**:
+     - Start the Django development server:
+       ```bash
+       python manage.py runserver
+       ```
+     - Use tools like Postman, cURL, or Django's built-in API browser to test the endpoints:
+       - `GET /api/doctors/`: Retrieve a list of doctors.
+       - `POST /api/doctors/`: Add a new doctor by sending a JSON payload like:
+         ```json
+         {
+             "name": "Dr. John Doe",
+             "specialty": "Cardiology",
+             "contact_details": "123-456-7890, johndoe@example.com"
+         }
+         ```
+
+   - **Expected Output**:
+     - `GET /api/doctors/`:
+       ```json
+       [
+           {
+               "id": 1,
+               "name": "Dr. John Doe",
+               "specialty": "Cardiology",
+               "contact_details": "123-456-7890, johndoe@example.com"
+           }
+       ]
+       ```
+     - `POST /api/doctors/` (Response for valid input):
+       ```json
+       {
+           "id": 2,
+           "name": "Dr. Jane Smith",
+           "specialty": "Neurology",
+           "contact_details": "987-654-3210, janesmith@example.com"
+       }
+       ```
+
+

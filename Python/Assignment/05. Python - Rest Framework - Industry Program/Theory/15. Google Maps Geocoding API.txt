@@ -1,0 +1,45 @@
+1). Using Google Maps Geocoding API to convert addresses into coordinates.
+
+   - **Google Maps Geocoding API**:
+     - The Geocoding API from Google allows you to convert addresses into geographic coordinates (latitude and longitude), which can be used to place markers on a map, or position the map.
+     - You need to sign up for an API key from Google Cloud Platform and enable the Geocoding API.
+
+   - **Basic Steps to Use Geocoding API**:
+     1. **Sign up** for a Google Cloud account and create a project.
+     2. **Enable the Geocoding API** in the Google Cloud Console.
+     3. **Obtain your API key** from the Google Cloud Console.
+     4. **Make an HTTP request** to the API endpoint with the address you want to geocode.
+
+   - **Example Python Code** to convert an address into coordinates using the Geocoding API:
+     ```python
+     import requests
+
+     def geocode_address(address, api_key):
+         # Google Maps Geocoding API endpoint
+         url = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={api_key}'
+
+         response = requests.get(url)
+         data = response.json()
+
+         if response.status_code == 200 and data['status'] == 'OK':
+             # Extract latitude and longitude
+             location = data['results'][0]['geometry']['location']
+             latitude = location['lat']
+             longitude = location['lng']
+             print(f'Latitude: {latitude}, Longitude: {longitude}')
+         else:
+             print('Error in geocoding request or address not found.')
+
+     # Example usage
+     api_key = 'YOUR_GOOGLE_API_KEY'
+     address = '1600 Amphitheatre Parkway, Mountain View, CA'
+     geocode_address(address, api_key)
+     ```
+
+     - Replace `YOUR_GOOGLE_API_KEY` with your actual Google Maps API key.
+     - This code will return the latitude and longitude of the provided address.
+
+   - **Important Notes**:
+     - The Geocoding API is not free, and you may incur charges based on usage. Refer to [Google Maps pricing](https://cloud.google.com/maps-platform/pricing) for more details.
+     - The API returns a JSON response containing information such as the formatted address, geometry (latitude/longitude), and other metadata.
+     - Ensure that the address you pass is properly encoded (e.g., spaces replaced by `+` or encoded with URL encoding).

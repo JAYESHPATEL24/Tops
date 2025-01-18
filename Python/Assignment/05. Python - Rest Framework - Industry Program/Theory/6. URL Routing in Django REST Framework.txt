@@ -1,0 +1,66 @@
+1). Defining URLs and linking them to views.
+
+In Django REST Framework (DRF), URL routing is the process of defining URL patterns and linking them to views or viewsets. This allows users to make requests to specific URLs, which are handled by corresponding views in your application. The most common approach is to use Django’s `urls.py` file to map URLs to views.
+
+Here’s a step-by-step guide to defining URLs and linking them to views in Django REST Framework:
+
+Step 1: Define a View or ViewSet
+First, you need to define a view or a viewset in your `views.py` file. A simple class-based view might look like this:
+
+# views.py
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+class ExampleView(APIView):
+    def get(self, request):
+        return Response({"message": "Hello, World!"}, status=status.HTTP_200_OK)
+
+Or if you're using a viewset:
+
+# views.py
+from rest_framework import viewsets
+from .models import ExampleModel
+from .serializers import ExampleModelSerializer
+
+class ExampleModelViewSet(viewsets.ModelViewSet):
+    queryset = ExampleModel.objects.all()
+    serializer_class = ExampleModelSerializer
+
+Step 2: Define URLs in `urls.py`
+Next, you need to define the URL patterns and link them to the views. In Django, this is done using the `urls.py` file. You can use either `path()` or `re_path()` from Django’s URL module, or use DRF’s `router` if you're working with viewsets.
+
+For a simple API view:
+
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('example/', views.ExampleView.as_view(), name='example'),
+]
+
+For a viewset, you can use DRF’s `DefaultRouter`:
+
+# urls.py
+from rest_framework.routers import DefaultRouter
+from . import views
+
+router = DefaultRouter()
+router.register(r'example-model', views.ExampleModelViewSet, basename='example-model')
+
+urlpatterns = router.urls
+
+Step 3: Include the URL Patterns
+Ensure that the app's URLs are included in the project's root `urls.py` file.
+
+# project/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('your_app.urls')),  # Including the app's URLs
+]
+
+Now, any request to `http://localhost:8000/api/example/` will be handled by `ExampleView`, and any request to `http://localhost:8000/api/example-model/` will be routed to the `ExampleModelViewSet`.

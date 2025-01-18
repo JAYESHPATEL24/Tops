@@ -1,0 +1,59 @@
+18) Write a Django project that displays details (population, language,currency) of a country entered by the user using the REST Countries API.
+
+from django.shortcuts import render
+from django.http import JsonResponse
+import requests
+
+# Views
+
+def country_details(request):
+    """Fetch and display details of a country entered by the user."""
+    if request.method == 'GET':
+        country_name = request.GET.get('country')
+        if not country_name:
+            return JsonResponse({"error": "Country name is required."}, status=400)
+
+        url = f"https://restcountries.com/v3.1/name/{country_name}"
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            country_data = response.json()
+            if country_data:
+                country = country_data[0]
+                details = {
+                    "name": country.get("name", {}).get("common", "N/A"),
+                    "population": country.get("population", "N/A"),
+                    "languages": list(country.get("languages", {}).values()),
+                    "currency": list(country.get("currencies", {}).keys()),
+                }
+                return JsonResponse(details)
+            else:
+                return JsonResponse({"error": "No data found for the specified country."}, status=404)
+        else:
+            return JsonResponse({"error": "Unable to fetch country details."}, status=response.status_code)
+
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('country/', views.country_details, name='country_details'),
+]
+
+-> templates/country_details.html
+Optionally create a simple HTML template for entering the country name and displaying details
+Example content:
+
+<form method="get" action="/country/">
+    <label for="country">Enter Country Name:</label>
+    <input type="text" id="country" name="country" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if details %}
+<h2>Country Details:</h2>
+<p>Name: {{ details.name }}</p>
+<p>Population: {{ details.population }}</p>
+<p>Languages: {{ details.languages|join:", " }}</p>
+<p>Currency: {{ details.currency|join:", " }}</p>
+{% endif %}

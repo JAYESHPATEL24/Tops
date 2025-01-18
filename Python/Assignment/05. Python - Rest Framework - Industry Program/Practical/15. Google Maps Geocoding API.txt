@@ -1,0 +1,135 @@
+15) Write a Django project that uses Google Maps API to find the coordinates of a given address.
+
+Step 1: Set Up the Django Project
+
+First, create a Django project if you haven't already:
+bash
+django-admin startproject geolocation
+cd geolocation
+django-admin startapp maps
+
+Step 2: Install Dependencies
+You will need to install the requests package to make API calls to the Google Maps API:
+bash
+pip install requests
+
+Additionally, ensure that Django is installed and up to date by running:
+bash
+pip install Django
+
+Step 3: Get the Google Maps API Key
+Go to the Google Cloud Console.
+Create a new project or use an existing one.
+Navigate to the API & Services section, then click Enable APIs and Services.
+Search for Geocoding API and enable it.
+Go to Credentials and create an API key. Keep this key safe as you'll need it to make requests to the Google Maps API.
+
+Step 4: Configure Your Django Settings
+In settings.py, add your Google Maps API key as a configuration variable:
+python
+# settings.py
+GOOGLE_MAPS_API_KEY = 'your_google_maps_api_key_here'
+
+Step 5: Create a View to Get Coordinates
+In your maps/views.py, create a view to handle the address input and make the API request to Google Maps to get the coordinates.
+python
+# maps/views.py
+import requests
+from django.conf import settings
+from django.shortcuts import render
+from django.http import JsonResponse
+
+def get_coordinates(request):
+    if request.method == 'GET' and 'address' in request.GET:
+        address = request.GET['address']
+        api_key = settings.GOOGLE_MAPS_API_KEY
+        url = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={api_key}'
+
+        response = requests.get(url)
+        data = response.json()
+
+        if data['status'] == 'OK':
+            lat = data['results'][0]['geometry']['location']['lat']
+            lng = data['results'][0]['geometry']['location']['lng']
+            return JsonResponse({'latitude': lat, 'longitude': lng})
+        else:
+            return JsonResponse({'error': 'Unable to geocode the address'}, status=400)
+    return render(request, 'maps/index.html')
+
+Step 6: Create a Template for User Input
+Create a basic HTML form in the maps/templates/maps/ directory, where users can input an address.
+html
+<!-- maps/templates/maps/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Coordinates</title>
+</head>
+<body>
+    <h1>Find Coordinates</h1>
+    <form id="address-form">
+        <label for="address">Enter Address:</label>
+        <input type="text" id="address" name="address" required>
+        <button type="submit">Get Coordinates</button>
+    </form>
+
+    <div id="coordinates"></div>
+
+    <script>
+        document.getElementById('address-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const address = document.getElementById('address').value;
+
+            fetch(`/get_coordinates/?address=${address}`)
+                .then(response => response.json())
+                .then(data => {
+                    const coordinatesDiv = document.getElementById('coordinates');
+                    if (data.latitude && data.longitude) {
+                        coordinatesDiv.innerHTML = `Latitude: ${data.latitude}, Longitude: ${data.longitude}`;
+                    } else {
+                        coordinatesDiv.innerHTML = 'Error: ' + data.error;
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
+
+Step 7: Set Up URLs
+In maps/urls.py, create a URL pattern for the new view:
+python
+# maps/urls.py
+from django.urls import path
+from .views import get_coordinates
+
+urlpatterns = [
+    path('', get_coordinates, name='index'),
+    path('get_coordinates/', get_coordinates, name='get_coordinates'),
+]
+
+Make sure to include this in the main urls.py of your project:
+python
+# geolocation/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('maps.urls')),
+]
+
+Step 8: Run the Django Development Server
+Now, you're ready to run the development server:
+bash
+python manage.py runserver
+
+Step 9: Testing the Application
+Open your browser and go to http://127.0.0.1:8000/.
+Enter an address (e.g., "1600 Amphitheatre Parkway, Mountain View, CA") and click "Get Coordinates."
+You should see the coordinates (latitude and longitude) displayed below the form.
+Notes:
+The app uses the fetch API to make AJAX requests to the server without reloading the page.
+The Google Maps Geocoding API returns the coordinates in the format {latitude, longitude}.
+Error handling is provided if the address cannot be geocoded.

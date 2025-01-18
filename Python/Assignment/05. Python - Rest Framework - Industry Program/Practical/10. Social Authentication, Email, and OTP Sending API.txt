@@ -1,0 +1,126 @@
+10) Write a Django project that integrates Google login and sends OTPs to users using Twilio.
+
+1. Prerequisites
+Set Up Google OAuth Credentials:
+
+Go to Google Cloud Console.
+Create a new project and enable the "Google+ API" or "Google Identity Services".
+Generate OAuth 2.0 credentials for a Web application.
+Add your redirect URI (e.g., http://127.0.0.1:8000/accounts/google/login/callback/).
+Get Twilio API Credentials:
+
+Sign up for a Twilio account at Twilio.
+Get your Account SID, Auth Token, and Phone Number.
+
+Install Required Packages:
+pip install django-allauth twilio
+
+2. Set Up the Django Project
+django-admin startproject google_twilio_project
+cd google_twilio_project
+python manage.py startapp users
+
+3. Configure Installed Apps and Middleware
+settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required for allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'users',  # Your app
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'  # Redirect after login
+LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+
+# Google OAuth settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['email', 'profile'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
+
+# Twilio configuration (replace with your credentials)
+TWILIO_ACCOUNT_SID = 'your_account_sid'
+TWILIO_AUTH_TOKEN = 'your_auth_token'
+TWILIO_PHONE_NUMBER = '+1234567890'
+
+4. Set Up URLs
+-> google_twilio_project/urls.py:
+from django.contrib import admin
+from django.urls import path, include
+from users.views import send_otp
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),  # Google login
+    path('send-otp/', send_otp, name='send_otp'),
+]
+
+5. Create the Twilio OTP View
+-> users/views.py:
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from twilio.rest import Client
+import random
+
+@csrf_exempt
+def send_otp(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        if not phone_number:
+            return JsonResponse({'error': 'Phone number is required'}, status=400)
+        
+        # Generate a random OTP
+        otp = random.randint(100000, 999999)
+        
+        # Send OTP using Twilio
+        client = Client('your_account_sid', 'your_auth_token')
+        message = client.messages.create(
+            body=f'Your OTP is {otp}',
+            from_='your_twilio_phone_number',
+            to=phone_number
+        )
+        
+        return JsonResponse({'message': 'OTP sent successfully', 'otp': otp})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+6. Set Up Templates
+Create templates for login/logout.
+
+templates/base.html:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Google Login and OTP</title>
+</head>
+<body>
+    <h1>Welcome to Django Google Login and OTP</h1>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}!</p>
+        <a href="{% url 'account_logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'account_login' %}">Login with Google</a>
+    {% endif %}
+</body>
+</html>
+
+7. Run Migrations
+python manage.py migrate
+python manage.py runserver
+

@@ -1,0 +1,67 @@
+16) Write a Django project that interacts with the GitHub API to create a new repository and list all repositories for a given user.
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import requests
+import json
+
+# Views.py
+
+def list_repositories(request, username):
+    """List all repositories for a given GitHub username."""
+    url = f"https://api.github.com/users/{username}/repos"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        repos = response.json()
+        return JsonResponse(repos, safe=False)
+    else:
+        return JsonResponse({"error": "Unable to fetch repositories."}, status=response.status_code)
+
+@csrf_exempt
+def create_repository(request):
+    """Create a new repository for the authenticated user."""
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            token = data.get('token')
+            repo_name = data.get('name')
+
+            if not token or not repo_name:
+                return JsonResponse({"error": "Token and repository name are required."}, status=400)
+
+            url = "https://api.github.com/user/repos"
+            headers = {
+                "Authorization": f"Bearer {token}",
+                "Accept": "application/vnd.github+json",
+            }
+            payload = {
+                "name": repo_name,
+                "private": data.get('private', False),
+            }
+
+            response = requests.post(url, headers=headers, json=payload)
+
+            if response.status_code == 201:
+                return JsonResponse(response.json())
+            else:
+                return JsonResponse({"error": "Unable to create repository.", "details": response.json()}, status=response.status_code)
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON payload."}, status=400)
+    else:
+        return JsonResponse({"error": "POST method required."}, status=405)
+
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('repos/<str:username>/', views.list_repositories, name='list_repositories'),
+    path('repos/create/', views.create_repository, name='create_repository'),
+]
+
+# settings.py
+# Add the following to ensure CSRF protection is not enforced globally
+CSRF_TRUSTED_ORIGINS = ['https://api.github.com']

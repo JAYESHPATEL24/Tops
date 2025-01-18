@@ -1,0 +1,85 @@
+1). Introduction to GitHub API and how to interact with repositories, pull requests, and issues.
+
+   - **GitHub API**:
+     - GitHub provides a REST API that allows you to programmatically interact with GitHub resources like repositories, issues, pull requests, commits, etc.
+     - To use the GitHub API, you need to authenticate (using a personal access token) and send HTTP requests to interact with various endpoints.
+
+   - **Getting Started with GitHub API**:
+     1. **Generate a Personal Access Token**:
+        - Go to your GitHub account settings, then to *Developer settings* -> *Personal access tokens* to generate a token with appropriate permissions (e.g., repo, issues).
+     2. **Make API requests**:
+        - Use HTTP methods (GET, POST, PUT, DELETE) to interact with the API.
+        - GitHub’s API base URL is `https://api.github.com/`.
+
+   - **Example Python Code to Interact with GitHub API**:
+   
+     - **Authenticating using Personal Access Token**:
+       ```python
+       import requests
+
+       # GitHub API URL
+       api_url = 'https://api.github.com/'
+
+       # Your personal access token
+       token = 'YOUR_GITHUB_TOKEN'
+
+       # Set up authentication header
+       headers = {'Authorization': f'token {token}'}
+
+       # Example: List repositories of a user
+       user = 'octocat'  # GitHub username
+       response = requests.get(f'{api_url}users/{user}/repos', headers=headers)
+
+       if response.status_code == 200:
+           repos = response.json()
+           for repo in repos:
+               print(f'Repository Name: {repo["name"]}')
+       else:
+           print('Error: Unable to fetch repositories.')
+       ```
+
+   - **Interacting with Repositories**:
+     - To list repositories for a user or organization, use:
+       ```
+       GET /users/{username}/repos
+       ```
+     - To create a new repository, use:
+       ```
+       POST /user/repos
+       ```
+     - To delete a repository, use:
+       ```
+       DELETE /repos/{owner}/{repo}
+       ```
+
+   - **Interacting with Pull Requests**:
+     - To list pull requests for a repository, use:
+       ```
+       GET /repos/{owner}/{repo}/pulls
+       ```
+     - To create a new pull request, use:
+       ```
+       POST /repos/{owner}/{repo}/pulls
+       ```
+     - To merge a pull request, use:
+       ```
+       PUT /repos/{owner}/{repo}/pulls/{pull_number}/merge
+       ```
+
+   - **Interacting with Issues**:
+     - To list issues for a repository, use:
+       ```
+       GET /repos/{owner}/{repo}/issues
+       ```
+     - To create a new issue, use:
+       ```
+       POST /repos/{owner}/{repo}/issues
+       ```
+     - To update an issue, use:
+       ```
+       PATCH /repos/{owner}/{repo}/issues/{issue_number}
+       ```
+
+   - **Example Usage**:
+     - This Python code shows how to list repositories for a user. You can easily adapt it to interact with pull requests or issues by changing the API endpoint.
+     - Remember to replace `YOUR_GITHUB_TOKEN` with your actual personal access token.

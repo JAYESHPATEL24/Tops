@@ -1,0 +1,136 @@
+12) Write a Django project that allows users to create, read, update, and delete doctor profiles using API endpoints.
+
+Step 1: Set Up the Django Project
+Install Django and DRF: If you haven't installed Django and DRF yet, you can install them with pip:
+pip install django djangorestframework
+
+Create a Django Project:
+django-admin startproject doctor_profiles
+cd doctor_profiles
+
+Create a Django App:
+python manage.py startapp doctors
+
+Add the app and DRF to INSTALLED_APPS in settings.py:
+# doctor_profiles/settings.py
+
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'doctors',
+]
+
+Step 2: Define the Doctor Model
+In the doctors/models.py file, define the Doctor model that will store information about doctors:
+
+# doctors/models.py
+
+from django.db import models
+
+class Doctor(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    specialty = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField()
+    bio = models.TextField()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+Step 3: Create Serializer for Doctor Model
+Next, create a serializer for the Doctor model in the doctors/serializers.py file:
+# doctors/serializers.py
+
+from rest_framework import serializers
+from .models import Doctor
+
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
+        fields = '__all__'
+
+Step 4: Create API Views
+
+For the CRUD functionality, we’ll use DRF’s ModelViewSet to automatically create views that handle create, read, update, and delete operations.
+
+# doctors/views.py
+
+from rest_framework import viewsets
+from .models import Doctor
+from .serializers import DoctorSerializer
+
+class DoctorViewSet(viewsets.ModelViewSet):
+    queryset = Doctor.objects.all()
+    serializer_class = DoctorSerializer
+
+Step 5: Define the URL Routing
+Now, set up the URLs for the API endpoints. In the doctors/urls.py file, you’ll define the URLs for the CRUD operations:
+# doctors/urls.py
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import DoctorViewSet
+
+router = DefaultRouter()
+router.register(r'doctors', DoctorViewSet)
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
+
+Next, include these URLs in the main urls.py of the project:
+# doctor_profiles/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('doctors.urls')),  # Include the doctors app URLs
+]
+
+Step 6: Migrate the Database
+After defining the model, migrate the database to create the necessary table for the Doctor model.
+python manage.py makemigrations
+python manage.py migrate
+
+Step 7: Create a Superuser (Optional for Testing)
+You can create a superuser to access the Django admin interface:
+python manage.py createsuperuser
+
+Step 8: Run the Server
+Now, run the server to test the API:
+python manage.py runserver
+
+The API endpoints will be available at:
+
+GET /api/doctors/: List all doctors.
+POST /api/doctors/: Create a new doctor profile.
+GET /api/doctors/{id}/: Retrieve details of a specific doctor.
+PUT /api/doctors/{id}/: Update a specific doctor profile.
+DELETE /api/doctors/{id}/: Delete a specific doctor profile.
+
+Step 9: Testing the API
+You can test the API using a tool like Postman or directly using curl. 
+Here’s an example of how to test the POST method with curl:
+curl -X POST -H "Content-Type: application/json" -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "specialty": "Cardiology",
+    "phone_number": "1234567890",
+    "email": "john.doe@example.com",
+    "bio": "Experienced cardiologist."
+}' http://127.0.0.1:8000/api/doctors/
+
+
+Step 10: Optional - Customize the Admin Panel
+To make the Doctor model accessible in the Django Admin panel, register it in the doctors/admin.py file:
+# doctors/admin.py
+
+from django.contrib import admin
+from .models import Doctor
+
+admin.site.register(Doctor)
+
+

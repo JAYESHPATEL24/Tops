@@ -1,0 +1,44 @@
+1). Setting up a Django REST Framework project.
+
+   - Install Django and Django REST Framework:
+     ```
+     pip install django djangorestframework
+     ```
+   - Create a new Django project:
+     ```
+     django-admin startproject project_name
+     ```
+   - Navigate to the project directory and create a new app:
+     ```
+     cd project_name
+     python manage.py startapp app_name
+     ```
+   - Add `'rest_framework'` and your app (e.g., `'app_name'`) to `INSTALLED_APPS` in `settings.py`:
+     ```python
+     INSTALLED_APPS = [
+         ...
+         'rest_framework',
+         'app_name',
+     ]
+     ```
+   - Run database migrations:
+     ```
+     python manage.py migrate
+     ```
+   - Start the development server:
+     ```
+     python manage.py runserver
+     ```
+   - Optional: Configure REST framework settings in `settings.py`:
+     ```python
+     REST_FRAMEWORK = {
+         'DEFAULT_AUTHENTICATION_CLASSES': [
+             'rest_framework.authentication.SessionAuthentication',
+             'rest_framework.authentication.TokenAuthentication',
+         ],
+         'DEFAULT_PERMISSION_CLASSES': [
+             'rest_framework.permissions.IsAuthenticated',
+         ],
+     }
+     ```
+   - Your Django REST Framework project is now ready!

@@ -1,0 +1,66 @@
+1). Adding pagination to APIs to handle large data sets.
+
+In Django REST Framework (DRF), pagination is used to break large data sets into smaller, more manageable chunks. This helps improve performance and user experience when dealing with large amounts of data in APIs.
+
+Here’s how you can add pagination to your DRF APIs:
+
+Step 1: Configure Pagination in settings.py
+First, you need to configure the pagination settings in your `settings.py` file. You can choose from different pagination styles provided by DRF.
+
+For example, to use **PageNumberPagination**, you can add the following configuration:
+
+# settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # Number of items per page
+}
+
+This sets up pagination for all your API views, and it will return 10 results per page by default. You can adjust the `PAGE_SIZE` value to control how many items are shown per page.
+
+Step 2: Using Pagination in Views
+DRF will automatically paginate your API responses based on the configuration you have set. However, if you want to customize pagination for specific views, you can do so by specifying the pagination class in your view.
+
+For example, to use **LimitOffsetPagination**:
+
+# views.py
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.response import Response
+from .models import ExampleModel
+from .serializers import ExampleModelSerializer
+from rest_framework.views import APIView
+
+class ExampleModelView(APIView):
+    pagination_class = LimitOffsetPagination  # Specify custom pagination
+
+    def get(self, request):
+        queryset = ExampleModel.objects.all()
+        paginator = self.pagination_class()
+        page = paginator.paginate_queryset(queryset, request)
+        if page is not None:
+            return paginator.get_paginated_response(ExampleModelSerializer(page, many=True).data)
+        return Response(ExampleModelSerializer(queryset, many=True).data)
+
+Step 3: Test Pagination
+Once you’ve configured pagination, you can test it by making requests to your API. The response will include pagination metadata, such as the total number of items, the number of pages, and links to the next and previous pages.
+
+Here’s an example response for a paginated API:
+
+{
+    "count": 50,
+    "next": "http://localhost:8000/api/example-model/?page=2",
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "name": "Example 1"
+        },
+        {
+            "id": 2,
+            "name": "Example 2"
+        }
+    ]
+}
+
+In the response, you can see the `count`, `next`, and `previous` fields that help clients navigate between pages.
+
+With pagination enabled, your API will be able to handle large data sets more efficiently, providing a better experience for clients interacting with the data.

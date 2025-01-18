@@ -1,0 +1,82 @@
+6) Write a Django project that routes URLs to the views handling doctor CRUD operations (/doctors, /doctors/<id>).
+
+from django.db import models
+from django.urls import path
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, JsonResponse
+from django.views.generic import View
+from django import forms
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+# Define the Doctor model
+class Doctor(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    specialization = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15)
+
+    def __str__(self):
+        return f"Dr. {self.first_name} {self.last_name}"
+
+# Create a form for the Doctor model
+class DoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['first_name', 'last_name', 'specialization', 'email', 'phone_number']
+
+# Define the class-based views
+class DoctorListView(View):
+    def get(self, request):
+        doctors = Doctor.objects.all()
+        return render(request, 'doctor_list.html', {'doctors': doctors})
+
+class DoctorCreateView(View):
+    def get(self, request):
+        form = DoctorForm()
+        return render(request, 'doctor_form.html', {'form': form})
+
+    def post(self, request):
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/doctors')
+        return render(request, 'doctor_form.html', {'form': form})
+
+class DoctorDetailView(View):
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        return render(request, 'doctor_detail.html', {'doctor': doctor})
+
+class DoctorUpdateView(View):
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        form = DoctorForm(instance=doctor)
+        return render(request, 'doctor_form.html', {'form': form})
+
+    def post(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        form = DoctorForm(request.POST, instance=doctor)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/doctors')
+        return render(request, 'doctor_form.html', {'form': form})
+
+class DoctorDeleteView(View):
+    def get(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        return render(request, 'doctor_confirm_delete.html', {'doctor': doctor})
+
+    def post(self, request, pk):
+        doctor = get_object_or_404(Doctor, pk=pk)
+        doctor.delete()
+        return HttpResponseRedirect('/doctors')
+
+# Define URL patterns
+urlpatterns = [
+    path('doctors', DoctorListView.as_view(), name='doctor_list'),
+    path('doctors/create', DoctorCreateView.as_view(), name='doctor_create'),
+    path('doctors/<int:pk>', DoctorDetailView.as_view(), name='doctor_detail'),
+    path('doctors/<int:pk>/update', DoctorUpdateView.as_view(), name='doctor_update'),
+    path('doctors/<int:pk>/delete', DoctorDeleteView.as_view(), name='doctor_delete'),
+]

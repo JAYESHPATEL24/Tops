@@ -1,0 +1,38 @@
+17) Write a Django project to fetch and display the latest 5 tweets from a Twitter user using the Twitter API.
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import requests
+import json
+
+# Views
+
+def fetch_tweets(request, username):
+    """Fetch and display the latest 5 tweets from a Twitter user."""
+    BEARER_TOKEN = "your_twitter_api_bearer_token"  # Replace with your Twitter API Bearer Token
+
+    url = f"https://api.twitter.com/2/tweets?max_results=5&expansions=author_id&user.fields=username&tweet.fields=created_at&query=from:{username}"
+    headers = {
+        "Authorization": f"Bearer {BEARER_TOKEN}"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        tweets = response.json()
+        return JsonResponse(tweets, safe=False)
+    else:
+        return JsonResponse({"error": "Unable to fetch tweets."}, status=response.status_code)
+
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('tweets/<str:username>/', views.fetch_tweets, name='fetch_tweets'),
+]
+
+# settings.py
+# Add the following to handle CSRF settings for external APIs if needed
+CSRF_TRUSTED_ORIGINS = ['https://api.twitter.com']

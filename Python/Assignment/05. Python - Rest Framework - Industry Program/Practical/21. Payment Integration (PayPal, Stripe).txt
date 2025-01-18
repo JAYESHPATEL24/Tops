@@ -1,0 +1,301 @@
+21) Write a Django project to allow users to make payments via Stripe for booking doctor appointments.
+
+Step 1: Set Up the Django Project
+Start by creating a Django project and app:
+bash
+django-admin startproject appointment_booking
+cd appointment_booking
+django-admin startapp bookings
+
+Step 2: Install Dependencies
+Install the necessary dependencies, including Django, Stripe, and any other required packages.
+bash
+pip install django stripe
+
+Step 3: Create Your Stripe Account
+Sign up for a Stripe account at https://stripe.com.
+Create an API key from the Stripe Dashboard under the API section.
+You will use the Publishable Key and Secret Key for your project.
+
+Step 4: Update settings.py
+In settings.py, add your Stripe API keys and configure them:
+python
+# settings.py
+
+STRIPE_TEST_PUBLIC_KEY = 'your_stripe_publishable_key_here'
+STRIPE_TEST_SECRET_KEY = 'your_stripe_secret_key_here'
+Make sure to replace the placeholders with your actual Stripe API keys.
+
+Step 5: Create Models for Appointment and Payment
+In bookings/models.py, create models for storing appointments and payment information:
+python
+# bookings/models.py
+from django.db import models
+
+class Appointment(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=20)
+    date_time = models.DateTimeField()
+    booked = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Appointment for {self.full_name} on {self.date_time}"
+
+class Payment(models.Model):
+    appointment = models.OneToOneField(Appointment, on_delete=models.CASCADE)
+    stripe_payment_intent_id = models.CharField(max_length=255)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    paid = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Payment for {self.appointment.full_name}"
+The Appointment model stores information about the user's booking.
+The Payment model tracks the payment associated with an appointment.
+
+Step 6: Create Forms for Booking and Payment
+In bookings/forms.py, create a form for the appointment booking:
+python
+# bookings/forms.py
+from django import forms
+from .models import Appointment
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['full_name', 'email', 'phone_number', 'date_time']
+
+Step 7: Create Views for Appointment and Payment
+In bookings/views.py, create views to handle booking and payment:
+python
+# bookings/views.py
+import stripe
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .models import Appointment, Payment
+from .forms import AppointmentForm
+
+stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+
+def create_appointment(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            # Create appointment
+            appointment = form.save()
+            return redirect('bookings:payment', appointment_id=appointment.id)
+    else:
+        form = AppointmentForm()
+    
+    return render(request, 'bookings/create_appointment.html', {'form': form})
+
+def create_payment(request, appointment_id):
+    appointment = Appointment.objects.get(id=appointment_id)
+    
+    if request.method == 'POST':
+        # Create payment intent on Stripe
+        payment_intent = stripe.PaymentIntent.create(
+            amount=1000,  # Amount in cents (e.g., $10.00)
+            currency='usd',
+            metadata={'appointment_id': appointment.id}
+        )
+
+        # Create Payment record
+        payment = Payment.objects.create(
+            appointment=appointment,
+            stripe_payment_intent_id=payment_intent.id,
+            amount=10.00,  # For example, $10
+        )
+
+        return JsonResponse({
+            'clientSecret': payment_intent.client_secret
+        })
+    return render(request, 'bookings/payment.html', {'appointment': appointment})
+
+def confirm_payment(request, payment_id):
+    payment = Payment.objects.get(id=payment_id)
+
+    # Confirm the payment after receiving payment status from the client
+    if request.method == 'POST':
+        payment_intent_id = payment.stripe_payment_intent_id
+        payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
+
+        if payment_intent.status == 'succeeded':
+            payment.paid = True
+            payment.save()
+
+            # Mark appointment as booked
+            payment.appointment.booked = True
+            payment.appointment.save()
+
+            return redirect('bookings:appointment_success')
+    
+    return render(request, 'bookings/confirm_payment.html', {'payment': payment})
+
+def appointment_success(request):
+    return render(request, 'bookings/appointment_success.html')
+
+Step 8: Create Templates for Booking and Payment
+Create templates for booking and payment handling.
+create_appointment.html:
+html
+<!-- bookings/templates/bookings/create_appointment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+</head>
+<body>
+    <h1>Book an Appointment</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book Appointment</button>
+    </form>
+</body>
+</html>
+
+payment.html:
+html
+<!-- bookings/templates/bookings/payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Pay for Your Appointment</h1>
+    <p>Appointment for: {{ appointment.full_name }} on {{ appointment.date_time }}</p>
+    
+    <form id="payment-form">
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+
+        <button type="submit">Pay Now</button>
+    </form>
+
+    <script>
+        var stripe = Stripe('{{ stripe_public_key }}');
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+
+        var paymentIntentClientSecret = '';
+
+        // Create payment intent
+        fetch('/create_payment/{{ appointment.id }}', {
+            method: 'POST',
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            paymentIntentClientSecret = data.clientSecret;
+        });
+
+        // Handle form submission
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.confirmCardPayment(paymentIntentClientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: '{{ appointment.full_name }}',
+                        email: '{{ appointment.email }}',
+                    },
+                }
+            }).then(function(result) {
+                if (result.error) {
+                    // Show error to your customer
+                    console.log(result.error.message);
+                } else {
+                    if (result.paymentIntent.status === 'succeeded') {
+                        window.location.href = '/confirm_payment/{{ payment.id }}';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+confirm_payment.html:
+html
+<!-- bookings/templates/bookings/confirm_payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Payment</title>
+</head>
+<body>
+    <h1>Confirm Payment</h1>
+    <p>Your payment for appointment {{ payment.appointment.full_name }} has been {{ payment.paid ? 'successful' : 'failed' }}.</p>
+</body>
+</html>
+
+appointment_success.html:
+html
+<!-- bookings/templates/bookings/appointment_success.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Success</title>
+</head>
+<body>
+    <h1>Appointment Successfully Booked!</h1>
+    <p>Your appointment has been successfully booked and paid for.</p>
+</body>
+</html>
+
+Step 9: Set Up URLs
+In bookings/urls.py, define URLs for each view:
+python
+# bookings/urls.py
+from django.urls import path
+from . import views
+
+app_name = 'bookings'
+urlpatterns = [
+    path('book/', views.create_appointment, name='create_appointment'),
+    path('create_payment/<int:appointment_id>/', views.create_payment, name='create_payment'),
+    path('confirm_payment/<int:payment_id>/', views.confirm_payment, name='confirm_payment'),
+    path('appointment_success/', views.appointment_success, name='appointment_success'),
+]
+
+In appointment_booking/urls.py, include the bookings app URLs:
+python
+# appointment_booking/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('bookings.urls')),
+]
+
+Step 10: Run the Server
+Finally, run the Django development server:
+bash
+python manage.py migrate
+python manage.py runserver
+
+Step 11: Test the Application
+Visit http://127.0.0.1:8000/book/ to book an appointment.
+After booking, you’ll be redirected to the payment page where users can enter payment details via Stripe.
+Once the payment is successful, the appointment will be confirmed, and the user will see a success message.

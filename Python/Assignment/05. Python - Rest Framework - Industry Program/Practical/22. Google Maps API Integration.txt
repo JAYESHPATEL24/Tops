@@ -1,0 +1,204 @@
+22) Write a Django project that integrates Google Maps API to show doctor locations in a specific city.
+
+Step 1: Set Up the Django Project
+Start by creating a Django project and app:
+bash
+django-admin startproject doctor_locator
+cd doctor_locator
+django-admin startapp locator
+
+Step 2: Install Dependencies
+Install the required dependencies, including Django and requests:
+bash
+pip install Django
+
+Step 3: Get Google Maps API Key
+Go to the Google Cloud Console.
+Create a new project or use an existing one.
+Enable the Google Maps JavaScript API and Geocoding API.
+Go to Credentials and create a new API key.
+Save your API key for use in the project.
+
+Step 4: Update settings.py
+In settings.py, add the Google Maps API key:
+python
+# settings.py
+GOOGLE_MAPS_API_KEY = 'your_google_maps_api_key_here'
+
+Step 5: Create Models for Doctor Locations
+In locator/models.py, create a model for storing doctors' information and their location:
+python
+# locator/models.py
+from django.db import models
+
+class Doctor(models.Model):
+    name = models.CharField(max_length=100)
+    specialty = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
+    def __str__(self):
+        return f"{self.name} ({self.specialty})"
+This model stores each doctor's name, specialty, address, and location (latitude and longitude).
+
+Step 6: Create Forms (Optional)
+If you want to allow users to search for doctors or filter by specialty, create a form for this. In locator/forms.py:
+python
+# locator/forms.py
+from django import forms
+
+class DoctorSearchForm(forms.Form):
+    specialty = forms.CharField(max_length=100, required=False)
+    city = forms.CharField(max_length=100, required=False)
+
+Step 7: Create Views to Display Doctors and Map
+In locator/views.py, create views to display doctors and show the map with markers:
+python
+# locator/views.py
+from django.shortcuts import render
+from .models import Doctor
+from .forms import DoctorSearchForm
+
+def doctor_map(request):
+    doctors = Doctor.objects.all()
+
+    # If a search is made based on city or specialty
+    if request.GET.get('specialty'):
+        specialty = request.GET['specialty']
+        doctors = doctors.filter(specialty__icontains=specialty)
+
+    if request.GET.get('city'):
+        city = request.GET['city']
+        doctors = doctors.filter(address__icontains=city)
+
+    context = {
+        'doctors': doctors,
+        'google_maps_api_key': 'your_google_maps_api_key_here',  # Use the API key here
+    }
+
+    return render(request, 'locator/doctor_map.html', context)
+
+Step 8: Create Templates for Showing Doctors on the Map
+Create the template doctor_map.html to display the map with markers for each doctor's location.
+html
+<!-- locator/templates/locator/doctor_map.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Locator</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&libraries=&v=weekly" 
+    async></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Doctor Locator</h1>
+
+    <!-- Search Form -->
+    <form method="GET">
+        <label for="specialty">Specialty:</label>
+        <input type="text" id="specialty" name="specialty" value="{{ request.GET.specialty }}">
+        
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" value="{{ request.GET.city }}">
+        
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="map"></div>
+
+    <script>
+        let map;
+        let markers = [];
+
+        function initMap() {
+            // Initialize map centered at a default city (e.g., New York City)
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 40.7128, lng: -74.0060 },
+                zoom: 12,
+            });
+
+            // Loop through doctors and place a marker for each one
+            {% for doctor in doctors %}
+            const marker = new google.maps.Marker({
+                position: { lat: {{ doctor.latitude }}, lng: {{ doctor.longitude }} },
+                map: map,
+                title: "{{ doctor.name }} - {{ doctor.specialty }}",
+            });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<h3>{{ doctor.name }}</h3><p>{{ doctor.specialty }}</p><p>{{ doctor.address }}</p>`,
+            });
+
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
+
+            markers.push(marker);
+            {% endfor %}
+        }
+    </script>
+</body>
+</html>
+
+Step 9: Set Up URLs
+In locator/urls.py, create a URL pattern for the doctor map view:
+python
+# locator/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.doctor_map, name='doctor_map'),
+]
+
+In doctor_locator/urls.py, include the locator app URLs:
+python
+# doctor_locator/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('locator.urls')),
+]
+
+Step 10: Migrate the Database
+Run the migrations to create the Doctor model's table in the database:
+bash
+python manage.py makemigrations
+python manage.py migrate
+
+Step 11: Add Some Doctors to the Database (Optional)
+You can use the Django admin or the Django shell to add doctors with their latitude and longitude coordinates. 
+Here's an example using the shell:
+bash
+python manage.py shell
+
+python
+from locator.models import Doctor
+Doctor.objects.create(
+    name="Dr. John Doe", 
+    specialty="Cardiologist", 
+    address="123 Heart St, New York, NY", 
+    latitude=40.7128, 
+    longitude=-74.0060
+)
+
+Step 12: Run the Server
+Run the Django development server:
+bash
+python manage.py runserver
+
+Step 13: Testing the Application
+Open your browser and go to http://127.0.0.1:8000/.
+You should see the map with markers for each doctor’s location. 
+Clicking a marker will display more details about the doctor.
+Use the search form to filter doctors by specialty or city.

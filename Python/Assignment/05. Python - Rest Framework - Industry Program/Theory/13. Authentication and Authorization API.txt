@@ -1,0 +1,60 @@
+1). Difference between authentication and authorization.
+
+   - **Authentication**:
+     - Authentication is the process of verifying the identity of a user or system. It ensures that the entity making a request is who they claim to be.
+     - Example: A user logs in with a username and password to prove their identity.
+
+   - **Authorization**:
+     - Authorization is the process of determining whether an authenticated user has permission to perform a specific action or access certain resources.
+     - Example: After logging in, a user may only have access to specific pages or data based on their role (e.g., admin, user).
+
+   - **Key Difference**:
+     - Authentication answers the question, "Who are you?"
+     - Authorization answers the question, "What are you allowed to do?"
+
+2). Implementing authentication using Django REST Framework’s token-based system.
+
+   - Install Django REST Framework and Token Authentication:
+     ```
+     pip install djangorestframework
+     pip install djangorestframework-simplejwt  # For JWT authentication
+     ```
+   - Add `'rest_framework.authtoken'` to `INSTALLED_APPS` in `settings.py`:
+     ```python
+     INSTALLED_APPS = [
+         ...
+         'rest_framework.authtoken',
+     ]
+     ```
+   - Run migrations to create the token model:
+     ```
+     python manage.py migrate
+     ```
+
+   - In `settings.py`, specify the authentication classes:
+     ```python
+     REST_FRAMEWORK = {
+         'DEFAULT_AUTHENTICATION_CLASSES': [
+             'rest_framework.authentication.TokenAuthentication',
+         ],
+     }
+     ```
+
+   - Create an endpoint to obtain a token (for example, using `obtain_auth_token` from `rest_framework.authtoken.views`):
+     ```python
+     from rest_framework.authtoken.views import obtain_auth_token
+
+     urlpatterns = [
+         ...
+         path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+     ]
+     ```
+
+   - To authenticate a user, the client will send a POST request to `/api-token-auth/` with the user's username and password. If valid, the server will respond with a token.
+
+   - For subsequent requests, the client includes the token in the `Authorization` header:
+     ```
+     Authorization: Token <your_token>
+     ```
+
+   - The server will use the token to authenticate the user and check their permissions for the requested action.

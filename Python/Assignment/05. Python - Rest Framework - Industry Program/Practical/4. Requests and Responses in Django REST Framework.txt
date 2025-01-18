@@ -1,0 +1,51 @@
+4).Write a Django project where the API accepts a POST request to add a doctor’s details to the database.
+
+1. Create a Doctor model in `models.py`:
+```python
+from django.db import models
+
+class Doctor(models.Model):
+    name = models.CharField(max_length=255)
+    specialty = models.CharField(max_length=255)
+    contact_details = models.TextField()
+```
+
+2. Create a serializer in `serializers.py`:
+```python
+from rest_framework import serializers
+from .models import Doctor
+
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
+        fields = '__all__'
+```
+
+3. Create a view in `views.py` to handle POST requests:
+```python
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Doctor
+from .serializers import DoctorSerializer
+
+class DoctorCreateAPIView(APIView):
+    def post(self, request):
+        serializer = DoctorSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+```
+
+4. Configure the URL in `urls.py`:
+```python
+from django.urls import path
+from .views import DoctorCreateAPIView
+
+urlpatterns = [
+    path('doctors/', DoctorCreateAPIView.as_view(), name='doctor-create'),
+]
+```
+
+5. Test the API using tools like Postman or cURL.

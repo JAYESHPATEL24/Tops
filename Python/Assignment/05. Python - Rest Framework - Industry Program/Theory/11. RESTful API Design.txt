@@ -1,0 +1,22 @@
+1). REST principles: statelessness, resource-based URLs, and using HTTP methods for CRUD operations.
+   - **Statelessness**: 
+     - In REST, each request from the client to the server must contain all the information needed to understand and process the request. The server should not store any state between requests, meaning every request is independent.
+     - Example: The client must send authentication details (like a token) with each request, as the server does not remember the client from the previous request.
+
+   - **Resource-based URLs**:
+     - RESTful APIs are centered around the concept of resources, which are entities that can be represented in a system. Each resource should have a unique URL.
+     - URLs should be noun-based and reflect the resource they represent.
+     - Example:
+       - `/users/` represents a collection of users.
+       - `/users/{id}/` represents a specific user by their ID.
+
+   - **Using HTTP methods for CRUD operations**:
+     - REST uses standard HTTP methods (GET, POST, PUT, DELETE) to perform CRUD operations on resources:
+       - **GET**: Retrieves data from the server (Read).
+         - Example: `GET /users/` retrieves a list of users.
+       - **POST**: Creates a new resource on the server (Create).
+         - Example: `POST /users/` creates a new user.
+       - **PUT**: Updates an existing resource (Update).
+         - Example: `PUT /users/{id}/` updates the user with the specified ID.
+       - **DELETE**: Deletes a resource (Delete).
+         - Example: `DELETE /users/{id}/` deletes the user with the specified ID.

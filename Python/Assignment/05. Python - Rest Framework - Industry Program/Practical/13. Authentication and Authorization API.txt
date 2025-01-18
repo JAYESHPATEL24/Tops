@@ -1,0 +1,196 @@
+13) Write a Django project that uses token-based authentication for users and restricts access to certain API endpoints.
+
+Step 1: Set Up the Django Project
+
+Install Django and DRF along with token authentication: 
+First, make sure you have Django and Django REST Framework installed. 
+You will also need the djangorestframework-simplejwt package to use token-based authentication:
+pip install django djangorestframework djangorestframework-simplejwt
+
+Create a new Django project:
+django-admin startproject auth_project
+cd auth_project
+
+Create a Django app for handling users:
+python manage.py startapp users
+
+Add the necessary apps to INSTALLED_APPS in settings.py:
+# auth_project/settings.py
+
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework.authtoken',  # For token authentication
+    'users',
+]
+
+Step 2: Configure Token-Based Authentication
+Update settings.py to use JWT (JSON Web Token) for authentication:
+
+Add the following to the settings.py file to configure JWT-based authentication:
+# auth_project/settings.py
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+# Optionally, configure token lifetime
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),  # Access token expires in 30 minutes
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh token expires in 1 day
+}
+
+Run migrations to set up necessary tables:
+python manage.py migrate
+
+Step 3: Create User Model and Serializer
+For simplicity, you can use the default Django User model for authentication. 
+You’ll also need to create a serializer for registering new users.
+
+Create a serializer for user registration in users/serializers.py:
+# users/serializers.py
+
+from django.contrib.auth.models import User
+from rest_framework import serializers
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'email']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        return user
+
+Create a serializer for the token authentication in users/serializers.py:
+# users/serializers.py
+
+from rest_framework_simplejwt.tokens import RefreshToken
+
+class TokenSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, attrs):
+        user = authenticate(username=attrs['username'], password=attrs['password'])
+        if not user:
+            raise serializers.ValidationError('Invalid credentials')
+        refresh = RefreshToken.for_user(user)
+        return {
+            'access': str(refresh.access_token),
+            'refresh': str(refresh),
+        }
+
+Step 4: Create Views for User Registration and Token Generation
+
+Create views for user registration and generating tokens in users/views.py:
+# users/views.py
+
+from rest_framework import generics
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.response import Response
+from django.contrib.auth.models import User
+from .serializers import UserSerializer, TokenSerializer
+
+class RegisterUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class ObtainTokenView(generics.GenericAPIView):
+    serializer_class = TokenSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data)
+
+Step 5: Create API Views That Require Authentication
+You can now create views that require the user to be authenticated using JWT tokens. 
+For example, let’s create a simple API that returns the user profile information.
+
+Create a protected view for the user profile in users/views.py:
+# users/views.py
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            'username': user.username,
+            'email': user.email
+        })
+
+Step 6: Define URL Routing
+
+Create the URLs for the authentication endpoints in users/urls.py:
+# users/urls.py
+
+from django.urls import path
+from .views import RegisterUserView, ObtainTokenView, UserProfileView
+
+urlpatterns = [
+    path('register/', RegisterUserView.as_view(), name='register'),
+    path('token/', ObtainTokenView.as_view(), name='token'),
+    path('profile/', UserProfileView.as_view(), name='profile'),
+]
+
+Include the users URLs in the project’s main urls.py:
+# auth_project/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/auth/', include('users.urls')),  # Include the auth URLs
+]
+
+Step 7: Testing the API
+
+Run the Django server:
+python manage.py runserver
+
+Testing Registration and Token Generation:
+
+Register a user: Send a POST request to /api/auth/register/ with JSON data like:
+json
+{
+  "username": "johndoe",
+  "password": "password123",
+  "email": "johndoe@example.com"
+}
+
+Obtain a token: 
+After registering, send a POST request to /api/auth/token/ with the credentials:
+
+json
+{
+  "username": "johndoe",
+  "password": "password123"
+}
+The response will include the access token and refresh token.
+
+Access Protected Endpoints:
+
+Access the user profile: 
+To access the profile data, send a GET request to /api/auth/profile/ with the Authorization header set to Bearer <access_token>.
+
+Example:
+
+makefile
+Authorization: Bearer <access_token>
+
+Step 8: Conclusion
+Now you have a Django project with JWT token-based authentication. 
+You can register users, obtain JWT tokens, and use the tokens to access protected API endpoints. 
+You can further enhance this project by adding features like token refreshing, password reset, and more.
