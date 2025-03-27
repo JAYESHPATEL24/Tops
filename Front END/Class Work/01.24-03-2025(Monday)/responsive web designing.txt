@@ -1,0 +1,76 @@
+responsive web designing
+
+responsive web design is about creating web pages that look good on all devices
+
+a responsive web design will automatically adjust for different screen sizes and viewports.
+
+creation:
+pages : <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+
+Internet : internet is a global
+
+SEO :
+search engine optimization is the process of improving the quslity and qulity of website traffic to a website or a web page from search engines. Seo targets unpaid traffic rather than direct traffic or paid traffic.
+
+package Managers : NPM, Yarn, composer
+Task Runners and Bulid Tools : Grunt, Gulp, Webpack and Parcel
+
+
+elemnts
+attributes
+
+1. NPM (Node Package Manager)
+Used for: JavaScript (Node.js) projects
+
+Command-line tool: npm
+
+Default package manager for Node.js
+
+Common Commands:
+
+npm init → Initialize a new project
+
+npm install <package> → Install a package
+
+npm install → Install all dependencies from package.json
+
+npm update → Update dependencies
+
+2. Yarn
+Used for: JavaScript (alternative to NPM)
+
+Command-line tool: yarn
+
+Faster and more efficient than NPM due to parallel package fetching
+
+Common Commands:
+
+yarn init → Initialize a project
+
+yarn add <package> → Install a package
+
+yarn install → Install all dependencies
+
+yarn upgrade → Update dependencies
+
+3. Composer
+Used for: PHP projects
+
+Command-line tool: composer
+
+Manages PHP libraries and frameworks (like Laravel, Symfony, etc.)
+
+Common Commands:
+
+composer init → Initialize a project
+
+composer require <package> → Install a package
+
+composer install → Install all dependencies from composer.json
+
+composer update → Update dependencies
+
+
+
+
+
