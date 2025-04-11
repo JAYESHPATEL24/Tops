@@ -1,0 +1,15 @@
+HTML -> Structure
+CSS -> Cascading Style Sheet
+Structure -> Groom
+
+types of CSS
+1) Inline
+2) Internal
+3) External
+
+Selectors -> Select the element
+
+1) id -> #idname -> must be unique
+2) element (h1,p,....)
+3) class -> .classname
+4) universal slector -> *
