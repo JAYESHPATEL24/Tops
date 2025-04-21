@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .unorder{
+            list-style: none;
+        }
+
+        .unorder li{
+            display: inline-block;
+            padding: 0px 20px;
+        }
+
+        .unorder li a{
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 900;
+            color: black;
+        } 
+
+        #mangnify{
+            background-color: darkgray;
+            width: 80px;
+            padding: 5px;
+            border-radius: 20px;
+        }
+
+        .img1{
+            height: 300px;
+            background: url("https://lonelyplanetimages.imgix.net/a/g/hi/t/8b71d8871985f079b31309fc17936e65-montana.jpg?sharp=10&vib=20&w=1200");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="main">
+            <div class="logo"><img src="https://cdn.pixabay.com/photo/2024/04/05/18/22/ai-generated-8677951_1280.jpg" height="70px"></div>
+            <ul class="unorder">
+            <li><a href="">home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Help</a></li>
+            </ul>
+            <div class="search"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+            </div>
+        </nav>
+    </header>
+    <main class="main1">
+        <div class="img1"></div>
+        <div class="">
+    </main>
+</body>
+</html>
