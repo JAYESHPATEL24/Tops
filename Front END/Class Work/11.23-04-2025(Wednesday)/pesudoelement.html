@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pesudo element</title>
+    <style>
+        h1::first-letter{
+            background-color: red;
+        }
+        p::first-line{
+            background-color: aqua;
+        }
+        p::selection{
+            background-color: blueviolet;
+        }
+        h1::before{
+            content: "abc";
+        }
+        h1::after{
+            content: "xyz";
+        }
+    </style>
+</head>
+<body>
+    <h1>Programming</h1>
+    <h1>is</h1>
+    <h1>always</h1>
+    <h1>awesome</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem ipsam ab eius commodi, rerum tempora modi voluptate iusto error, repellat neque. Quos doloremque labore perspiciatis qui ad totam maxime earum. lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor repellat sint quis consequuntur. Unde, odio eius culpa, dolore voluptatibus laudantium eum beatae explicabo quam perspiciatis a dolorem et incidunt accusamus.
+    </p>
+</body>
+</html>

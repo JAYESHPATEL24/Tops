@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pesudo class</title>
+    <style>
+        h1:first-child{
+            background-color: aquamarine;
+        }
+        h1:last-child{
+            background-color: blueviolet;
+        }
+        h1:nth-child(odd){ /* any number or even or odd */
+            background-color: black;
+        }
+        h1:nth-last-child(2){
+            background-color: red;
+        }
+
+        .main{
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+            background-color: chocolate;
+        }
+
+        .main:hover{
+            background-color: cadetblue;
+            margin: 0 auto;
+            /* transition: 7s; */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>python</h1>
+        <h1>is</h1>
+        <h1>programming</h1>
+        <h1>language</h1>
+        <h1>...</h1>
+    <div>
+    <div class="main">
+
+    </div>
+</body>
+</html>
