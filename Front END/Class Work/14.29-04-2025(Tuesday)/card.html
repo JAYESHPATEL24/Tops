@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Card Hover Slide Tag</title>
+  <style>
+    .card {
+      width: 250px;
+      height: 420px;
+      border: 2px solid white;
+      margin: 200px 600px;
+      display: inline-block;
+      text-align: center;
+      position: relative;
+    }
+
+    img {
+      margin-top: 50px;
+      width: 220px;
+      height: 300px;
+      transition: transform 0.5s;
+    }
+
+    .card:hover img {
+      transform: rotateY(120deg);
+    }
+
+    .new {
+      position: absolute;
+      right: 0;
+      background-color: lightcoral;
+      color: white;
+      padding: 5px 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .tag {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #000;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 2s;
+      opacity: 0;
+      z-index: 2;
+    }
+
+    .card:hover .tag {
+      transform: translateY(250px);
+      opacity: 1;
+    }
+
+    .details{
+      font-size: 20px;
+    }
+
+    .buy{
+      margin-top: 6px;
+      width: 100%;
+      background-color: aqua;
+      font-size: 20px;
+      padding:2px
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="new">NEW</div>
+    <div class="tag">open now</div>
+    <img src="tshirt.avif" alt="T-shirt" />
+    <div class="details">
+      Tshirts $39.99<del>$45.00</del>
+    </div>
+    <button class="buy">Buy now</button>
+  </div>
+</body>
+</html>
