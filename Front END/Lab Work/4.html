@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>12th Pass Guide</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #002B64;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px 50px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 56px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: white;
+      font-size: 24px;
+      padding: 20px;
+      transition: 0.5s;
+    }
+
+    .nav a:hover {
+      background-color: aqua;
+      transform: scale(1.2);
+      color: black;
+    }
+
+    main {
+      padding: 40px 20px;
+      overflow: hidden;
+      position: relative;
+      height: 350px;
+    }
+
+    .slide-container {
+      display: flex;
+      gap: 30px;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+    }
+
+    .slide {
+        position: relative;
+        width: 360px;
+        height: 250px;
+        opacity: 0;
+        transform: translateX(100vw);
+        animation-fill-mode: forwards;
+    }
+
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .caption {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: lightcoral;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    /* Animations */
+    .slide1 {
+      animation: slideIn 2s ease-out 1s forwards;
+    }
+
+    .caption1 {
+      animation: fadeIn 2s ease-out 1s forwards;
+    }
+
+    .slide2 {
+      animation: slideIn 2s ease-out 4s forwards;
+    }
+
+    .caption2 {
+      animation: fadeIn 2s ease-out 4s forwards;
+    }
+
+    .slide3 {
+      animation: slideIn 2s ease-out 7s forwards;
+    }
+
+    .caption3 {
+      animation: fadeIn 2s ease-out 7s forwards;
+    }
+
+    .slide4 {
+      animation: slideIn 2s ease-out 10s forwards;
+    }
+
+    .caption4 {
+      animation: fadeIn 2s ease-out 10s forwards;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    footer {
+      background-color: #002B64;
+      color: white;
+      text-align: center;
+      padding: 20px 50px;
+      margin-top: 40px;
+    }
+
+    span {
+      color: red;
+    }
+
+    /* Large screens (desktops > 1200px) */
+@media (max-width: 1200px) {
+  .slide {
+    width: 400px;
+    height: 270px;
+  }
+
+  .caption {
+    font-size: 22px;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .slide-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .slide {
+    width: 90%;
+    height: auto;
+  }
+
+  main {
+    height: auto;
+    padding-bottom: 80px;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .nav a {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .caption {
+    font-size: 16px;
+  }
+}
+
+/* Extra small screens (tiny devices or narrow phones) */
+@media (max-width: 480px) {
+  .slide {
+    width: 95%;
+  }
+
+  .caption {
+    top: -30px;
+    font-size: 14px;
+  }
+
+  footer {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>12th Pass Guide</h1>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Service</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="slide-container">
+      <!-- Slide 1 -->
+      <div class="slide slide1">
+        <div class="caption caption1">Confused after 12th or graduation? 😕</div>
+        <img src="https://tse1.explicit.bing.net/th/id/OIP.-Avdb2YqQoBJqoteum010gHaE8?cb=iwp2&rs=1&pid=ImgDetMain" alt="Career 1" />
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide slide2">
+        <div class="caption caption2">Are you sure about your career? 🤔</div>
+        <img src="https://thumbs.dreamstime.com/z/confused-teenage-student-girl-glasses-school-high-education-human-emotions-concept-yellow-t-shirt-shrugging-over-142284440.jpg" alt="Career 2" />
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide slide3">
+        <div class="caption caption3">What’s next? 🎯</div>
+        <img src="https://thumbs.dreamstime.com/z/confused-male-learner-standing-class-college-student-63322091.jpg" alt="Career 3" />
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide slide4">
+        <div class="caption caption4">Don't worry! We will guide you. 👨‍🏫🤝✨</div>
+        <img src="https://st2.depositphotos.com/5312214/7763/i/450/depositphotos_77636496-stock-photo-we-are-here-to-help.jpg" alt="Career 4" />
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <h1><span>Contact Us</span></h1>
+    <p>Email: info@12thpassguide.com | Phone: +91-123-456-7890</p>
+  </footer>
+</body>
+</html>

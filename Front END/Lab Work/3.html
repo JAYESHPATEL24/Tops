@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>12th Pass Guide</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #002B64;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px 50px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 56px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: white;
+      font-size: 24px;
+      padding: 20px;
+      transition: 0.5s;
+    }
+
+    .nav a:hover {
+      background-color: aqua;
+      transform: scale(1.2);
+      color: black;
+    }
+
+    main {
+      padding: 40px 20px;
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+    }
+
+    .scroll-text {
+      white-space: nowrap;
+      font-size: 30px;
+      color: lightcoral;
+      font-weight: bold;
+      position: absolute;
+      top: 0;
+      animation: scrollText 15s linear infinite;
+    }
+
+    @keyframes scrollText {
+      from {
+        left: 100%;
+      }
+      to {
+        left: -100%;
+      }
+    }
+
+    .image-track {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      display: flex;
+      gap: 30px;
+    }
+
+    .career-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      opacity: 0;
+      transform: translateX(100vw);
+      position: relative;
+      animation-fill-mode: forwards;
+    }
+
+    .img1 {
+      animation: slideIn1 2s ease-in-out 2s forwards;
+    }
+
+    .img2 {
+      animation: slideIn2 2s ease-in-out 5s forwards;
+    }
+
+    .img3 {
+      animation: slideIn3 2s ease-in-out 8s forwards;
+    }
+
+    @keyframes slideIn1 {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn2 {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn3 {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    footer {
+      background-color: #002B64;
+      color: white;
+      text-align: center;
+      padding: 20px 50px;
+      margin-top: 40px;
+    }
+
+    span {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>12th Pass Guide</h1>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Service</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="scroll-text">
+      Are you confused after 12th? 🤔 Don't worry! We will guide you. 👨‍🏫 Explore your options! 🚀
+    </div>
+
+    <div class="image-track">
+      <img src="https://tse1.explicit.bing.net/th/id/OIP.-Avdb2YqQoBJqoteum010gHaE8?cb=iwp2&rs=1&pid=ImgDetMain" class="career-image img1" />
+      <img src="https://thumbs.dreamstime.com/z/confused-teenage-student-girl-glasses-school-high-education-human-emotions-concept-yellow-t-shirt-shrugging-over-142284440.jpg" class="career-image img2" />
+      <img src="https://thumbs.dreamstime.com/z/confused-male-learner-standing-class-college-student-63322091.jpg" class="career-image img3" />
+    </div>
+  </main>
+
+  <footer>
+    <h1><span>Contact Us</span></h1>
+    <p>Email: info@12thpassguide.com | Phone: +91-123-456-7890</p>
+  </footer>
+</body>
+</html>
