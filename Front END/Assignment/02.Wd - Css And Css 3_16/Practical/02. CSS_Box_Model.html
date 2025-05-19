@@ -1,0 +1,96 @@
+<!-- Create a profile card layout using the box model. The profile card should 
+include: 
+o A profile picture. 
+o The user’s name and bio. 
+o A button to "Follow" the user. 
+ 
+Additional Requirements: 
+ 
+o Add padding and borders to the elements. 
+o Ensure the layout is clean and centered on the page using CSS margins. 
+o Use the box-sizing property to demonstrate both content-box and border-box 
+on different elements. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <style>
+    /* Center the card using Flex */
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: lightcoral;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 700px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Profile card container */
+    .card {
+        width: 250px;
+        height: 350px;
+        background-color: white;
+        padding: 20px;
+        border: 2px solid red;
+        border-radius: 50px;
+        text-align: center;
+        box-shadow: 80px 50px rgba(0, 0, 255, 0.1);
+        box-sizing: border-box; 
+    }
+
+    /* Profile image */
+    .profile_picture {
+        width: 150px;
+        height: 170px;
+        border-radius: 50%;
+        border: 2px solid black;
+        padding: 2px;
+        box-sizing: content-box; 
+    }
+
+    /* User name */
+    .name {
+        margin: 15px;
+        font-size: 22px;
+        color: black;
+    }
+
+    /* User bio */
+    .bio {
+        font-size: 14px;
+        color: darkgreen;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+
+    /* Follow button */
+    .follow {
+        background-color: lightblue;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+    .follow:hover {
+        background-color: blue;
+        color:white;
+    }
+    </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="tony.jpg" alt="Profile Picture" class="profile_picture">
+    <h2 class="name">Tony Stark</h2>
+    <p class="bio">I am IRON Man.</p>
+    <button class="follow">Follow</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!-- Create a 3x3 grid of product cards using CSS Grid. Each card should contain: 
+o A product image. 
+o A product title. 
+o A price. 
+ 
+Additional Requirements: 
+ 
+o Use grid-template-columns to create the grid layout.  
+o Use grid-gap to add spacing between the grid items. 
+o Apply hover effects to each card for better interactivity.  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: aquamarine;
+        }
+
+        h1{
+            margin: 30px;
+            text-align: center;
+        }
+
+        #container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 30px;
+            text-align: center; 
+            padding: 10px;
+        }
+
+        .product{
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Products</h1>
+
+    <div id="container">
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+
+        <div class="product">
+            <img src="" alt="">
+            <p class="productname">1</p>
+            <p class="price">1.2</p>
+        </div>    
+    </div>
+</body>
+</html>

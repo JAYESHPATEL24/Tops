@@ -1,0 +1,64 @@
+Module 16) CSS in Full Stack Course  
+ 
+1.CSS Selectors & Styling 
+ 
+Theory Assignment 
+ 
+ Question 1: What is a CSS selector? Provide examples of element, class, and ID selectors. 
+ 
+ Question 2: Explain the concept of CSS specificity. How do conflicts between multiple styles 
+get resolved? 
+ Question 3: What is the difference between internal, external, and inline CSS? Discuss the 
+advantages and disadvantages of each approach. 
+ 
+ 
+2. CSS Box Model 
+ 
+Theory Assignment 
+ 
+ Question 1: Explain the CSS box model and its components (content, padding, border, 
+margin). How does each affect the size of an element? 
+ Question 2: What is the difference between border-box and content-box box-sizing in 
+CSS? Which is the default? 
+ 
+ 
+3. CSS Flexbox 
+ 
+Theory Assignment 
+ 
+ Question 1: What is CSS Flexbox, and how is it useful for layout design? Explain the terms 
+flex-container and flex-item. 
+ Question 2: Describe the properties justify-content, align-items, and flex-direction used 
+in Flexbox. 
+  
+
+4. CSS Grid 
+ 
+Theory Assignment 
+ 
+ Question 1: Explain CSS Grid and how it differs from Flexbox. When would you use Grid over 
+Flexbox? 
+ Question 2: Describe the grid-template-columns, grid-template-rows, and grid-gap 
+properties. Provide examples of how to use them. 
+ 
+ 
+ 
+5. Responsive Web Design with Media Queries 
+ 
+Theory Assignment 
+ 
+ Question 1: What are media queries in CSS, and why are they important for responsive 
+design? 
+ Question 2: Write a basic media query that adjusts the font size of a webpage for screens 
+smaller than 600px. 
+ 
+ 
+ 6. Typography and Web Fonts 
+ 
+Theory Assignment 
+ 
+ Question 1: Explain the difference between web-safe fonts and custom web fonts. Why 
+might you use a web-safe font over a custom font? 
+ Question 2: What is the font-family property in CSS? How do you apply a custom Google 
+Font to a webpage? 
+ 

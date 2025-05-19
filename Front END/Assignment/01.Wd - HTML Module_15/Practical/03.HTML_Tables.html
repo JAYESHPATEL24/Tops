@@ -1,0 +1,84 @@
+<!-- Create a product catalog table that includes the following columns: 
+o Product Name 
+o Product Image (use placeholder image URLs) 
+o Price 
+o Description 
+o Availability (in stock, out of stock) 
+ 
+Additional Requirements: 
+ 
+o Use thead for the table header. 
+o Add a border and some basic styling using inline CSS. 
+o Use colspan or rowspan to merge cells where applicable. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+</head>
+<body>
+
+    <h2>Product Catalog</h2>
+
+    <table border="2px solid black">
+        <thead>
+            <tr>
+                 <th style="border: 1px solid black; padding: 10px;">Product Name</th>
+                 <th style="border: 1px solid black; padding: 10px;">Product Image</th>
+                 <th style="border: 1px solid black; padding: 10px;">Price</th>
+                 <th style="border: 1px solid black; padding: 10px;">Description</th>
+                 <th style="border: 1px solid black; padding: 10px;">Availability</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td style="padding: 10px;">Gaming Earbuds</td>
+                <td>
+                    <img src="earbuds.jpg" alt="Wireless Mouse" height="150px" width="150px" style="margin: 0 50px;">
+                </td>
+                <td style="padding: 10px;">Rs. 799</td>
+                <td style="padding: 2px; width:850px;">Upto 50 hours of playtime with case. Rapid charge with 10 mins charge get up to 120 mins playtime (Type c fast charging). Active Engage (Bluetooth) 5.3 technology| 15m Range.</td>
+                <td style="padding: 10px;">In Stock</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 10px;" rowspan="2">Gaming Keyboard</td>
+                <td>
+                    <img src="gamingkeyboard.webp" alt="Gaming Keyboard" height="100px" width="250px">
+                </td>
+                <td style="padding: 10px;">Rs. 1699</td>
+                <td style="padding: 10px; width:850px;">Compact Mechanical Keyboard with 104 keys.Red Outemu Mechanical Silent Key Switches.Adjustable Backlight Brightness and Speed, 20 Backlight Effects and 8 Game Modes</td>
+                <td style="padding: 10px;">In Stock</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="gamekeyboard.jpg" alt="Gaming Keyboard" height="100px" width="250px">
+                </td>
+                <td style="padding: 10px;">Rs. 2789</td>
+                <td style="padding: 10px; width:850px;">Slim Fresh K617: Redragon's new 60% layout wired keyboard in a refreshing style with a no-brainer affordable budget. Compact 61 keys with selected keycaps, dedicated for FPS Gamers and efficient working.</td>
+                <td style="padding: 10px;">Out of Stock</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 10px;">Wireless Mouse</td>
+                <td>
+                    <img src="wirlessmouse.jpg" alt="Wireless Mouse" height="150px" width="150px" style="margin: 0 50px;">
+                </td>
+                <td style="padding: 10px;">Rs. 399</td>
+                <td style="padding: 2px; width:850px;">Boost productivity with the Portronics Toad 35, a compact wireless mouse featuring 2.4 GHz connectivity, adjustable DPI, precise tracking, and power-saving sleep mode for smooth, efficient use.</td>
+                <td style="padding: 10px;">In Stock</td>
+            </tr>
+
+            <tr>
+                <td style="padding: 10px; text-align: center;" colspan="5">
+                  More products coming soon!
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

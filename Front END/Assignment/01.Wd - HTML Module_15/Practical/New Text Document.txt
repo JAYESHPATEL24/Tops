@@ -1,0 +1,39 @@
+1. HTML Basics 
+Task: Create a simple HTML webpage that includes: 
+o A header (<header>), footer (<footer>), main section (<main>), and aside section 
+(<aside>). 
+o A paragraph with some basic text. 
+o A list (both ordered and unordered). 
+o A link that opens in a new tab.
+
+
+2.HTML Forms 
+Task: Create a contact form with the following fields: 
+o Full name (text input) 
+o Email (email input) 
+o Phone number (tel input) 
+o Subject (dropdown menu) 
+o Message (textarea) 
+o Submit button 
+ 
+Additional Requirements: 
+ 
+o Use appropriate form validation using required, minlength, maxlength, and pattern. 
+o Link form labels with their corresponding inputs using the for attribute. 
+
+
+3. HTML Tables 
+ 
+
+ Task: Create a product catalog table that includes the following columns: 
+o Product Name 
+o Product Image (use placeholder image URLs) 
+o Price 
+o Description 
+o Availability (in stock, out of stock) 
+ 
+Additional Requirements: 
+ 
+o Use thead for the table header. 
+o Add a border and some basic styling using inline CSS. 
+o Use colspan or rowspan to merge cells where applicable.

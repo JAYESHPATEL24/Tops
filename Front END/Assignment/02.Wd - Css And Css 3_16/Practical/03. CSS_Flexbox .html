@@ -1,0 +1,144 @@
+<!-- Create a simple webpage layout using Flexbox. The layout should include: 
+o A header. 
+o A sidebar on the left. 
+o A main content area in the center. 
+o A footer. 
+ 
+Additional Requirements: 
+ 
+o Use Flexbox to position and align the elements. 
+o Apply different justify-content and align-items properties to observe their effects. 
+o Ensure the layout is responsive, adjusting for smaller screens.  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+    <title>Flexbox Layout</title>
+    <style>
+        * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        }
+
+        body {
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        }
+
+        header, footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        }
+
+        header h1 {
+        margin-bottom: 0.5rem;
+        }
+
+        nav a {
+        color: #ccc;
+        margin: 0 10px;
+        text-decoration: none;
+        }
+
+        nav a:hover {
+        color: white;
+        }
+
+        .container {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        }
+
+        aside {
+        background-color: #f4f4f4;
+        padding: 1rem;
+        width: 250px;
+        }
+
+        main {
+        background-color: #fff;
+        flex: 1;
+        padding: 1.5rem;
+        }
+
+        footer {
+        background-color: #333;
+        color: white;
+        }
+
+        .container {
+        justify-content: space-between;
+        align-items: stretch;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+
+        aside {
+            width: 100%;
+        }
+        }
+    </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Flexbox Website</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside>
+      <h2>Quick Links</h2>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+      <br>
+      <h3>News</h3>
+      <p>New updates available in version 2.1!</p>
+    </aside>
+
+    <main>
+      <h2>Welcome to Our Site</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate justo non sapien placerat, a ultrices sapien faucibus. Sed rutrum ante sed eros vehicula bibendum.</p>
+      
+      <h3>Our Services</h3>
+      <ul>
+        <li>Web Design & Development</li>
+        <li>Responsive UI/UX</li>
+        <li>SEO Optimization</li>
+        <li>Technical Support</li>
+      </ul>
+
+      <h3>Why Choose Us?</h3>
+      <p>We deliver high-quality solutions tailored to your needs. Our experienced team works closely with clients to ensure satisfaction and success in every project.</p>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Flexbox Layout. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

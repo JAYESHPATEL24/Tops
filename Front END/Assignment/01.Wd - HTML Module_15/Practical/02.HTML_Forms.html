@@ -1,0 +1,50 @@
+<!-- Create a contact form with the following fields: 
+o Full name (text input) 
+o Email (email input) 
+o Phone number (tel input) 
+o Subject (dropdown menu) 
+o Message (textarea) 
+o Submit button 
+ 
+Additional Requirements: 
+ 
+o Use appropriate form validation using required, minlength, maxlength, and pattern. 
+o Link form labels with their corresponding inputs using the for attribute.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+
+    <h2>Contact Us</h2>
+    <form method="post">
+        <label>Name : </label>
+        <input type="text"  placeholder="Enter Your Name" required minlength="2" maxlength="50"><br><br>
+
+        <label>Email : </label>
+        <input type="email" placeholder="Enter Your Email" name="email" required pattern="[a-z A-Z 0-9 .]{1,}[@][a-z]{1,5}[.][a-z]{1,3}"><br><br>
+
+        <label>Phone Number : </label>
+        <input type="tel" placeholder="Enter Your Number" required pattern="[0-9]{10}" title="Enter a 10-digit phone number"><br><br>
+
+        <label>Subject : </label>
+        <select required>
+            <option>--Please choose an option--</option>
+            <option>General Inquiry</option>
+            <option>Support</option>
+            <option>Feedback</option>
+            <option>others</option>
+        </select><br><br>
+
+        <label>Message : </label>
+        <textarea placeholder="Enter Your meassage" rows="5" required minlength="10" maxlength="500"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
