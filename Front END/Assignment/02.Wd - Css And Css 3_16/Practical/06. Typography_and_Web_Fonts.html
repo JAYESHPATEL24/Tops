@@ -1,0 +1,165 @@
+<!-- Create a blog post layout with the following: 
+o A title, subtitle, and body content. 
+o Use at least two different fonts (one for headings, one for body content). 
+o Style the text to be responsive and easy to read. 
+ 
+Additional Requirements: 
+ 
+o Use a custom font from Google Fonts. 
+o Adjust line-height, font-size, and spacing for improved readability. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Example</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Share+Tech&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Martian+Mono:wght@100..800&family=Share+Tech&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: lightpink;
+        }
+
+        .container {
+            height: 500px;
+            width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+            border-radius: 30px;
+        }
+
+        h1 {
+            font-family: "Bungee Spice", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: "Share Tech", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-align: center;
+        }
+
+
+        
+        p {
+            font-family: "Martian Mono", monospace;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-variation-settings:
+            "wdth" 100;
+            margin: 20px 20px;
+            padding: 20px;
+        }
+
+        
+
+
+           /* Media Queries */
+        @media screen and (max-width: 1200px) {
+            .container {
+                width: 85%;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .container {
+                width: 80%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 13px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="bungee-spice-regular">Embracing Change: The Path to Growth</h1>
+        <h2 class="share-tech-regular">A Journey of Self-Discovery and Evolution</h2>
+        <p>Change is the only constant in life, yet it is often met with resistance. Embracing transformation, whether personal or professional, allows us to grow beyond our comfort zones and unlock new opportunities.</p>
+        <p>In this blog post, we explore the importance of adapting to change, overcoming fear, and harnessing resilience to shape a fulfilling future.</p>
+    </div>
+
+</body>
+</html>

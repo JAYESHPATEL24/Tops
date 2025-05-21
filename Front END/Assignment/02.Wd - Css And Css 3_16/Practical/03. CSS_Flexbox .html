@@ -16,129 +16,110 @@ o Ensure the layout is responsive, adjusting for smaller screens.  -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!DOCTYPE html>
-    <title>Flexbox Layout</title>
+    <title>Flexbox Webpage Layout</title>
     <style>
         * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-        font-family: Arial, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        }
-
-        header, footer {
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 1rem;
-        }
-
-        header h1 {
-        margin-bottom: 0.5rem;
-        }
-
-        nav a {
-        color: #ccc;
-        margin: 0 10px;
-        text-decoration: none;
-        }
-
-        nav a:hover {
-        color: white;
-        }
-
-        .container {
-        display: flex;
-        flex: 1;
-        flex-direction: row;
-        }
-
-        aside {
-        background-color: #f4f4f4;
-        padding: 1rem;
-        width: 250px;
-        }
-
-        main {
-        background-color: #fff;
-        flex: 1;
-        padding: 1.5rem;
-        }
-
-        footer {
-        background-color: #333;
-        color: white;
-        }
-
-        .container {
-        justify-content: space-between;
-        align-items: stretch;
-        }
-
-        /* Responsive behavior */
-        @media (max-width: 768px) {
-        .container {
+            display: flex;
             flex-direction: column;
+            background-color: lightblue;
+            height: 700px;
+            width: auto;
         }
 
-        aside {
-            width: 100%;
+        header,footer {
+            background: darkseagreen;
+            color: darkblue;
+            padding: 20px;
+            text-align: center;
         }
+
+        .container {
+            display: flex;
+            flex: auto;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background-color: aqua;
+            color: white;
+            width: 20%;
+            padding: 20px;
+        }
+
+        .main-content {
+            background: white;
+            padding: 20px;
+            width: 1100px;
+            margin-left: 10px;
+        }
+
+        ul li a{
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+        }
+
+        ul li{
+            list-style: none;
+            padding: 30px 0px ;
+            text-align: center;
+        }
+
+        p{
+            font-size: 20px;
+            padding: 10px 0px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                text-align: center;
+                padding: 10px;
+                width: 100%;
+            }
+            .main-content{
+                margin: 0px;
+                width: 100%
+            }
         }
     </style>
 </head>
 <body>
 
-  <header>
-    <h1>My Flexbox Website</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+    <header>
+        <h1>My Sidebar</h1>
+    </header>
 
-  <div class="container">
-    <aside>
-      <h2>Quick Links</h2>
-      <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Messages</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
-      <br>
-      <h3>News</h3>
-      <p>New updates available in version 2.1!</p>
-    </aside>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li><a href="">Help</a></li>
+            </ul>
+        </div>
 
-    <main>
-      <h2>Welcome to Our Site</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vulputate justo non sapien placerat, a ultrices sapien faucibus. Sed rutrum ante sed eros vehicula bibendum.</p>
-      
-      <h3>Our Services</h3>
-      <ul>
-        <li>Web Design & Development</li>
-        <li>Responsive UI/UX</li>
-        <li>SEO Optimization</li>
-        <li>Technical Support</li>
-      </ul>
+        <section class="main-content">
+            <h1>Welcome</h1>
+            <br>
+            <p>How we can help you ?</p>
+        </section>
+    </div>
 
-      <h3>Why Choose Us?</h3>
-      <p>We deliver high-quality solutions tailored to your needs. Our experienced team works closely with clients to ensure satisfaction and success in every project.</p>
-    </main>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Flexbox Layout. All rights reserved.</p>
-  </footer>
+    <footer>
+        <p>Thank you</p>
+    </footer>
 
 </body>
 </html>

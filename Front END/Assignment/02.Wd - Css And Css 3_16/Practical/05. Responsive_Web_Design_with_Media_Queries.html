@@ -12,11 +12,130 @@ o Adjust the font sizes and padding to improve readability on mobile.  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Webpage</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100%;
+        width: 100%;
+        font-size: 20px;
+      }
+
+
+      nav {
+        background-color: lightseagreen;
+        color: lavender;
+        padding: 20px;
+      }
+
+            
+      footer {
+        background-color: #333;
+        color: lavender;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+      }
+
+
+      .container {
+        display: flex;
+        padding: 2rem;
+        gap: 2rem;
+      }
+
+      .segment {
+        flex: 1;
+        background-color: #f4f4f4;
+        padding: 1rem;
+        border-radius: 5px;
+      }
+
+      div img{
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+      }
+
+      h2{
+        text-align: center;
+      }
+
+    
+      @media (max-width: 768px) {
+      .container {
+            flex-direction: column;
+            padding: 1rem;
+      }
+
+      nav ul {
+            flex-direction: column;
+      }
+
+      nav ul li {
+            margin: 5px 0;
+      }
+
+      body {
+            font-size: 15px;
+      }
+
+      .segment {
+            padding: 20px;
+      }
+
+      div img{
+        height: 100%;
+        width: 100%;
+        padding: 3px;
+      }
+      }
+    </style>
 </head>
 <body>
-    
+
+  <nav>
+    <ul>
+      <li><a href="">Home</a></li>
+      <li><a href="">About</a></li>
+      <li><a href="">Services</a></li>
+      <li><a href="">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="segment">
+      <h2>Manali</h2>
+      <img src="New folder/manai.png" alt="manali">
+    </div>
+    <div class="segment">
+      <h2>Udaipur</h2>
+      <img src="New folder/udaipur.jpg" alt="udaipur">
+    </div>
+  </main>
+
+  <footer>
+    <p>Enjoy Your Day</p>
+  </footer>
+
 </body>
 </html>
