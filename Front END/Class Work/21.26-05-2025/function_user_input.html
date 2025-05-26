@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter a number" id = "n1">
+    <!-- <input type="number" placeholder="Enter a number" id = "n1"> -->
+    <input type="text" placeholder="Enter a number" id = "n2">
+    <!-- <input type="number" placeholder="Enter a number" id = "n2"> -->
+     
+    <button onclick="add()">Addition</button>
+    <button onclick="sub()">substraction</button>
+    <button onclick="mul()">Multiplication</button>
+    <button onclick="div()">Division</button>
+
+    <script>
+        let number1 = document.getElementById("n1")
+        let number2 = document.getElementById("n2")
+
+        function add()
+        {
+            let addition = parseInt(n1.value)+parseInt(n2.value)
+            // let addition = n1.value + n2.value
+            document.write("Addition is "+addition)
+        }
+        function sub()
+        {
+            let subtraction = parseInt(n1.value)-parseInt(n2.value)
+            document.write("subtraction is "+subtraction)
+        }
+        function mul()
+        {
+            let multiplication = parseInt(n1.value)*parseInt(n2.value)
+            document.write("Multiplication is "+multiplication)
+        }
+        function div()
+        {
+            let Division = parseInt(n1.value)/parseInt(n2.value)
+            document.write("Addition is "+Division)
+        }
+
+    </script>
+</body> 
+</html>

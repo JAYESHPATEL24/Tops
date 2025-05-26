@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+</head>
+<body>
+    <input type="number" placeholder="Enter a number" id = "n1">
+     
+    <button onclick="fact()">Factorial</button>
+
+    <script>
+        let number1 = document.getElementById("n1")
+
+        function fact()
+        {
+            // let n = parseInt(n1.value)
+            let n = number1.value
+            let fact = 1
+            
+            for(let i=1; i<=n; i++)
+            {
+                fact = fact * i   
+            }
+
+            document.write("Factorial of "+n+" is : "+fact)
+        }
+     
+    </script>
+</body> 
+</html>

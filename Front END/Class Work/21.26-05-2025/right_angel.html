@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+</head>
+<body>
+    <input type="number" placeholder="Enter a number" id = "n1">
+     
+    <button onclick="Right_angle_pattern()">Right angle Pattern</button>
+    <button onclick="Left_angle_pattern()">Left angle Pattern</button>
+
+    <script>
+        let number1 = document.getElementById("n1")
+
+        function Right_angle_pattern()
+        {
+            for(let i=1; i<=number1.value; i++)
+            {
+                for(let j=1; j<=i; j++)
+                {
+                  document.write("*")   
+                }
+                document.write("<br>")
+            }
+        }
+        function Left_angle_pattern()
+        {
+            for(let i=1; i<=number1.value; i++)
+            {
+                for(let j=1; j<=number1.value-i; j++)
+                {
+                  document.write("*")   
+                }
+                document.write("<br>")
+            }
+        }
+     
+    </script>
+</body> 
+</html>
