@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image slider</title>
+</head>
+<body>
+    <img src="/11.jpeg" id="img1" height="600px" width="100%">
+    <center>
+
+    <button onclick="next_image()"><h1>  Next Image  </h1></button>
+    <button onclick="previous_image()"><h1>Previous Image</h1></button>
+    
+    </center>
+    <script>
+        let image_tag = document.getElementById("img1")
+
+        function next_image()
+        {
+            if(image_tag.src.match("11.jpeg")){
+                image_tag.src = "12.jpg"
+            }
+            else if(image_tag.src.match("12.jpg")){
+                image_tag.src = "12.webp"
+            }
+            else{
+                image_tag.src = "11.jpeg"
+            }
+        }
+
+        function previous_image()
+        {
+            if(image_tag.src.match("11.jpeg")){
+                image_tag.src = "12.webp"
+            }
+            else if(image_tag.src.match("12.webp")){
+                image_tag.src = "12.jpg"
+            }
+            else{
+                image_tag.src = "11.jpeg"
+            }
+        }
+    </script>
+</body>
+</html>

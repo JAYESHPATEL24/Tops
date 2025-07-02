@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder=" Enter your name" id="n1">
+    <button onclick="validation()">Enter Name</button>
+    <h3 id="valid"></h3>
+    <script>
+        function validation(){
+            let name = document.getElementById("n1")
+            if(name.value=='' || name.value ==null)
+        {
+            document.getElementById("valid").innerText = "Name Required!!!"
+        }
+        else{
+         document.getElementById("valid").innerText = ''   
+        }
+        }
+    </script>
+</body>
+</html>

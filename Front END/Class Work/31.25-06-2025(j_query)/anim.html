@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        toggleWithAnimation("#div1", 1000);
+        toggleWithAnimation("#div2", "slow");
+        toggleWithAnimation("#div3", 600);
+      });
+
+      function toggleWithAnimation(selector, speed) {
+        const $el = $(selector);
+        if ($el.is(":visible")) {
+          $el.animate({
+            width: "0px",
+            height: "0px",
+            opacity: 0
+          }, speed, function(){
+            $el.hide();
+          });
+        } else {
+          $el.show().css({ width: "0px", height: "0px", opacity: 0 }).animate({
+            width: "80px",
+            height: "80px",
+            opacity: 1
+          }, speed);
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <button>colour boxes</button><br><br>
+
+  <div id="div1" style="width:80px;height:80px;background-color:yellow;"></div>
+  <br>
+  <div id="div2" style="width:80px;height:80px;background-color:green;"></div>
+  <br>
+  <div id="div3" style="width:80px;height:80px;background-color:red;"></div>
+
+</body>
+</html>

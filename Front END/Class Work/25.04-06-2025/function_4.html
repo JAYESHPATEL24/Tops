@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function withouut parameter with return type</title>
+</head>
+<body>
+    <script>
+        function reversenumber(num){
+            let revnum = 0
+            while(num != 0){
+                revnum = (revnum*10) + (num%10)
+                num = parseInt(num/10)
+            }
+            return revnum
+        }
+        num = 1548
+        document.write("Reverse number of "+num+" is "+reversenumber(num))
+
+        document.write("<br><br>")
+
+        function reverse_string(s){
+            let revs = ''
+            for(let i = s.length-1; i>=0; i--){
+                revs = revs + s[i]
+            }
+            return revs
+        }
+        s = "Hello"
+        document.write("Reverse string of "+s+" is "+reverse_string(s))
+    </script>
+</body>
+</html>

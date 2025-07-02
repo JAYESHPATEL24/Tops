@@ -10,6 +10,8 @@
      
     <button onclick="fact()">Factorial</button>
 
+    <h1 id="h1"></h1>
+
     <script>
         let number1 = document.getElementById("n1")
 
@@ -24,7 +26,7 @@
                 fact *= i   
             }
 
-            document.write("Factorial of "+n+" is : "+fact)
+            document.getElementById("h1").innerText = `Factorial of ${n} is ${fact}`
         }
      
     </script>

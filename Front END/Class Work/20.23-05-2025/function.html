@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function</title>
+</head>
+<body>
+    <script>
+        function factorial()
+        {
+            let n=7, i, fact=1;
+            for(i=1; i<=n; i++)
+            {
+                fact = fact * i
+            }
+            document.write("factorial of "+ n +" is " + fact + "<br>")
+        }
+        function primenumber()
+        {
+            let n =7,i,prime=0;
+            for(i=1;i<=n;i++)
+            {
+                prime++;
+            }
+            if(prime==2)
+            {
+                document.write(n + "is prime number.<br>")
+            }
+            else
+            {
+                document.write(n + " is not prime number.<br>")
+            }
+        }
+        factorial()
+        primenumber()
+    </script>
+    
+</body>
+</html>

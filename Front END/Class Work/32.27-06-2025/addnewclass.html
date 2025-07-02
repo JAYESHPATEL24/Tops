@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    $("div").addClass("main");
+  });
+});
+
+$(document).ready(function(){
+  $("#btn2").click(function(){
+    $("div").addClass("main_s");
+  });
+});
+</script>
+<style>
+.main {
+  height: 100px;
+  width: 100px;
+}
+
+.main_s {
+  background-color : blue;
+  margin: 100px;
+}
+</style>
+</head>
+<body>
+
+<div></div>
+<br>
+<button id="btn1">Add size classes</button>
+<br>
+<button id="btn2">add color</button>
+</body>
+</html>

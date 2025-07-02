@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    $("p").append(" <b>programming is awesome</b>.");
+  });
+
+  $("#btn2").click(function(){
+    $("ol").append("<li>new item</li>");
+  });
+});
+
+$(document).ready(function(){
+  $("#btn3").click(function(){
+    $("p").prepend("<b>hello</b>. ");
+  });
+  $("#btn4").click(function(){
+    $("ol").prepend("<li>old item</li>");
+  });
+});
+
+
+
+</script>
+</head>
+<body>
+
+<p>programming</p>
+<p>List</p>
+
+<ol>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+</ol>
+
+<button id="btn1">Append text</button>
+<button id="btn2">Append list items</button>
+<br>
+<br>
+<button id="btn3">Prepend text</button>
+<button id="btn4">Prepend list item</button>
+
+</body>
+</html>

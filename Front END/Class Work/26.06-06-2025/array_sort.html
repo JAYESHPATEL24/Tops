@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = [8,2,5,3,7,2]
+        document.write(`your array : ${a}`) 
+        for(let i=0;i<a.length;i++){
+            for(let j=i+1; j<a.length; j++){
+                if(a[i]>a[j]){
+                    let temp = a[j]
+                    a[j] = a[i]
+                    a[i] = temp
+                }
+            }
+        } 
+        document.write("<br>") 
+        document.write(`sorted array : ${a}`)
+        
+        for(let i=0;i<a.length;i++){
+            for(let j=i+1; j<a.length; j++){
+                if(a[i]<a[j]){
+                    let temp = a[j]
+                    a[j] = a[i]
+                    a[i] = temp
+                }
+            }
+        }
+        document.write("<br>") 
+        document.write(`unsorted array : ${a}`)
+    </script>
+</body>
+</html>

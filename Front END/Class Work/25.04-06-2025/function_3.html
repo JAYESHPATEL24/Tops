@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>function withouut parameter with return type</title>
+</head>
+<body>
+    <script>
+        function fun()
+        {
+            let a = 10, b = 20
+            return a+b
+        }
+
+        document.write(fun())
+
+        document.write("<br><br>")
+
+        function reversenumber(){
+            let num = 963245, revnum = 0
+            while(num != 0){
+                revnum = (revnum*10) + (num%10)
+                num = parseInt(num/10)
+            }
+            return revnum
+        }
+        document.write(reversenumber())
+    </script>
+</body>
+</html>
