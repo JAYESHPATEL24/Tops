@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <script>
+        function myFunction(arr)
+        {
+            let cnt = {};
+
+            for(let i=0; i<arr.length; i++)
+            {
+                number = arr[i]
+                if(number in cnt){
+                    cnt[number] += 1
+                }
+                else{
+                    cnt[number] = 1
+                }
+            }
+            document.write(JSON.stringify(cnt)+"<br><br>")
+        }
+
+        myFunction([1,2,2,4])
+        myFunction([9,9,99,9])
+        myFunction([4,3,2,1])
+
+    </script>
+</body>
+</html> 
