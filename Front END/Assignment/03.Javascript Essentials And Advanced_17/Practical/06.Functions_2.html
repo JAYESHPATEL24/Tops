@@ -1,0 +1,37 @@
+<!-- o Create a JavaScript function calculate Sum that takes two numbers as parameters, 
+adds them, and returns the result.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claculate Sum</title>
+</head>
+<body>
+    <h1>Enter two numbers:</h1>
+    <input type="number" id="num1" placeholder="First number">
+    <input type="number" id="num2" placeholder="Second number">
+    <button onclick="handleSum()">Add</button>
+
+    <h2 id="resultDisplay"></h2>
+
+    <script>
+        // Function that takes two numbers and returns their sum
+        function calculateSum(a, b) {
+            return a + b;
+        }
+
+        // Function to handle click
+        function handleSum() {
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+
+            const result = calculateSum(n1, n2);
+
+            document.getElementById("resultDisplay").textContent = "Sum: " + result;
+        }
+        </script>
+
+</body>
+</html>

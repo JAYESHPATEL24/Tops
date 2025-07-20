@@ -1,0 +1,81 @@
+1. JavaScript Introduction 
+ 
+ Question 1: What is JavaScript? Explain the role of JavaScript in web development. 
+ Question 2: How is JavaScript different from other programming languages like Python or 
+Java? 
+ Question 3: Discuss the use of <script> tag in HTML. How can you link an external JavaScript 
+file to an HTML document? 
+ 
+2. Variables and Data Types 
+ 
+ Question 1: What are variables in JavaScript? How do you declare a variable using var, let, 
+and const? 
+ Question 2: Explain the different data types in JavaScript. Provide examples for each. 
+ Question 3: What is the difference between undefined and null in JavaScript? 
+ 
+3. JavaScript Operators 
+ 
+ Question 1: What are the different types of operators in JavaScript? Explain with examples. 
+o Arithmetic operators 
+o Assignment operators 
+o Comparison operators 
+o Logical operators 
+ 
+ Question 2: What is the difference between == and === in JavaScript? 
+ 
+4. Control Flow (If-Else, Switch) 
+ 
+ Question 1: What is control flow in JavaScript? Explain how if-else statements work with an 
+example. 
+ Question 2: Describe how switch statements work in JavaScript. When should you use a 
+switch statement instead of if-else? 
+ 
+5. Loops (For, While, Do-While) 
+ 
+ Question 1: Explain the different types of loops in JavaScript (for, while, do-while). Provide a 
+basic example of each. 
+ Question 2: What is the difference between a while loop and a do-while loop? 
+ 
+6. Functions 
+ 
+ Question 1: What are functions in JavaScript? Explain the syntax for declaring and calling a 
+function. 
+ Question 2: What is the difference between a function declaration and a function expression? 
+ Question 3: Discuss the concept of parameters and return values in functions. 
+ 
+7. Arrays 
+ 
+ Question 1: What is an array in JavaScript? How do you declare and initialize an array? 
+ Question 2: Explain the methods push(), pop(), shift(), and unshift() used in arrays. 
+ 
+8. Objects 
+ 
+ Question 1: What is an object in JavaScript? How are objects different from arrays? 
+ Question 2: Explain how to access and update object properties using dot notation and 
+bracket notation. 
+ 
+9. JavaScript Events 
+ 
+ Question 1: What are JavaScript events? Explain the role of event listeners. 
+ Question 2: How does the addEventListener() method work in JavaScript? Provide 
+an example. 
+ 
+10. DOM Manipulation 
+ 
+ Question 1: What is the DOM (Document Object Model) in JavaScript? How does JavaScript 
+interact with the DOM? 
+ Question 2: Explain the methods getElementById(), getElementsByClassName(), and 
+querySelector() used to select elements from the DOM. 
+ 
+11. JavaScript Timing Events (setTimeout, setInterval) 
+ 
+ Question 1: Explain the setTimeout() and setInterval() functions in JavaScript. How are 
+they used for timing events? 
+ Question 2: Provide an example of how to use setTimeout() to delay an action by 2 seconds. 
+ 
+12. JavaScript Error Handling 
+ 
+ Question 1: What is error handling in JavaScript? Explain the try, catch, and finally 
+blocks with an example. 
+ Question 2: Why is error handling important in JavaScript applications? 
+ 

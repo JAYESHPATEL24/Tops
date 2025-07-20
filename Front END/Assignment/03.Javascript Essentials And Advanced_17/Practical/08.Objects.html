@@ -1,0 +1,37 @@
+<!-- o Create a JavaScript object car with properties brand, model, and year. Use JavaScript 
+to: 
+ Access and print the car’s brand and model. 
+ Update the year property. 
+ Add a new property color to the car object.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body> 
+    <script>
+        // object creation
+        let car = {
+            brand : "Acura",
+            model : "RDX",
+            year : "2023"
+        }
+
+        // Access and print the car’s brand and model. 
+        document.write(`Car Brand : ${car.brand}<br>`)
+        document.write(`Car Model : ${car.model}<br>`)
+
+        // Update the year property. 
+        car.year = 2025;
+
+        // Add a new property color to the car object. 
+        car.doors = 4;
+
+        document.write("<br><br><br>");
+        document.write("Updated car Object : ",JSON.stringify(car));
+    </script>
+</body>
+</html>

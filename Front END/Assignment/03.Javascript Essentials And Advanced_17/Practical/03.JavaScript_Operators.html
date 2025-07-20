@@ -1,0 +1,45 @@
+<!-- o Create a JavaScript program to perform the following: 
+ Add, subtract, multiply, and divide two numbers using arithmetic operators. 
+ Use comparison operators to check if two numbers are equal and if one 
+number is greater than the other. 
+ Use logical operators to check if both conditions (e.g., a > 10 and b < 5) are 
+true. 
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript operators</title>
+</head>
+<body>
+    <h2>Output in console</h2>
+
+    <script>
+      // Declare two numbers
+      let a = 15;
+      let b = 5;
+
+      // Arithmetic operations
+      console.log("Arithmetic Operations:");
+      console.log("Addition       :", a + b);
+      console.log("Subtraction    :", a - b);
+      console.log("Multiplication :", a * b);
+      console.log("Division       :", a / b);
+
+      // Comparison operations
+      console.log("\nComparison Operations:");
+      console.log("Are a and b equal?   :", a == b);
+      console.log("Is a greater than b? :", a > b);
+      console.log("Is a less than b?    :", a < b);
+
+      // Logical operations
+      console.log("\nLogical Operations:");
+      console.log("(a > 10 && b < 10):", a > 10 && b < 10); // true
+      console.log("(a > 20 || b < 10):", a > 20 || b < 10); // true
+      console.log("!(a == b):", !(a == b));                 // true
+    </script>
+
+</body>
+</html>
