@@ -1,0 +1,19 @@
+h1 {
+  border: 2px solid green;
+  font-weight: 1000;
+}
+h2 {
+  border: 2px solid green;
+  background-color: yellow;
+  color: darkblue;
+}
+h3 {
+  background-color: olive;
+  color: darkblue;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid green;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

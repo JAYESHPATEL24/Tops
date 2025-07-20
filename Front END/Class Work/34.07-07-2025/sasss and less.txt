@@ -1,0 +1,5 @@
+SASS : offers advanced features, is more robust and supports two syantaxes(scss and indented.)
+LESS : simpler syntax, javascript-based and integreted into projects quickly.
+
+LESS Ore-Processor:
+LESS is a dynamic stylesheet language that extends css with fetures like variables, mixins and functions enhancing code maintainability and reusability.

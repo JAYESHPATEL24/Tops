@@ -1,0 +1,33 @@
+.boarder(){
+    border: 2px solid green;
+}
+
+.display(@data){
+    display: flex;
+    justify-content: @data;
+}
+
+.bgcolor(@color){
+    background-color: @color;
+    color:darkblue;
+}
+
+h1{
+    .boarder();
+    font-weight: 1000;
+}
+
+h2{
+    .boarder();
+    .bgcolor(yellow);
+}   
+
+h3{
+    .bgcolor(olive);
+}
+
+.main{
+    .display(space-between);
+    .boarder();
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

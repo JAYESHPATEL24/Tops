@@ -1,0 +1,13 @@
+h1 {
+  background-color: aqua;
+  border: 10ch solid black;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h3 {
+  background-color: violet;
+  border: 2ch dotted darkblue;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}

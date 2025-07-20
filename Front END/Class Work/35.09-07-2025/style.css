@@ -1,0 +1,16 @@
+.container {
+  background-color: #3498db;
+  padding: 10px;
+}
+.container .header {
+  color: white;
+  font-size: 24px;
+}
+.container .box {
+  background: white;
+  color: #3498db;
+  padding: 20px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+}
