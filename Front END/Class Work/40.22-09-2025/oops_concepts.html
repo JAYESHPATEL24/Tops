@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //oops : objrct oriented Programming System
+
+        //  5 Pilllers
+        // 1> Class object
+        // 2> inheritnce
+        // 3> polimorphism
+        // 4> abstact
+        // 5> encapsulation 
+        
+        //class : collection of data members and member functions.
+
+        //object : instance of the class through the object we can use properties ofthe class.
+
+        //constructor : automatically called when objrct ois created.
+        class Myclass{
+            abc()
+            {
+                document.write("Method 1 !!!!");
+            }
+            y = function xyz(){
+                document.write("Method 2 !!!");
+            }
+
+            static add(a,b)
+            {
+                document.write("static printed!!!!",a+b);
+            }
+
+        }
+
+        obj = new Myclass;
+        obj.abc()
+        obj.y()
+        Myclass.add(4,5);
+
+        // class Car{
+        //     static Innerclass = class BMW{
+        //         colour(){
+
+        //         }
+        //     }
+        // }
+
+        class MyTest{
+             constructor()
+            {
+                document.write("Default Constructor")
+            }
+        }
+
+        obj1 = new MyTest;
+
+    </script>
+</body>
+</html>

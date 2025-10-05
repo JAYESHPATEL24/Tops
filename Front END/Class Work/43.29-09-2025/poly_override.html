@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // method overriding :
+        // when inherited class have same name of method
+
+        class A{
+            myfun(){
+                console.log("FUN1!!");
+            }
+        }
+        class B extends A{
+            myfun(){
+                super.myfun();
+                console.log("FUN2!!");
+            }
+        }
+
+        let obj = new B;
+        obj.myfun();
+    </script>
+</body>
+</html>

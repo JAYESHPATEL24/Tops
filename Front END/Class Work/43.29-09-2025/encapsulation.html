@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- encapsulation  : data binding  -->
+     <script>
+        function myfun(course, year){
+            let _course = course
+            let _year = year
+
+            this.getcourse = () =>{
+                return _course
+            }
+
+            this.getyear=()=>{
+                return _year
+            }
+        }
+
+        let obj = new myfun("js",2025);
+        console.log(obj.getcourse())
+        console.log(obj.getyear())
+     </script>
+</body>
+</html>

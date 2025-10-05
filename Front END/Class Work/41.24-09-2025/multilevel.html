@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class ONE{
+            // constructor()
+                // console.log("ONE")
+            // }
+            x = function hello(){
+                console.log("Hello")
+            }
+        }
+
+        class TWO extends ONE{
+            // constructor(){
+                // console.log("TWO")
+            // }
+            y = function how(){
+                console.log("HOW ARE YOU?")
+            }
+        }
+
+        class THREE extends TWO{
+            constructor(){
+                console.log("THREE")
+            }
+            z = function go(){
+                console.log("LET's GO")
+            }
+        }
+
+        let ob = new THREE;
+        ob.z();
+        ob.y();
+        ob.x();
+    </script>
+</body>
+</html>

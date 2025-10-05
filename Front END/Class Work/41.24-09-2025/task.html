@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Driven</title>
+</head>
+<body>
+    <h1>WELCOME</h1>
+    <h2>MENU : </h2>
+    <h5>1. Reverse String</h5>
+    <h5>2. Reverse Number</h5>
+    <h3>Enter Your Choice : </h3>
+    <input type="text" id="userchoice">
+    <h3>Enter a value : <h3>
+    <input type="text" id="userinput">
+    <button onclick="take_userinput.userdata()">Submit</button>
+
+    <script>
+        class Operationstring {
+            reverse_string(s_arr) {
+                let temp = "";
+                for (let i = 0; i < Math.floor(s_arr.length / 2); i++) {
+                    temp = s_arr[i];
+                    s_arr[i] = s_arr[s_arr.length - 1 - i];
+                    s_arr[s_arr.length - 1 - i] = temp;
+                }
+                return s_arr.join("");
+            }
+        }
+
+        class Array_convetor extends Operationstring {
+            string_array(s) {
+                return s.split("");
+            }
+        }
+
+        class take_userinput extends Array_convetor {
+            static userdata() {
+                let choice = document.getElementById("userchoice").value;
+                let s = document.getElementById("userinput").value;
+                // s = s.value;
+                let obj = new take_userinput(); 
+
+                if (choice == 1){
+                    let arr = obj.string_array(s); 
+                    console.log(obj.reverse_string(arr)); 
+                }
+                else if (choice == 2){
+                    let arr = obj.string_array(s); 
+                    console.log(obj.reverse_string(arr)); 
+                }
+                else{
+                    console.log("Invalid Choice...........!!!!!!!")
+                }
+            }
+        }
+    </script>
+</body>
+</html>

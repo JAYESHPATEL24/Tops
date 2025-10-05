@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const revstr=(s) =>{
+            let revs = "";
+
+            for (let i = s.length - 1; i >= 0; i--) {
+                revs += s[i];
+            }
+
+            document.writeln("Your rev string: " + revs);
+        }
+
+        const revstring=(s) =>{
+            s = s.split("");
+            for(i=0; i<Math.floor(s.length-1/2); i++)
+            {
+                document.write(i+"<br>"+s[i]+ "<br>")
+                document.write(s[s.length-1-i]+ "<br>")
+                let temp = s[i];
+                s[i] = s[s.length-1-i];
+                s[s.length-1-i] = temp;
+            }
+            document.write("---------",s);
+            s = s.join("");
+            document.write("Reverse : ",s);
+        }
+
+        s = "Ironman";
+
+        document.write("s : ",s,"<br>");
+        // revstr(s)
+        revstring(s)
+        
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inheritance</title>
+</head>
+<body>
+    <script>
+        // inheritance : when one class derived Properties of another class its called inheritance.
+        // 5 type 
+        // 1> single
+        // 2> mutiple
+        // 3> multilevel
+        // 4> hirarchical
+        // 5> hybrid
+
+        // 1> single level
+
+        // A (PARENT, ROOT, BASE)
+        // |
+        // B (CHILD, DERIVED, SUB)
+
+        class A{
+            abc(){
+                console.log("Parent Class Method 1");
+            }
+            efg(){
+                console.log("Parent Class Method 2");
+            }
+        }
+
+        class B extends A{
+            xyz(){
+                console.log("Child Class Method");
+            }
+        }
+
+        let obj = new B;
+        obj.abc();
+        obj.efg();
+        obj.xyz();
+
+
+        class C{
+            constructor(){
+                document.write("class c")
+            }
+            color(){
+                document.write("Red");
+            }
+        }
+
+        class D extends C{
+            constructor(){
+                document.write("Class d")
+            }
+        }
+
+        let obj1 = new D;
+        obj1.color();
+        
+        
+    </script>
+</body>
+</html>

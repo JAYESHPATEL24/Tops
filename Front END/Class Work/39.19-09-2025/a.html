@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var person={
+            1:"hello",
+            2:{
+                6:"this",
+                7:"random"
+            },
+            3:"hello1"
+        }
+
+        document.write(person[1]+"<br>");
+
+        var person = {
+            name : "Tony Stark",
+            Age : 35,
+            Profession : "Ironman"
+        }
+        document.write(person['name']+"<br>");
+        document.write(person.name+"<br>");
+
+        var person = {
+            name : "Tony Stark",
+            Age : 35,
+            marks :{
+                maths :"100",
+                science :"200"
+            }
+        }
+        document.write(person.marks.maths+"<br>");
+
+        
+        var person = {
+            name : "Tony Stark",
+            Age : 35,
+            marks : [100,99,96,100]
+        }
+        document.write(person['marks'][2]+"<br>");
+        document.write(person.marks[2]+"<br>");
+        document.write("hello"+ person.get("marks"));
+
+
+
+    </script>
+</body>
+</html>

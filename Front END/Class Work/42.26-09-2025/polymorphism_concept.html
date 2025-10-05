@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poly</title>
+</head>
+<body>
+    <script>
+        //poly : many morphism : forms .> many forms
+
+        //2)methods
+        // 1> method overloading
+        // 2> method overriding
+
+        // method overloading : sinngle class have multiple methods with same name 
+
+        // not supported in javascript
+
+        class MYclass{
+            fun()
+            {
+                console.log("1")
+            }
+            fun1(x)
+            {
+                console.log("2")
+            }
+            fun2(x,y)
+            {
+                console.log("3")
+            }
+            fun3(x,y,z)
+            {
+                console.log("4")
+            }
+        }
+
+        let obj = new MYclass;
+        obj.fun();
+        obj.fun(1);
+        obj.fun(1,2);
+        obj.fun(1,2,3);
+    </script>
+</body>
+</html>
