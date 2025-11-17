@@ -1,0 +1,20 @@
+perse : json Convert object
+stringify : object Convert json
+
+api method : 
+
+get : data get
+post : data Create
+put,patch : Update data, Partially Updatation
+Delete : Delete 
+
+json : JavaScript Object Notation 
+readable
+flexible
+use cases
+
+obj = {
+    "id" : 1,
+    "name" : "Tony Stark",
+    "email" : "Stark industry"
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let reverseNumber = new Promise(function (resolve, reject) {
+        let num = 12345;
+    
+        if (num) {
+            let reversed = 0
+            let part =0
+            while(num>0)
+            {
+                console.log("num",num)
+                part = num%10;
+                console.log("part",part)
+                num = num - part
+                num = num/10;
+                reversed = reversed*10 + part;
+                console.log("reversed",reversed)
+            }
+            resolve("Reversed Number : " + reversed);
+        } 
+        else {
+            reject("Invalid input! Please provide a positive number.");
+        }
+    });
+
+    console.log(reverseNumber)
+    </script>
+</body>
+</html>9

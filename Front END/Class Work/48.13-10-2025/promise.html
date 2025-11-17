@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function result(data){
+            console.log("result : ")
+            console.log(data)
+        }
+
+        let abc = new Promise(function(res,rej){
+            if(2==2){
+                res("Data Show")
+            }
+            else{
+                rej("Data Not Found")
+            }
+        })
+        .then(
+            function(res){
+                result(res)
+            },
+            function(res){
+                result(res)
+            }
+        )
+        .catch((errr)=>{
+            console.log("Error Found...!!!!!!!!",errr)
+        }
+        )
+
+        // console.log(abc)
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+What is Build?
+- in React, Build refers to the process of compling and optimizing your application's source code into a set of static files can be deployed to a web sever.
+
+- using Vite
+

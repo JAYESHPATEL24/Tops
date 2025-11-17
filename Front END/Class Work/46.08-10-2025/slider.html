@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <img src="/46.08-10-2025/11.jpeg" class="img" alt="">
+        <img src="/46.08-10-2025/12.jpg" class="img" alt="">
+        <img src="/46.08-10-2025/12.webp" class="img" alt="">
+        <!-- <img src="/46.08-10-2025/13.jpg" class="img" alt=""> -->
+    </div>
+
+    <script>
+        let img_tag = document.getElementsByClassName("img");
+        let index = 0;
+
+        function slider() {
+            for (let i = 0; i < img_tag.length; i++) {
+                img_tag[i].style.display = "none";
+            }
+            img_tag[index].style.display = "block";
+
+            index++;
+            if (index >= img_tag.length) {
+                index = 0;
+            }
+
+            setTimeout(slider, 2000); 
+        }
+
+        slider();
+    </script>
+</body>
+</html>

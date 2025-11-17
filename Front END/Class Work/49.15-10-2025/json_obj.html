@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let json = `[
+            {
+                "id" : 1,
+                "name" : "Tony Stark"
+            },
+            {
+                "id" : 2,
+                "name" : "Ironman"
+            }
+        ]`;
+
+        let abc = JSON.parse(json);
+
+        console.log(json)
+
+        for(let data of abc)
+        {
+            console.log(data);
+            document.write(`id : ${data.id} <br> name : ${data.name} <br> <br>`)
+        }
+
+        let obj = [
+            {
+                id : 1,
+                name : "Tony Stark"
+            },
+            {
+                id : 2,
+                name : "Ironman"
+            }
+        ]
+        let xyz = JSON.stringify(obj);
+
+        console.log(xyz);
+        
+    </script>
+</body>
+</html>

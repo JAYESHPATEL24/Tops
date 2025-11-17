@@ -1,0 +1,7 @@
+Promises :
+- A Promise in JavaScript is an object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+*-* Key States of a Promise
+1> Pending: The initial state, neither fulfilled nor rejected.
+2> Fulfilled: The operation completed successfully, and the promise has a resulting value.
+3> Rejected: The operation failed, and the promise has a reason for the failure.
