@@ -1,0 +1,2 @@
+
+the UseReducer hook in React is an alternative to use state. fro mappinf componenet state, especially when the state logic is more complex or involves multiple related pieces of state. it provides a way to manage state changes and upadtes in a functional compom=nent. often leading to cleaner

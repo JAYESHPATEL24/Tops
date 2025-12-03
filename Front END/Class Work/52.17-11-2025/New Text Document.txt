@@ -1,0 +1,10 @@
+use effect:
+
+- the useeffect hook allows you to perform side effect in your components.
+ some examples :fetching data, directly updating the DOM and timers.
+
+useeffect accepts two arguments. 
+
+useeffect(<function>,<dependency>)
+
+second argument is optional.
