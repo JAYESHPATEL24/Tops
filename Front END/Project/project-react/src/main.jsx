@@ -21,10 +21,11 @@ import UseDays from './switchdays.jsx'
 import Form from './formexample.jsx'
 import CheckboxExample from './checkboxexample.jsx'
 import FullFormexample from './FullFormexample.jsx'
+import Calculater from './calculater.jsx'
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <FullFormexample />
+    <Calculater />
   </StrictMode>,
 )
