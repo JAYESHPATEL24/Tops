@@ -22,10 +22,12 @@ import Form from './formexample.jsx'
 import CheckboxExample from './checkboxexample.jsx'
 import FullFormexample from './FullFormexample.jsx'
 import Calculater from './calculater.jsx'
-
+import Life_cycle from './life_cycle.jsx'
+import A from './A.jsx'
+import Routing from './Rounting.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Calculater />
+    <Routing />
   </StrictMode>,
 )
