@@ -1,0 +1,70 @@
+1. Introduction to React.js 
+ Question 1: What is React.js? How is it different from other JavaScript frameworks and 
+libraries? 
+ Question 2: Explain the core principles of React such as the virtual DOM and component- 
+based architecture. 
+ Question 3: What are the advantages of using React.js in web development?
+
+
+2. JSX (JavaScript XML) 
+ 
+ Question 1: What is JSX in React.js? Why is it used? 
+ Question 2: How is JSX different from regular JavaScript? Can you write JavaScript inside 
+JSX? 
+ Question 3: Discuss the importance of using curly braces {} in JSX expressions. 
+ 
+ 
+3. Components (Functional & Class Components) 
+
+ Question 1: What are components in React? Explain the difference between functional 
+components and class components. 
+ Question 2: How do you pass data to a component using props? 
+ Question 3: What is the role of render() in class components? 
+ 
+  
+4. Props and State 
+ 
+ Question 1: What are props in React.js? How are props different from state? 
+ Question 2: Explain the concept of state in React and how it is used to manage component 
+data. 
+ Question 3: Why is this.setState() used in class components, and how does it work? 
+ 
+ 
+5. Handling Events in React 
+ 
+ Question 1: How are events handled in React compared to vanilla JavaScript? Explain the 
+concept of synthetic events. 
+ Question 2: What are some common event handlers in React.js? Provide examples of 
+onClick, onChange, and onSubmit. 
+ Question 3: Why do you need to bind event handlers in class components? 
+ 
+6. Conditional Rendering 
+ 
+ Question 1: What is conditional rendering in React? How can you conditionally render 
+elements in a React component? 
+ Question 2: Explain how if-else, ternary operators, and && (logical AND) are used in JSX 
+for conditional rendering. 
+ 
+ 
+7. Lists and Keys 
+ 
+ Question 1: How do you render a list of items in React? Why is it important to use keys 
+when rendering lists? 
+ Question 2: What are keys in React, and what happens if you do not provide a unique key? 
+ 
+8. Forms in React 
+ 
+ Question 1: How do you handle forms in React? Explain the concept of controlled 
+components. 
+ Question 2: What is the difference between controlled and uncontrolled components in 
+React? 
+ 
+
+9. Lifecycle Methods (Class Components) 
+ 
+ Question 1: What are lifecycle methods in React class components? Describe the phases of a 
+component’s lifecycle. 
+ Question 2: Explain the purpose of componentDidMount(), componentDidUpdate(), 
+and componentWillUnmount(). 
+
+

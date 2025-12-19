@@ -1,0 +1,64 @@
+Task 1: 
+o Create a React component UserCard that accepts name, age, and location as 
+props and displays them in a card format. 
+
+Task 2: 
+o Create a Counter component with a button that increments a count value using 
+React state. Display the current count on the screen. 
+
+
+
+
+Task 1 : UserCard Compont using props
+
+==============================================================
+Usercard.jsx
+
+"""
+import './usercard.css';
+
+function UserCard(props) {
+    return (
+        <div className="user-card">
+            <h2>{props.name}</h2>
+            <p>Age: {props.age}</p>
+            <p>Location: {props.location}</p>
+        </div>
+    );  
+}
+
+function Userdata() {
+    return (
+        <div>
+            <UserCard name="Jayesh" age={30} location="Ahemdabad" />
+            <UserCard name="Jay" age={25} location="Surat" />
+            <UserCard name="Jignesh" age={35} location="Vadodara" />
+        </div>
+    );
+}
+
+export default Userdata;
+"""
+
+
+
+Task 2: Counter using state
+
+========================================================
+Counter.jsx
+
+"""
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+    return (
+    <div>
+        <h2>Counter: {count}</h2>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+    );
+}
+
+export default Counter;
+"""

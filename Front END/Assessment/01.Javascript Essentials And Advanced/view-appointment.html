@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>View Appointments</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div class="container">
+  <h2>Appointments</h2>
+
+  <input type="text" id="search" placeholder="Search by Name or Date">
+
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <p id="noData"></p>
+</div>
+
+<script type="module">
+  import AppointmentViewer from "./js/AppointmentViewer.js";
+  new AppointmentViewer();
+</script>
+</body>
+</html>

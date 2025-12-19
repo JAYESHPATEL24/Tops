@@ -1,0 +1,60 @@
+Task 1: 
+o Create a functional component Greeting that accepts a name as a prop and 
+displays "Hello, [name]!". 
+ 
+Task 2: 
+o Create a class component WelcomeMessage that displays "Welcome to React!" and 
+a render() method.
+
+
+Task 1 : Functional component
+
+==================================
+Greet.jsx
+
+"""
+function Greeting(props) {
+    return (
+        <h1>Hello, {props.name}!</h1>
+    );
+}
+
+function Entername() {
+    return (
+        <div>
+            <Greeting name="Tony Stark" />
+        </div>
+    );
+}
+
+export default Entername;
+
+"""
+
+
+Task 2 : Class component
+
+======================================
+
+Greet_class.jsx
+
+"""
+import { Component } from "react";
+
+class Greet extends Component {
+    constructor(){
+        super();
+        this.WelcomeMessage = "Welcome to React!" ;
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>{this.WelcomeMessage}</h1>
+            </div>
+        );
+    }
+}
+
+export default Greet;
+"""

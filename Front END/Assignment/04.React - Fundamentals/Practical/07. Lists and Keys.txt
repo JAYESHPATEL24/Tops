@@ -1,0 +1,68 @@
+ Task 1: 
+o Create a React component that renders a list of items (e.g., a list of fruit names). Use 
+the map() function to render each item in the list.
+
+Task 2: 
+o Create a list of users where each user has a unique id. Render the user list using 
+React and assign a unique key to each user. 
+
+
+
+Task 1 : Map() function fruits
+
+=========================================================================
+
+Fruit_map.jsx
+
+
+"""
+function Fruit_map() {
+    const fruits = ['Apple', 'Banana', 'Orange', 'Mango', 'Pineapple'];
+
+    return (
+        <div>
+            <h2>Fruit List</h2>
+            <ul>
+                {fruits.map((fruit) => (
+                    <li>{fruit}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}   
+
+export default Fruit_map;
+
+"""
+
+
+Task 2 : uselist with unique key
+
+=========================================================================
+
+user_with_unique_id.jsx
+
+"""
+function DisplayUserlist() {
+    const users = [
+        { id: 1, name: 'Raju' },
+        { id: 2, name: 'BabuRao' },
+        { id: 3, name: 'Shyam' },
+    ];
+
+        return (
+            <div>
+            <h2>User List</h2>
+            <ul>
+                {users.map((user) => (
+                <li key={user.id}>{user.name}</li>
+                ))}
+            </ul>
+            </div>
+        );
+    }
+
+export default DisplayUserlist;
+
+"""
+

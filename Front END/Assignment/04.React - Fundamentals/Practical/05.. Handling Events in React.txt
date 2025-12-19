@@ -1,0 +1,80 @@
+Task 1: 
+o Create a button in a React component that, when clicked, changes the text from 
+"Not Clicked" to "Clicked!" using event handling. 
+
+Task 2: 
+o Create a form with an input field in React. Display the value of the input field 
+dynamically as the user types in it. 
+
+
+
+Task 1 : Buttomn for "Not Clicked" and "Clicked
+
+===========================================================
+
+ButtonToggle.jsx
+
+"""
+
+import { useState } from "react";
+
+function ButtonToggle() {
+
+    const [text, setText] = useState("Not Clicked");
+
+    return (
+        <div>
+            <button onClick={()=>{setText(text === "Not Clicked" ? "Clicked" : "Not Clicked")}}>
+                click ME 
+            </button>
+            <h2>{text}</h2>
+        </div>
+    );
+}   
+
+export default ButtonToggle;
+
+"""
+
+
+
+Task 2 : Dynamic valur Form
+
+====================================================================
+
+SimpleForm.jsx
+
+"""
+import { useState } from "react";
+
+function SimpleForm() {
+    const [userdata, setUserdata] = useState({
+        name: "",
+        email: "",
+        password: ""
+    });
+
+    return (
+        <div>
+            <h2>Enter Your Data : </h2>
+            <form>
+                <input type="text" placeholder="Enter Name" value={userdata.name} onChange={(e) => setUserdata({...userdata, name: e.target.value})} />
+                <br /><br />
+                <input type="email" placeholder="Enter Email" value={userdata.email} onChange={(e) => setUserdata({...userdata, email: e.target.value})} /> 
+                <br /><br />
+                <input type="password" placeholder="Enter Password" value={userdata.password} onChange={(e) => setUserdata({...userdata, password: e.target.value})} />
+                <br /><br />
+                <button type="submit">Submit</button>
+            </form>
+            <h3>Your Name is : {userdata.name}</h3>
+            <h3>Your Email is : {userdata.email}</h3>
+            <h3>Your Password is : {userdata.password}</h3>
+        </div>
+    );
+}   
+
+export default SimpleForm;
+"""
+
+
+

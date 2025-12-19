@@ -25,9 +25,14 @@ import Calculater from './calculater.jsx'
 import Life_cycle from './life_cycle.jsx'
 import A from './A.jsx'
 import Routing from './Rounting.jsx';
+import AnotherHookExample from './another_hook.jsx';
+import Use_created_context from './use_created_context.jsx';
+import Create_context from './create_context.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Routing />
+    <Create_context>
+      <Use_created_context />
+    </Create_context>
   </StrictMode>,
 )

@@ -1,0 +1,28 @@
+.user-card {
+    width: 280px;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.user-card h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 22px;
+}
+
+.user-card p {
+    margin: 6px 0;
+    font-size: 15px;
+    color: #555;
+}

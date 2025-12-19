@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Appointment</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.success {
+  color: green;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Hospital Appointment Form</h2>
+
+  <form id="appointmentForm">
+    <div class="grid">
+      <div>
+        <label>Applicant Name</label>
+        <input type="text" id="name">
+        <small class="error"></small>
+      </div>
+
+      <div>
+        <label>Email Address</label>
+        <input type="email" id="email">
+        <small class="error"></small>
+      </div>
+
+      <div>
+        <label>Phone Number</label>
+        <input type="text" id="phone">
+        <small class="error"></small>
+      </div>
+
+      <div>
+        <label>Appointment Date</label>
+        <input type="date" id="date">
+        <small class="error"></small>
+      </div>
+
+      <div>
+        <label>Appointment Time</label>
+        <input type="time" id="time">
+        <small class="error"></small>
+      </div>
+    </div>
+
+    <div>
+      <label>Medical Disease Comment</label>
+      <textarea id="comment"></textarea>
+      <small class="error"></small>
+    </div>
+
+    <button type="submit">Book Appointment</button>
+  </form>
+
+  <div id="message"></div>
+</div>
+
+<script>
+class AppointmentHandler {
+  constructor() {
+    this.form = document.getElementById("appointmentForm");
+    this.message = document.getElementById("message");
+    this.addEventListeners();
+  }
+
+  validateForm() {
+    let valid = true;
+    document.querySelectorAll(".error").forEach(e => e.textContent = "");
+
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const date = document.getElementById("date");
+    const time = document.getElementById("time");
+    const comment = document.getElementById("comment");
+
+    if (name.value.length < 3) {
+      name.nextElementSibling.textContent = "Minimum 3 characters required";
+      valid = false;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      email.nextElementSibling.textContent = "Invalid email address";
+      valid = false;
+    }
+
+    if (!/^\d{10}$/.test(phone.value)) {
+      phone.nextElementSibling.textContent = "Phone must be 10 digits";
+      valid = false;
+    }
+
+    const appointmentDate = new Date(`${date.value} ${time.value}`);
+    if (appointmentDate <= new Date()) {
+      date.nextElementSibling.textContent = "Select future date & time";
+      valid = false;
+    }
+
+    if (comment.value.length < 50) {
+      comment.nextElementSibling.textContent = "Minimum 50 characters required";
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  saveToLocalStorage(data) {
+    const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    appointments.push(data);
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+  }
+
+  clearForm() {
+    this.form.reset();
+  }
+
+  showMessage(type, text) {
+    this.message.innerHTML = `<p class="${type}">${text}</p>`;
+  }
+
+  addEventListeners() {
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (this.validateForm()) {
+        const data = {
+          name: name.value,
+          email: email.value,
+          phone: phone.value,
+          date: date.value,
+          time: time.value,
+          comment: comment.value
+        };
+
+        this.saveToLocalStorage(data);
+        this.showMessage("success", "Appointment booked successfully!");
+        this.clearForm();
+      } else {
+        this.showMessage("error", "Please fix the errors above.");
+      }
+    });
+  }
+}
+
+new AppointmentHandler();
+</script>
+
+</body>
+</html>

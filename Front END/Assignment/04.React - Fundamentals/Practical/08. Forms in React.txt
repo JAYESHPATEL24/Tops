@@ -1,0 +1,9 @@
+Task 1: 
+o Create a form with inputs for name, email, and password. Use state to control the 
+form and display the form data when the user submits it. 
+
+Task 2: 
+o Add validation to the form created above. For example, ensure that the email input 
+contains a valid email address.
+
+

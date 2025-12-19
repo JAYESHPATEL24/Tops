@@ -1,0 +1,59 @@
+Task 1: 
+    o Create a component that conditionally displays a login or logout button based on 
+    the user’s login status. 
+
+Task 2: 
+o Implement a component that displays a message like "You are eligible to vote" if the 
+user is over 18, otherwise display "You are not eligible to vote.
+
+
+Task 1 : User Login Logout status
+====================================================
+login_logout.jsx
+
+"""
+import { useState } from "react";
+
+function UserloginStatus() {
+
+    const [userstate, setUserstate] = useState(false);
+
+
+    return (
+        <div>
+            <h2>User is {userstate ? "Logged In" : "Logged Out"}</h2>
+            <button onClick={() => setUserstate(true)}>Login</button>
+            <button onClick={() => setUserstate(false)}>Logout</button>
+        </div>
+    );
+}
+
+export default UserloginStatus;
+
+"""
+
+
+
+Task 2 : eligible to vote
+========================================================
+Check_eligibillity_for_vote.jsx
+
+"""
+import { useState } from "react";
+
+function Checkeligibillityforvote() {
+    const [age, setAge] = useState(0);
+    const [msg, setMsg] = useState("");
+
+    return (
+        <div>
+            <h2>Check Eligibillity for Vote</h2>
+            <input type="number" placeholder="Enter Your Age" value={age} onChange={(e) => setAge(e.target.value)} />
+            <button onClick={() => { age >= 18 ? setMsg("You are Eligible for Vote") : setMsg("You are Not Eligible for Vote") }}>Check Eligibility</button>
+            <h3>{msg}</h3>
+        </div>
+    );
+}
+
+export default Checkeligibillityforvote;
+"""

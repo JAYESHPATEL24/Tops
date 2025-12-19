@@ -1,4 +1,18 @@
-import { useState } from "react";
+import { createContext } from "react";
 
-function Myfun() {
-    const [choice, setchoice] = useState(0);                
+export const Example = createContext();
+
+const Create_context = ({ children }) => {
+  const user = {
+    name: "Jayesh",
+    Id: 101,
+  };
+
+  return (
+    <Example.Provider value={{ user }}>
+      {children}
+    </Example.Provider>
+  );
+};
+
+export default Create_context;

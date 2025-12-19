@@ -1,0 +1,82 @@
+1.  Introduction to React.js 
+
+o Set up a new React.js project using create-react-app. 
+o Create a basic component that displays "Hello, React!" on the web page. 
+
+2. JSX (JavaScript XML) 
+
+o Create a React component that renders the following JSX elements: 
+ A heading with the text "Welcome to JSX". 
+ A paragraph explaining JSX with dynamic data (use curly braces to insert 
+variables). 
+
+3. Components (Functional & Class Components) 
+ Task 1: 
+o Create a functional component Greeting that accepts a name as a prop and 
+displays "Hello, [name]!". 
+ 
+ Task 2: 
+o Create a class component WelcomeMessage that displays "Welcome to React!" and 
+a render() method.
+
+4. Props and State 
+ Task 1: 
+o Create a React component UserCard that accepts name, age, and location as 
+props and displays them in a card format. 
+ Task 2: 
+o Create a Counter component with a button that increments a count value using 
+React state. Display the current count on the screen. 
+
+5. Handling Events in React 
+ Task 1: 
+o Create a button in a React component that, when clicked, changes the text from 
+"Not Clicked" to "Clicked!" using event handling. 
+ Task 2: 
+o Create a form with an input field in React. Display the value of the input field 
+dynamically as the user types in it. 
+
+
+
+6. Conditional Rendering 
+ 
+ Task 1: 
+o Create a component that conditionally displays a login or logout button based on 
+the user’s login status. 
+ Task 2: 
+o Implement a component that displays a message like "You are eligible to vote" if the 
+user is over 18, otherwise display "You are not eligible to vote." 
+ 
+ 
+ 
+7. Lists and Keys 
+ 
+ Task 1: 
+o Create a React component that renders a list of items (e.g., a list of fruit names). Use 
+the map() function to render each item in the list. 
+ Task 2: 
+o Create a list of users where each user has a unique id. Render the user list using 
+React and assign a unique key to each user.
+
+
+8. Forms in React 
+
+ Task 1: 
+o Create a form with inputs for name, email, and password. Use state to control the 
+form and display the form data when the user submits it. 
+ Task 2: 
+o Add validation to the form created above. For example, ensure that the email input 
+contains a valid email address.
+
+
+
+9. Lifecycle Methods (Class Components) 
+
+ Task 1: 
+o Create a class component that fetches data from an API when the component 
+mounts using componentDidMount(). Display the data in the component. 
+
+ Task 2: 
+o Implement a component that logs a message to the console when it updates using 
+componentDidUpdate(). Log another message when the component unmounts 
+using componentWillUnmount(). 
+
