@@ -15,9 +15,11 @@ import Checkeligibillityforvote from './Check_eligibillity_for_vote.jsx';
 import Fruit_map from './Fruit_map.jsx';
 import DisplayUserlist from './user_with_unique_id.jsx';
 import Form from './Form.jsx';
+import UserList from './class_example.jsx';
+import Life_cycle from './main_component.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Form />
+    <Life_cycle />
   </StrictMode>,
 )

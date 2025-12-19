@@ -1,0 +1,146 @@
+Task 1: 
+o Create a class component that fetches data from an API when the component 
+mounts using componentDidMount(). Display the data in the component. 
+
+Task 2: 
+o Implement a component that logs a message to the console when it updates using 
+componentDidUpdate(). Log another message when the component unmounts 
+using componentWillUnmount(). 
+
+
+
+Task 1 : componentDidMount()
+
+==============================================
+
+"""
+import React, { Component } from 'react';
+
+class UserList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],      
+      loading: true,  
+      error: null     
+    };
+  }
+
+  // Lifecycle method: runs after the component is mounted
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ users: data, loading: false });
+      })
+      .catch(error => {
+        this.setState({ error: error.message, loading: false });
+      });
+  }
+
+  render() {
+    const { users, loading, error } = this.state;
+
+    if (loading) {
+      return <p>Loading data...</p>;
+    }
+
+    if (error) {
+      return <p>Error: {error}</p>;
+    }
+
+    return (
+      <div>
+        <h2>User List</h2>
+        <ul>
+          {users.map(user => (
+            <li key={user.id}>
+              {user.name} ({user.email})
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default UserList;
+"""
+
+
+
+Task 2 : componentDidUpdate and componentWillUnmount()
+
+========================================================================
+
+lifrcyclelog.jsx
+
+"""
+import React, { Component } from "react";
+
+class LifecycleLogger extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    console.log("Component updated");
+
+    // Optional: check what changed
+    if (prevProps.count !== this.props.count) {
+      console.log("Count prop changed from", prevProps.count, "to", this.props.count);
+    }
+  }
+
+  componentWillUnmount() {
+    console.log("Component is unmounting");
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Lifecycle Logger</h2>
+        <p>Count: {this.props.count}</p>
+      </div>
+    );
+  }
+}
+
+export default LifecycleLogger;
+
+"""
+
+Main_component.jsx
+
+=========================================
+
+"""
+import React, { Component } from "react";
+import LifecycleLogger from "./lifrcyclelog.jsx";
+
+class Life_cycle extends Component {
+  state = {
+    count: 0,
+    show: true
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Update Count
+        </button>
+
+        <button onClick={() => this.setState({ show: !this.state.show })}>
+          Toggle Component
+        </button>
+
+        {this.state.show && <LifecycleLogger count={this.state.count} />}
+      </div>
+    );
+  }
+}
+
+export default Life_cycle;
+"""
