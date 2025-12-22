@@ -1,4 +1,4 @@
-/* ---------- RESET & GLOBAL ---------- */
+
 * {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
@@ -6,10 +6,10 @@
 
 body {
   margin: 0;
-  background: #f4f6f8;
+  background-color: #007bff;
 }
 
-/* ---------- CONTAINER ---------- */
+
 .container {
   max-width: 900px;
   margin: 40px auto;
@@ -19,20 +19,19 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* ---------- HEADINGS ---------- */
-h2 {
+h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 60px;
 }
 
-/* ---------- FORM GRID ---------- */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
 
-/* ---------- FORM ELEMENTS ---------- */
+
 label {
   font-weight: bold;
   display: block;
@@ -52,7 +51,6 @@ textarea {
   resize: vertical;
 }
 
-/* ---------- BUTTON ---------- */
 button {
   margin-top: 20px;
   padding: 10px;
@@ -68,7 +66,6 @@ button:hover {
   background: #0056b3;
 }
 
-/* ---------- MESSAGES ---------- */
 .error {
   color: red;
   font-size: 12px;
@@ -80,7 +77,13 @@ button:hover {
   text-align: center;
 }
 
-/* ---------- TABLE (VIEW PAGE) ---------- */
+a{
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+}
+
 table {
   border-collapse: collapse;
   margin-top: 20px;
@@ -96,21 +99,18 @@ th {
   color: white;
 }
 
-/* ---------- SEARCH INPUT ---------- */
 #search {
   width: 100%;
   padding: 8px;
   margin-bottom: 15px;
 }
 
-/* ---------- NO DATA MESSAGE ---------- */
 #noData {
   text-align: center;
   margin-top: 15px;
   color: #777;
 }
 
-/* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;

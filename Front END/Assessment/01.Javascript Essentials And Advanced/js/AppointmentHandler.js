@@ -82,14 +82,13 @@ export default class AppointmentHandler {
         console.log("Appointment Data:", data); 
 
         this.saveToLocalStorage(data);
-        this.showMessage("success", "Appointment booked successfully!");
+        this.showMessage("success", "Your Appointment booked successfully!");
         this.clearForm();
       } else {
-        this.showMessage("error", "Please fix the errors above.");
+        this.showMessage("error", "Please Enter a Valid Data");
       }
     });
 
-    // ✅ Real-time validation (event delegation)
     this.form.addEventListener("input", () => this.validateForm());
   }
 }

@@ -4,57 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hospital Appointment</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="container">
-  <h2>Hospital Appointment Form</h2>
+  <h1>Hospital Appointment Form</h1>
 
   <form id="appointmentForm" novalidate>
     <div class="grid">
       <div>
         <label>Applicant Name</label>
         <input type="text" id="name" required>
-        <small class="error"></small>
+        <p class="error"></p>
       </div>
 
       <div>
         <label>Email Address</label>
         <input type="email" id="email" required>
-        <small class="error"></small>
+        <p class="error"></p>
       </div>
 
       <div>
         <label>Phone Number</label>
         <input type="text" id="phone" required>
-        <small class="error"></small>
+        <p class="error"></p>
       </div>
 
       <div>
         <label>Date of Appointment</label>
         <input type="date" id="date" required>
-        <small class="error"></small>
+        <p class="error"></p>
       </div>
 
       <div>
         <label>Time of Appointment</label>
         <input type="time" id="time" required>
-        <small class="error"></small>
+        <p class="error"></p>
       </div>
     </div>
 
     <div>
       <label>Medical Disease Comment</label>
       <textarea id="comment" required></textarea>
-      <small class="error"></small>
+      <p class="error"></p>
     </div>
 
     <button type="submit">Book Appointment</button>
   </form>
 
   <div id="message"></div>
-  <a href="view-appointment.html">View Appointments</a>
+  <button><a href="view-appointment.html">View Appointments</a></button>
 </div>
 
 <script type="module">
